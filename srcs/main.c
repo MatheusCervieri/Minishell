@@ -6,11 +6,11 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/01 20:24:49 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:40:56 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "project.h"
+#include "minishell.h"
 
 int	main(void)
 {

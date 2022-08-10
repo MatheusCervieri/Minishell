@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/07/25 23:22:09 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/10 13:43:36 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I $(HEADERS_PATH)
+CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
 RM = rm -f
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
-NAME = project
+NAME = minishell
 SRC_FILES = main.c \
 
 LIBFT_A = $(LIBS_PATH)libft.a 
@@ -33,7 +33,7 @@ $(LIBFT_A):
 	@cd $(LIBS_PATH) && $(MAKE_NOPRINT)
 	
 $(NAME): $(LIBFT_A) $(OBJECTS) 
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT_A)  -lmlx -lXext -lX11 
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT_A) 
 
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	@$(MKDIR) $(OBJS_PATH)
