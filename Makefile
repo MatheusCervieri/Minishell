@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/10 13:43:36 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/10 19:44:46 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
+CFLAGS = -Wall -Wextra -Werror -g -g3 -lreadline -I $(HEADERS_PATH)
 RM = rm -f
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
