@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/11 14:18:50 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:11:25 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 int	main(void)
 {
-	char *line;
-
-	while (1)
-	{
-		line = readline("minishell> ");
-		printf("%s \n", line);
-		printf("teste");
-		printf("i hate git");
-	}
+	print_and_return();
+	return (0);
 }
