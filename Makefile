@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/11 20:39:52 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/08/11 20:50:51 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,12 +66,12 @@ valgrind: $(NAME)
 
 clean:
 	@$(RM) objs test/bin
-	@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
+#@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
 
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
+#@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
 
 re: fclean all
 
