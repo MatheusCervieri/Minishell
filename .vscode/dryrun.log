@@ -1,5 +1,9 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
-make: Nothing to be done for 'all'.
+cd ./Libft/ && make --no-print-directory
+mkdir -p ./objs/
+gcc -Wall -Wextra -Werror -g -g3 -std=c11 -I ./includes/ -c srcs/main.c -o objs/main.o
 make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
  
+make: *** No rule to make target 'objs/print.o', needed by 'minishell'.
+

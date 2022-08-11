@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 10 19:45:33 2022
+# Make data base, printed on Thu Aug 11 20:53:10 2022
 
 # Variables
 
@@ -16,6 +16,10 @@ LC_ALL = C
 HEADERS_PATH = ./includes/
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
+# makefile (from 'Makefile', line 34)
+OBJECTS_TEST = $(filter-out ./objs/main.o, $(OBJECTS))
+# makefile (from 'Makefile', line 28)
+TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
 # environment
 WSLENV = ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID
 # environment
@@ -26,7 +30,7 @@ MAKE_COMMAND := make
 VSCODE_HANDLES_SIGPIPE = true
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
-# makefile (from 'Makefile', line 25)
+# makefile (from 'Makefile', line 30)
 LIBFT_A = $(LIBS_PATH)libft.a 
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
@@ -38,7 +42,7 @@ PWD = /home/GabrielHenaut/Projects/42/Minishell
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 OLDPWD = /mnt/c/Users/gabri/AppData/Local/Programs/Microsoft VS Code
-# makefile (from 'Makefile', line 21)
+# makefile (from 'Makefile', line 22)
 MAKE_NOPRINT = $(MAKE) --no-print-directory
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
@@ -80,6 +84,8 @@ MAKEFILE_LIST := Makefile
 WT_PROFILE_ID = {a5a97cb8-8961-5535-816d-772efe0c6a3f}
 # automatic
 *F = $(notdir $*)
+# makefile (from 'Makefile', line 17)
+TEST_PATH = ./test
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # makefile (from 'Makefile', line 14)
@@ -100,7 +106,7 @@ DOTNET_BUNDLE_EXTRACT_BASE_DIR = /home/GabrielHenaut/.cache/dotnet_bundle_extrac
 SHLVL = 3
 # environment
 MAKELEVEL := 0
-# makefile (from 'Makefile', line 20)
+# makefile (from 'Makefile', line 21)
 MKDIR = mkdir -p
 # default
 MAKE = $(MAKE_COMMAND)
@@ -110,23 +116,24 @@ PATH = /home/GabrielHenaut/.vscode-server/bin/6d9b74a70ca9c7733b29f0456fd8195364
 MAKEFILES := 
 # automatic
 ^F = $(notdir $^)
-# makefile (from 'Makefile', line 27)
+# makefile (from 'Makefile', line 32)
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 # environment
-WT_SESSION = d47a9f85-d75a-44b0-89f2-cf150d54daab
+WT_SESSION = 9e0e7590-80aa-459e-a4ef-840c5b523d13
 # makefile (from 'Makefile', line 15)
 OBJS_PATH = ./objs/
 # automatic
 ?F = $(notdir $?)
-# makefile (from 'Makefile', line 22)
+# makefile (from 'Makefile', line 23)
 NAME = minishell
 # environment
 HOSTTYPE = x86_64
 # automatic
+ 
 +F = $(notdir $+)
 # environment
-WSL_INTEROP = /run/WSL/2055_interop
-# makefile (from 'Makefile', line 28)
+WSL_INTEROP = /run/WSL/2679_interop
+# makefile (from 'Makefile', line 33)
 OBJECTS = $(addprefix $(OBJS_PATH), $(OBJ_FILES))
 # 'override' directive
 GNUMAKEFLAGS := 
@@ -138,26 +145,28 @@ VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/gabri/.vscode/extensions/ms-vscode-remote
 ASDF_DIR = /opt/asdf-vm
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from 'Makefile', line 19)
-RM = rm -f
+# makefile (from 'Makefile', line 20)
+RM = rm -rf
 # environment
 DISPLAY = :0
 # environment
 USER = GabrielHenaut
 # default
 MAKE_VERSION := 4.3
-# makefile (from 'Makefile', line 23)
-SRC_FILES = main.c 
+# makefile (from 'Makefile', line 27)
+TESTS = $(wildcard $(TEST_PATH)/*.c)
+# makefile (from 'Makefile', line 24)
+SRC_FILES = main.c print.c 
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
 _ = /usr/sbin/make
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
-# makefile (from 'Makefile', line 18)
-CFLAGS = -Wall -Wextra -Werror -g -g3 -lreadline -I $(HEADERS_PATH)
+# makefile (from 'Makefile', line 19)
+CFLAGS = -Wall -Wextra -Werror -g -g3 -std=c11 -I $(HEADERS_PATH)
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-fad38041-099f-49fa-9606-77caebf47095.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-05242960-3562-4e9f-ae6a-85cf5bed37e7.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -173,19 +182,19 @@ TERM = xterm-256color
 # default
 SUFFIXES := 
 # environment
-_P9K_TTY = /dev/pts/2
+_P9K_TTY = /dev/pts/7
 # environment
 WSL_DISTRO_NAME = Arch
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
-# makefile (from 'Makefile', line 17)
-CC = cc
-# makefile (from 'Makefile', line 26)
+# makefile (from 'Makefile', line 18)
+CC = gcc
+# makefile (from 'Makefile', line 31)
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 # environment
 DOTNET_ROOT = /usr/share/dotnet
 # variable set hash-table stats:
-# Load=87/1024=8%, Rehash=0, Collisions=2/132=2%
+# Load=91/1024=9%, Rehash=0, Collisions=4/153=3%
 
 # Pattern-specific Variable Values
 
@@ -193,33 +202,42 @@ DOTNET_ROOT = /usr/share/dotnet
 
 # Directories
 
-# . (device 2112, inode 101485): 10 files, no impossibilities.
-# srcs (device 2112, inode 155242): 3 files, no impossibilities so far.
+# ./test (device 2096, inode 85272): 3 files, no impossibilities.
+# . (device 2096, inode 101485): 10 files, no impossibilities.
+# test (device 2096, inode 85272): 3 files, no impossibilities.
+# srcs (device 2096, inode 155242): No files, no impossibilities so far.
 
-# 13 files, no impossibilities in 2 directories.
+# 16 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
 objs/%.o: srcs/%.c
-#  recipe to execute (from 'Makefile', line 39):
+#  recipe to execute (from 'Makefile', line 47):
 	@$(MKDIR) $(OBJS_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-# 1 implicit rules, 0 (0.0%) terminal.
+test/bin/%: test/%.c
+#  recipe to execute (from 'Makefile', line 51):
+	@$(CC) $< $(OBJECTS_TEST) -o $@  -lcriterion
+	
+
+# 2 implicit rules, 0 (0.0%) terminal.
 # Files
 
-minishell: Libft/libft.a objs/main.o
+minishell: Libft/libft.a objs/main.o objs/print.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-10 19:44:48.021272
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 36):
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT_A) 
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  recipe to execute (from 'Makefile', line 44):
+	@$(CC) -o $(NAME) $(OBJECTS) $(LIBFT_A) -lreadline
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 19:44:46.741272
+#  Last modified 2022-08-11 20:50:51.525357
 #  File has been updated.
 #  Successfully updated.
 
@@ -233,15 +251,14 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 51):
-	@$(RM) $(OBJECTS)
-	@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
+#  recipe to execute (from 'Makefile', line 68):
+	@$(RM) objs test/bin
 
 valgrind: minishell
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 48):
+#  recipe to execute (from 'Makefile', line 65):
 	@$(VALGRIND) $(NAME) $(MAP)
 
 re: fclean all
@@ -250,15 +267,11 @@ re: fclean all
 #  File does not exist.
 #  File has not been updated.
 
-objs/main.o: srcs/main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'main'
-#  Last modified 2022-08-10 19:41:12.739838
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 39):
-	@$(MKDIR) $(OBJS_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+# Not a target:
+objs/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -272,61 +285,105 @@ all: minishell
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
- 
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 56):
+#  recipe to execute (from 'Makefile', line 73):
 	@$(RM) $(NAME)
-	@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
 
 run: minishell
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 45):
+#  recipe to execute (from 'Makefile', line 62):
 	@$(NAME) $(MAP)
+
+# Not a target:
+objs/print.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+test: minishell test/bin test/bin/test
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 57):
+	@for test in $(TESTBINS) ; do ./$$test ; done
+
+# Not a target:
+test/bin/test:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 Libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-10 19:36:34.191894
+#  Implicit/static pattern stem: ''
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 33):
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Libft/libft.a
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=4/15=27%
+#  recipe to execute (from 'Makefile', line 41):
 	@cd $(LIBS_PATH) && $(MAKE_NOPRINT)
 	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+test/bin:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $@
 
 .PHONY: all run clean fclean re
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-srcs/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 19:41:11.599838
-#  File has been updated.
-#  Successfully updated.
-
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=0/44=0%
+# Load=18/1024=2%, Rehash=0, Collisions=0/49=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 227 B / avg = 7 B
-# current buf: size = 8162 B / used = 227 B / count = 29 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 284 B / avg = 8 B
+# current buf: size = 8162 B / used = 284 B / count = 34 / avg = 8 B
 
-# strcache performance: lookups = 62 / hit rate = 53%
+# strcache performance: lookups = 72 / hit rate = 52%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=0/62=0%
-# Finished Make data base on Wed Aug 10 19:45:33 2022
+# Load=34/8192=0%, Rehash=0, Collisions=0/72=0%
+# Finished Make data base on Thu Aug 11 20:53:10 2022
 
  
