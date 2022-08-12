@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/12 01:32:36 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/12 01:33:26 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef TEST_H
+# define TEST_H
 
-int	init_shell(void)
-{
-	char	*line;
-	int		rtn;
+t_list	*lexer(char *line);
 
-	rtn = 0;
-	while (rtn == 0)
-	{
-		line = readline("minishell> ");
-		if (line && *line)
-			add_history(line);
-		rtn = parse_line(line);
-	}
-	rl_clear_history();
-	free(line);
-	return (0);
-}
+#endif

@@ -2,4 +2,4 @@
 .vscode/dryrun.log
 .vscode/targets.log
 .vscode/tasks.json
-.vscode
+.vscode*

@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/11 21:18:58 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/08/12 01:06:04 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ MAKE_NOPRINT = $(MAKE) --no-print-directory
 NAME = minishell
 SRC_FILES = main.c \
 			init_shell.c \
+			parser.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
@@ -48,7 +49,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(TEST_PATH)/bin/%: $(TEST_PATH)/%.c
-	@$(CC) $< $(OBJECTS_TEST) -o $@  -lcriterion
+	@$(CC) $(CFLAGS) $< $(OBJECTS_TEST) $(LIBFT_A) -o $@  -lcriterion -lreadline
 	
 $(TEST_PATH)/bin:
 	@$(MKDIR) $@
