@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/11 21:37:57 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/11 21:39:14 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	init_shell(void)
 		line = readline("minishell> ");
 		if (line && *line)
 			add_history(line);
-		// parse_line(line);
 	}
 	return (0);
 }
