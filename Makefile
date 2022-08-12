@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/11 20:50:51 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/08/11 21:00:50 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(TEST_PATH)/bin:
 	@$(MKDIR) $@
 
 test: $(NAME) $(TEST_PATH)/bin $(TESTBINS)
-	@for test in $(TESTBINS) ; do ./$$test ; done
+	@for test in $(TESTBINS) ; do ./$$test --verbose ; done
 
 bonus: all
 
