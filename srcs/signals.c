@@ -6,18 +6,33 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:59:51 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/11 18:01:47 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/12 12:36:02 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-void    handler()
+void	ctrlc_handler()
 {
-	printf("I am a signal function \n");
+	ft_putendl_fd("", 1);
+	init_shell();
 }
 
-void    signals(void)
+void	ctrld_handler()
 {
-    signal(SIGINT, handler);
+	ft_putendl_fd("", 1);
+	init_shell();
 }
+
+void	signals()
+{
+	/*
+	struct sigaction sa;
+	sa.sa_flags = SA_RESTART;
+	sa.sa_handler = &handler;
+	sigaction(SIGINT, &sa, NULL);
+	*/
+	signal(SIGINT, ctrlc_handler);	
+	signal(SIGQUIT, ctrld_handler);	
+}
+	
