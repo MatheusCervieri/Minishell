@@ -1,5 +1,10 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
-make: Nothing to be done for 'all'.
+cd ./Libft/ && make --no-print-directory
+mkdir -p ./objs/
+gcc -Wall -Wextra -Werror -g -g3 -std=c11 -I ./includes/ -c srcs/main.c -o objs/main.o
+mkdir -p ./objs/
+gcc -Wall -Wextra -Werror -g -g3 -std=c11 -I ./includes/ -c srcs/init_shell.c -o objs/init_shell.o
+gcc -o minishell ./objs/main.o ./objs/init_shell.o ./Libft/libft.a  -lreadline
 make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
  

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/12 11:02:25 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/11 21:40:19 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <criterion/criterion.h>
 #include "../includes/minishell.h"
 
-int	main(void)
-{
-	int	rtn;
-
-	rtn = init_shell();
-	return (rtn);
-}
+// Test(function you are testing, test name){
+// 	test...
+// }

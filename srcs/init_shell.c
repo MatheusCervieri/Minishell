@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/12 11:02:25 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/11 21:43:04 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(void)
+int	init_shell(void)
 {
-	int	rtn;
+	char	*line;
 
-	rtn = init_shell();
-	return (rtn);
+	while (1)
+	{
+		line = readline("minishell> ");
+		if (line && *line)
+			add_history(line);
+		if (ft_strncmp(line, "exit", 5) == 0)
+			break;
+	}
+	rl_clear_history();
+	free(line);
+	return (0);
 }
