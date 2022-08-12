@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/11 21:00:50 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/08/11 21:18:58 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
 NAME = minishell
 SRC_FILES = main.c \
-			print.c \
+			init_shell.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
@@ -66,12 +66,12 @@ valgrind: $(NAME)
 
 clean:
 	@$(RM) objs test/bin
-#@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
+	@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
 
 
 fclean: clean
 	@$(RM) $(NAME)
-#@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
+	@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
 
 re: fclean all
 

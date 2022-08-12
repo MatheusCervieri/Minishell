@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/11 21:15:47 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/11 21:14:58 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../includes/minishell.h"
 
-# include "libft.h"
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+int	init_shell(void)
+{
+	char	*line;
 
-int print_and_return(void);
-int	init_shell(void);
-
-#endif
+	while(1)
+	{
+		line = read_line("minishell> ");
+		parse_line(line);
+	}
+	return (0);
+}
