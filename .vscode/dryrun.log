@@ -1,5 +1,6 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
+cd ./Libft/ && make --no-print-directory
 mkdir -p ./objs/
 gcc -Wall -Wextra -Werror -g -g3 -std=c11 -I ./includes/ -c srcs/main.c -o objs/main.o
 mkdir -p ./objs/

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Aug 11 21:15:40 2022
+# Make data base, printed on Thu Aug 11 21:24:50 2022
 
 # Variables
 
@@ -193,7 +193,7 @@ SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 # environment
 DOTNET_ROOT = /usr/share/dotnet
 # variable set hash-table stats:
-# Load=91/1024=9%, Rehash=0, Collisions=3/154=2%
+# Load=91/1024=9%, Rehash=0, Collisions=4/153=3%
 
 # Pattern-specific Variable Values
 
@@ -202,11 +202,11 @@ DOTNET_ROOT = /usr/share/dotnet
 # Directories
 
 # ./test (device 2096, inode 85272): 3 files, no impossibilities.
-# . (device 2096, inode 101485): 11 files, no impossibilities.
+# . (device 2096, inode 101485): 10 files, no impossibilities.
 # test (device 2096, inode 85272): 3 files, no impossibilities.
-# srcs (device 2096, inode 155242): 4 files, no impossibilities so far.
+# srcs (device 2096, inode 155242): No files, no impossibilities so far.
 
-# 21 files, no impossibilities in 4 directories.
+# 16 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -229,15 +229,14 @@ minishell: Libft/libft.a objs/main.o objs/init_shell.o
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 #  recipe to execute (from 'Makefile', line 44):
 	@$(CC) -o $(NAME) $(OBJECTS) $(LIBFT_A) -lreadline
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-08-11 21:15:34.956531
+#  Last modified 2022-08-11 21:18:58.620878
 #  File has been updated.
 #  Successfully updated.
 
@@ -253,6 +252,7 @@ clean:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 68):
 	@$(RM) objs test/bin
+	@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
 
 valgrind: minishell
 #  Implicit rule search has not been done.
@@ -273,33 +273,11 @@ objs/init_shell.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/main.o: srcs/main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'main'
-#  Last modified 2022-08-11 21:00:53.043143
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := objs/main.o
-# automatic
-# * := main
-# automatic
-# < := srcs/main.c
-# automatic
-# + := srcs/main.c
-# automatic
-# % := 
-# automatic
-# ^ := srcs/main.c
-# automatic
-# ? := srcs/main.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/18=17%
-#  recipe to execute (from 'Makefile', line 47):
-	@$(MKDIR) $(OBJS_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+# Not a target:
+objs/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -309,13 +287,14 @@ objs/main.o: srcs/main.c
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
+ 
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
@@ -324,6 +303,7 @@ fclean: clean
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 73):
 	@$(RM) $(NAME)
+	@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
 
 run: minishell
 #  Phony target (prerequisite of .PHONY).
@@ -348,12 +328,37 @@ test/bin/test:
 
 Libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-11 21:00:53.013143
+#  Implicit/static pattern stem: ''
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Libft/libft.a
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=4/15=27%
 #  recipe to execute (from 'Makefile', line 41):
 	@cd $(LIBS_PATH) && $(MAKE_NOPRINT)
 	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 test/bin:
 #  Implicit rule search has not been done.
@@ -367,27 +372,20 @@ test/bin:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-srcs/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-11 21:12:47.574921
-#  File has been updated.
-#  Successfully updated.
-
 # files hash-table stats:
-# Load=19/1024=2%, Rehash=0, Collisions=0/52=0%
+# Load=18/1024=2%, Rehash=0, Collisions=0/49=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 39 / storage = 331 B / avg = 8 B
-# current buf: size = 8162 B / used = 331 B / count = 39 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 289 B / avg = 8 B
+# current buf: size = 8162 B / used = 289 B / count = 34 / avg = 8 B
 
-# strcache performance: lookups = 79 / hit rate = 50%
+# strcache performance: lookups = 72 / hit rate = 52%
 # hash-table stats:
-# Load=39/8192=0%, Rehash=0, Collisions=0/79=0%
-# Finished Make data base on Thu Aug 11 21:15:40 2022
+# Load=34/8192=0%, Rehash=0, Collisions=0/72=0%
+# Finished Make data base on Thu Aug 11 21:24:50 2022
 
  
