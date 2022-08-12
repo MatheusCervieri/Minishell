@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/12 01:31:45 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/12 01:49:19 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_cmd_table
 {
-	t_list	*table;
+	t_list	*table; //vai ser uma lista de listas, pois cada lista vai ter uma lista do comando com as suas flags e tals
 	int		size;
 }				t_cmd_table;
 
