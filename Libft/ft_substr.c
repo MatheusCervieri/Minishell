@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 01:13:22 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/14 16:23:58 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/20 13:22:03 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/06/11 00:22:39 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static unsigned int	ft_size(size_t size, size_t start, size_t max_len)
+{
+	unsigned int	tmp;
+
+	if (start < size)
+		tmp = size - start;
+	if (start >= size)
+		tmp = 0;
+	if (tmp > max_len)
+		tmp = max_len;
+	return (tmp);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*substr;
-	size_t			slen;
-	size_t			max_len_possible;
-	unsigned int	i;
+	char			*sub_str;
+	unsigned int	sub_str_size;
+	size_t			size;
 
-	slen = ft_strlen(s);
-	max_len_possible = slen - start;
-	if (start >= slen)
-		return (ft_strdup(""));
-	if (max_len_possible <= len)
-		substr = malloc(max_len_possible * sizeof(char) + 1);
-	else
-		substr = malloc(len * sizeof(char) + 1);
-	if (substr == NULL)
+	if (!s)
 		return (NULL);
-	i = 0;
-	while (i < len && s[start] != '\0')
-	{
-		substr[i] = s[start];
-		start++;
-		i++;
-	}
-	substr[i] = '\0';
-	return (substr);
+	size = (unsigned int) ft_strlen(s);
+	sub_str_size = ft_size(size, start, len);
+	if (sub_str_size == 0)
+		return (ft_strdup(""));
+	sub_str = ft_calloc(sub_str_size + 1, sizeof(char));
+	if (!sub_str)
+		return (NULL);
+	ft_strlcpy (sub_str, &s[start], sub_str_size + 1);
+	return (sub_str);
 }

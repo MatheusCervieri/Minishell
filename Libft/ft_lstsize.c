@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_string.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 20:22:51 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/26 00:18:59 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/26 20:35:31 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 03:38:06 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	write_string(char *str)
+int	ft_lstsize(t_list *lst)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	if (!str)
+	i = 0;
+	while (lst)
 	{
-		str = ft_strdup("(null)");
-		while (str[len] != '\0')
-			len += write_plus_one(str[len]);
-		free(str);
+		i++;
+		lst = lst->next;
 	}
-	else
-	{
-		while (str[len] != '\0')
-		len += write_plus_one(str[len]);
-	}
-	return (len);
+	return (i);
 }

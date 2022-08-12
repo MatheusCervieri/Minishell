@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 17:23:09 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/01 03:41:38 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/23 17:42:13 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 03:33:57 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+int	ft_isalpha(int ch)
 {
-	if ((c <= 'z' && c >= 'a') || (c <= 'Z' && c >= 'A'))
-	{
-		return (1024);
-	}
-	else
-	{
+	if ((ch < 'a' || ch > 'z') && (ch < 'A' || ch > 'Z'))
 		return (0);
-	}
+	return (1024);
 }

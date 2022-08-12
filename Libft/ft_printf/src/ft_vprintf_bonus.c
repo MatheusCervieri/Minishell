@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_vprintf_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 20:10:23 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/26 00:18:41 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/06/11 00:42:28 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/07/07 22:49:45 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	write_plus_one(char c)
+int	ft_vprintf(const char *fmt, va_list args)
 {
-	write(1, &c, 1);
-	return (1);
+	t_rtn_str	rtn;
+
+	rtn.str = ft_strdup("");
+	rtn.size = 0;
+	generate_rtn_str(fmt, args, &rtn);
+	write(STDOUT, rtn.str, rtn.size);
+	free(rtn.str);
+	return (rtn.size);
 }

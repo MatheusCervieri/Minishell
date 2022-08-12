@@ -3,22 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 03:39:09 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/01 03:40:07 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/23 20:53:21 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 03:52:29 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+int	ft_isalnum(int ch)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (8);
-	}
-	else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-	{
-		return (8);
-	}
-	return (0);
+	if ((ch < 'a' || ch > 'z') && (ch < 'A' || ch > 'Z') && \
+					(ch < '0' || ch > '9'))
+		return (0);
+	return (8);
 }

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 20:08:18 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/26 00:19:25 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/26 20:39:58 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 04:04:00 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printf(const char *fmt, ...)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	va_list		args;
-	int			len;
+	t_list	*tmp;
 
-	len = 0;
-	if (!fmt)
-		return (0);
-	va_start(args, fmt);
-	len = write_input(fmt, args);
-	va_end(args);
-	return (len);
+	if (!lst || !new)
+		return ;
+	tmp = *lst;
+	if (!tmp)
+	{
+		*lst = new;
+		return ;
+	}
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }

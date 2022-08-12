@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 03:43:09 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/01 03:43:50 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/23 21:14:33 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 03:32:46 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+int	ft_isprint(int ch)
 {
-	if (c >= 32 && c <= 126)
-	{
-		return (16384);
-	}
-	else
-	{
+	if ((ch < 32 || ch > 126))
 		return (0);
-	}
+	return (16384);
 }

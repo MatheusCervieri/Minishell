@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 03:42:31 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/01 03:43:01 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/23 20:46:35 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 04:01:54 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+int	ft_isdigit(int ch)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (2048);
-	}
-	else
-	{
+	if ((ch < '0' || ch > '9'))
 		return (0);
-	}
+	return (2048);
 }

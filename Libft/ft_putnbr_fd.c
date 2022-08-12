@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 22:26:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/08 22:26:29 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/26 15:45:02 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 03:40:29 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		ft_putchar_fd('-', fd);
 		ft_putchar_fd('2', fd);
-		ft_putnbr_fd(147483648, fd);
+		n = 147483648;
 	}
-	else if (n < 0)
+	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
+		n *= -1;
 	}
-	else if (n < 10)
-		ft_putchar_fd(n + '0', fd);
-	else
+	if (n < 10)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		ft_putchar_fd((n + 48), fd);
+		return ;
 	}
+	else
+		ft_putnbr_fd(n / 10, fd);
+	ft_putnbr_fd(n % 10, fd);
 }
