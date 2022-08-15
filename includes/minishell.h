@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/12 01:49:19 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:19:47 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct s_cmd_table
 
 extern t_cmd_table *cmd_table;
 
-int	init_shell(void);
-int	parse_line(char *line);
+int		init_shell(void);
+int		parse_line(char *line);
+void	free_split_line(char **split_line);
+char	**expander(char **split_line);
 
 #endif

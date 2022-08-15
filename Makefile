@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/12 01:06:04 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/08/13 19:24:17 by ghosthologr      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 TEST_PATH = ./test
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -g3 -std=c11 -I $(HEADERS_PATH)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
 RM = rm -rf
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
@@ -24,6 +24,7 @@ NAME = minishell
 SRC_FILES = main.c \
 			init_shell.c \
 			parser.c \
+			expander.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))

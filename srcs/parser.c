@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/12 01:35:16 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:55:44 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*lexer(char *line)
 	t_list	*rtn;
 
 	split_line = ft_split(line, ' ');
+	split_line = expander(split_line);
 	rtn = ft_lstnew(*split_line);
 	split_line++;
 	while(*split_line)
