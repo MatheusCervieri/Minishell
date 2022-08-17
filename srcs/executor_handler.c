@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/17 12:02:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/17 13:02:49 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void put_infile_fd(t_pipex *data, char *infile_path)
 
 void put_outfile_fd(t_pipex *data, char *outfile_path)
 {
-	data->outfile = open(argv, O_CREAT | O_RDWR | O_TRUNC, 0000644);
+	data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (data->outfile < 0)
 	{
 		close(data->infile);
@@ -77,6 +77,7 @@ void init_data_executor(t_pipex *data, t_cmd_table *cmd_table, char *envp[])
 	data->pipe_nmbs = 2 * (data->cmd_nmbs - 1);
 	data->idx = 0;
 	data->success = 0;
+	data->here_doc = 0; 
 	data->pipe = (int *)malloc(sizeof(int) * data->pipe_nmbs);
 	if (!data->pipe)
 		close_io_exit(data, "Failed to malloc\n", 2);
@@ -90,10 +91,23 @@ void executor_handler(char **envp)
 {
 	t_pipex data; 
 	t_cmd_table cmd_table;
+	char **comands_string;
+	comands_string = malloc(sizeof(char*) * 3);
+	comands_string[0] = ft_strdup("grep a");
+	comands_string[1] = ft_strdup("grep b");
+	comands_string[2] = ft_strdup("wc -l");
+	cmd_table.comands_string = comands_string;
 	printf("Executor Handler \n");
 	cmd_table.n_of_cmds = 3;
-	put_infile_fd(data, "./text1.txt");
-	put_outfile_fd(data, "./text2.txt");
-	init_data_executor(data, cmd_table, envp);
-	
+	put_infile_fd(&data, "./text1.txt");
+	put_outfile_fd(&data, "./text2.txt");
+	init_data_executor(&data, &cmd_table, envp);
+	while (data.idx < data.cmd_nmbs)
+	{
+		child(data, cmd_table, envp);
+		data.idx++;
+	}
+	close_pipes(&data);
+	waitpid(-1, NULL, 0);
+	parent_close(&data, "success", 0);
 }
