@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/17 10:29:52 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/17 11:13:29 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	child(t_pipex data, char **argv, char **envp)
 	{
 		handle_dup(&data);
 		close_pipes(&data);
-		data.cmd_args = ft_split(argv[2 + data.here_doc + data.idx], ' ');
+		data.cmd_args = ft_split(argv[2 + data.here_doc + data.idx], ' '); //data.heredoc não muda nada se a gente já tiver os comandos.
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 			free_cmd(&data);

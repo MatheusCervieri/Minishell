@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:31:36 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/17 10:30:07 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/17 10:43:57 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	close_pipes(t_pipex *data)
 	data->success = 1;
 }
 
+/*
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	data;
@@ -63,3 +64,5 @@ int	main(int argc, char **argv, char **envp)
 	parent_close(&data, "success", 0);
 	return (0);
 }
+
+*/

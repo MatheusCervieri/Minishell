@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/17 10:29:37 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/17 12:00:46 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@
 # include <sys/wait.h>
 # include <string.h>
 # include <stdio.h>
+
+typedef struct s_cmd_table
+{
+	char 	***table;	// array com os comandos
+	char	*infile;	// por padrao STDIN_FILENO, ou o nome do arquive se a pessoa mudar
+	char	*outfile;	// por padrao STDOUT_FILENO, ou o nome do arquive se a pessoa mudar
+	int		n_of_pipes; // numero de pipes
+	int		n_of_cmds;	// numeros de comandos
+	int		here_doc;	// 0 por padrao, 1 se a pessoa tiver usando here_doc
+	char	*limiter;	// limeter para sair do here_doc
+	int		append;		// 0 por padrao, 1 se a pessoa tiver especificado uma outfile e especificado append inves de sobreescrever
+}				t_cmd_table;
+
 
 typedef struct s_pipex
 {
@@ -60,7 +73,13 @@ void	init_data(t_pipex *data, int argc, char *envp[]);
 void	child(t_pipex data, char **argv, char **envp);
 void	close_pipes(t_pipex *data);
 
-int	init_shell(void);
+//Pipex 2.0 
+void	init_pipes(t_pipex *data);
+char	*find_path(char **envp);
+
+
+int	init_shell(char **envp);
+void executor_handler(char **envp);
 
 
 #endif

@@ -6,20 +6,20 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/17 10:30:01 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/17 12:00:23 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static char	*find_path(char **envp)
+char	*find_path(char **envp)
 {
 	while (ft_strncmp("PATH", *envp, 4))
 		envp++;
 	return (*envp + 5);
 }
 
-static void	init_pipes(t_pipex *data)
+void	init_pipes(t_pipex *data)
 {
 	int	i;
 

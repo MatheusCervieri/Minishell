@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/12 11:09:13 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/17 10:30:24 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/17 11:39:55 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,19 @@ OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 TEST_PATH = ./test
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -g3 -std=c11 -I $(HEADERS_PATH)
+CFLAGS = -g -g3 -std=c11 -I $(HEADERS_PATH)
 RM = rm -rf
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
 NAME = minishell
-SRC_FILES = init_shell.c \
+SRC_FILES = main.c \
+			init_shell.c \
 			pipex_bonus.c \
 			child_bonus.c \
 			error_bonus.c \
 			handle_file_bonus.c \
 			init_data_bonus.c \
+			executor_handler.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
