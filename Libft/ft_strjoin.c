@@ -6,13 +6,13 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 00:57:11 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/01 20:25:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/17 10:31:26 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_free(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	newstrlen;
 	char	*newstr;
