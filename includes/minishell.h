@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/17 13:02:35 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:56:08 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <string.h>
 # include <stdio.h>
 
+
 typedef struct s_cmd_table
 {
 	char 	***table;
@@ -44,6 +45,8 @@ typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
+    int     infile_exists;
+    int     outfile_exists;
 	char	**cmd_paths;
 	char	*cmd;
 	char	**cmd_args;

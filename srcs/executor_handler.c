@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/17 13:02:49 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:19:07 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,32 @@ typedef struct s_pipex
 
 void put_infile_fd(t_pipex *data, char *infile_path)
 {
+	if(data->infile_exists != 0)
+	{
 	data->infile = open(infile_path, O_RDONLY);
 	if (data->infile < 0)
 		msg_error("Invalid infile\n", 7);
+	}
+	else
+	{
+	data->infile = 0;	
+	}
 }
 
 void put_outfile_fd(t_pipex *data, char *outfile_path)
 {
+	if(data->outfile_exists != 0)
+	{
 	data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (data->outfile < 0)
 	{
 		close(data->infile);
 		msg_error("Invalid Outfile\n", 8);
+	}
+	}
+	else
+	{
+		data->outfile = 1;
 	}
 }
 
@@ -97,6 +111,8 @@ void executor_handler(char **envp)
 	comands_string[1] = ft_strdup("grep b");
 	comands_string[2] = ft_strdup("wc -l");
 	cmd_table.comands_string = comands_string;
+	data.infile_exists = 0;
+	data.outfile_exists = 1;
 	printf("Executor Handler \n");
 	cmd_table.n_of_cmds = 3;
 	put_infile_fd(&data, "./text1.txt");
@@ -111,3 +127,7 @@ void executor_handler(char **envp)
 	waitpid(-1, NULL, 0);
 	parent_close(&data, "success", 0);
 }
+
+/*
+	1- Eu criei as variaveis infile_exists e outfile_exists precisamos saber se eles existem precisamos setar eles para 1; 
+*/

@@ -6,11 +6,12 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/17 13:02:25 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 11:21:54 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <stdio.h>
 
 static char	*get_cmd(char **paths, char *cmd)
 {
@@ -32,14 +33,17 @@ static char	*get_cmd(char **paths, char *cmd)
 
 static void	sub_dup2(int read_fd, int write_fd)
 {
-	dup2(read_fd, STDIN_FILENO);
-	dup2(write_fd, STDOUT_FILENO);
+		dup2(read_fd, STDIN_FILENO);
+		dup2(write_fd, STDOUT_FILENO);
 }
 
 static void	handle_dup(t_pipex *data)
 {
 	if (data->idx == 0)
-		sub_dup2(data->infile, data->pipe[1]);
+	{
+		dup2(data->infile, STDIN_FILENO);
+		dup2(data->pipe[1], STDOUT_FILENO);
+	}
 	else if (data->idx == data->cmd_nmbs - 1)
 		sub_dup2(data->pipe[(2 * data->idx) - 2], data->outfile);
 	else
@@ -73,6 +77,7 @@ void	child(t_pipex data, t_cmd_table cmd_table, char **envp)
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 			free_cmd(&data);
+		
 		execve(data.cmd, data.cmd_args, envp);
 	}
 }
