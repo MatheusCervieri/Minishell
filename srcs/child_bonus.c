@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/18 12:16:24 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 13:04:05 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ static void	handle_dup(t_pipex *data)
 */
 
 
-void	child(t_pipex data, t_cmd_table cmd_table, char **envp)
+void	child(t_pipex data, char **envp)
 {
 	data.pid = fork();
 	if (!data.pid)
 	{
 		handle_dup(&data);
 		close_pipes(&data);
-		data.cmd_args = ft_split(cmd_table.comands_string[data.idx], ' '); //data.heredoc não muda nada se a gente já tiver os comandos.
+		data.cmd_args = ft_split(g_cmd_table.comands_string[data.idx], ' '); //data.heredoc não muda nada se a gente já tiver os comandos.
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 			free_cmd(&data);

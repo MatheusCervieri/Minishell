@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 10:56:08 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 13:15:37 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@
 
 typedef struct s_cmd_table
 {
-	char 	***table;
     char    **comands_string;	// array com os comandos
 	char	*infile;	// por padrao STDIN_FILENO, ou o nome do arquive se a pessoa mudar
 	char	*outfile;	// por padrao STDOUT_FILENO, ou o nome do arquive se a pessoa mudar
+	int		infile_exists; //0 se não existir 1 se exisitir;
+	int		outfile_exists; //0 se não existir 1 se existir; 
 	int		n_of_pipes; // numero de pipes
 	int		n_of_cmds;	// numeros de comandos
 	int		here_doc;	// 0 por padrao, 1 se a pessoa tiver usando here_doc
@@ -51,6 +52,7 @@ typedef struct s_pipex
 	char	*cmd;
 	char	**cmd_args;
 	int		here_doc;
+	int		append; 
 	pid_t	pid;
 	int		cmd_nmbs;
 	int		pipe_nmbs;
@@ -58,6 +60,8 @@ typedef struct s_pipex
 	int		idx;
 	int		success;
 }				t_pipex;
+
+t_cmd_table g_cmd_table;
 
 //hadle_file.c
 void	get_outfile(char *argv, t_pipex *data);
@@ -74,7 +78,7 @@ void	free_cmd(t_pipex *data);
 void	init_data(t_pipex *data, int argc, char *envp[]);
 
 //child.c
-void	child(t_pipex data, t_cmd_table cmd_table, char **envp);
+void	child(t_pipex data, char **envp);
 void	close_pipes(t_pipex *data);
 
 //Pipex 2.0 
