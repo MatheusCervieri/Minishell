@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 11:19:07 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 12:20:05 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void executor_handler(char **envp)
 	comands_string[1] = ft_strdup("grep b");
 	comands_string[2] = ft_strdup("wc -l");
 	cmd_table.comands_string = comands_string;
-	data.infile_exists = 0;
-	data.outfile_exists = 1;
+	data.infile_exists = 1;
+	data.outfile_exists = 0;
 	printf("Executor Handler \n");
-	cmd_table.n_of_cmds = 3;
+	cmd_table.n_of_cmds = 2;
 	put_infile_fd(&data, "./text1.txt");
 	put_outfile_fd(&data, "./text2.txt");
 	init_data_executor(&data, &cmd_table, envp);
