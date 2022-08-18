@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data_bonus.c                                  :+:      :+:    :+:   */
+/*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/18 17:29:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 17:35:41 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,17 @@ void	init_pipes(t_pipex *data)
 			parent_close(data, "Failed to pipe\n", 4);
 		i++;
 	}
+}
+
+void	close_pipes(t_pipex *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < (data->pipe_nmbs))
+	{
+		close(data->pipe[i]);
+		i++;
+	}
+	data->success = 1;
 }

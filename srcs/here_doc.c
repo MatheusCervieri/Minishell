@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_file_bonus.c                                :+:      :+:    :+:   */
+/*   executor_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/18 16:00:50 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 17:34:48 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,5 @@ void	here_doc(char *argv, t_pipex *pipex)
 	{
 		unlink(".heredoc_tmp");
 		msg_error("error to open here_doc_tmp", 1);
-	}
-}
-
-void	get_infile(char **argv, t_pipex *data)
-{
-	if (!ft_strncmp("here_doc", argv[1], 9))
-		here_doc(argv[2], data);
-	else
-	{
-		data->infile = open(argv[1], O_RDONLY);
-		if (data->infile < 0)
-			msg_error("Invalid infile\n", 7);
-	}
-}
-
-void	get_outfile(char *argv, t_pipex *data)
-{
-	if (data->here_doc)
-		data->outfile = open(argv, O_WRONLY | O_CREAT | O_APPEND, 0000644);
-	else
-		data->outfile = open(argv, O_CREAT | O_RDWR | O_TRUNC, 0000644);
-	if (data->outfile < 0)
-	{
-		close(data->infile);
-		msg_error("Invalid Outfile\n", 8);
 	}
 }
