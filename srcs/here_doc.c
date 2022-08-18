@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/18 18:28:04 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 20:47:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ void	here_doc(char *argv, t_pipex *pipex)
 		write(1, "heredoc> ", 9);
 		buf = get_next_line(0);
 		if (!ft_strncmp(argv, buf, ft_strlen(argv)))
+		{
 			loop = 0;
+			free(buf);
+		}
 		else
-			write(file, buf, ft_strlen(buf));
+		{
+		write(file, buf, ft_strlen(buf));
+		free(buf);
+		}
 	}
-	free(buf);
 	close(file);
 	pipex->infile = file;
 	pipex->infile = open(".heredoc_tmp", O_RDONLY);
