@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 16:02:45 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:00:16 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s_cmd_table
 	int		n_of_cmds;	// numeros de comandos
 	int		here_doc;	// 0 por padrao, 1 se a pessoa tiver usando here_doc
 	char	*limiter;	// limeter para sair do here_doc
-	int		append;		// 0 por padrao, 1 se a pessoa tiver especificado uma outfile e especificado append inves de sobreescrever
+	int		append; // 0 por padrao, 1 se a pessoa tiver especificado uma outfile e especificado append inves de sobreescrever
+	int		exit_status;		
 }				t_cmd_table;
 
 

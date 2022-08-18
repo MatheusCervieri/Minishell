@@ -40,3 +40,17 @@ srcs
 test
 text1.txt
 text8.txt
+.
+..
+.git
+.gitignore
+.vscode
+Libft
+Makefile
+includes
+minishell
+objs
+srcs
+test
+text1.txt
+text8.txt
