@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/12 11:09:13 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/17 11:39:55 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/18 17:32:09 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_FILES = main.c \
 			child_bonus.c \
 			error_bonus.c \
 			handle_file_bonus.c \
-			init_data_bonus.c \
+			executer_utils.c \
 			executor_handler.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
