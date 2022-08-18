@@ -6,13 +6,13 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/17 10:29:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:00:50 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	here_doc(char *argv, t_pipex *pipex)
+void	here_doc(char *argv, t_pipex *pipex)
 {
 	int		file;
 	char	*buf;

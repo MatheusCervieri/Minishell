@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 13:07:15 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:06:00 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,35 @@ typedef struct s_pipex
 
 void put_infile_fd(t_pipex *data, char *infile_path)
 {
-	if(data->infile_exists != 0)
+	if(data->infile_exists != 0 && data->here_doc == 0)
 	{
-	data->infile = open(infile_path, O_RDONLY);
-	if (data->infile < 0)
-		msg_error("Invalid infile\n", 7);
+		data->infile = open(infile_path, O_RDONLY);
+		if (data->infile < 0)
+			msg_error("Invalid infile\n", 7);
+	}
+	else if (data->here_doc == 1)
+	{
+		here_doc(data->limiter, data);
 	}
 	else
 	{
-	data->infile = 0;	
+		data->infile = 0;	
 	}
 }
 
 void put_outfile_fd(t_pipex *data, char *outfile_path)
 {
-	if(data->outfile_exists != 0)
+	if (data->outfile_exists != 0)
 	{
-	data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC, 0000644);
-	if (data->outfile < 0)
-	{
+		if (data->append == 1)
+			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_APPEND, 0000644);
+		else
+			data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC, 0000644);
+		if (data->outfile < 0)
+		{
 		close(data->infile);
 		msg_error("Invalid Outfile\n", 8);
-	}
+		}
 	}
 	else
 	{
@@ -91,7 +98,9 @@ void init_data_executor(t_pipex *data, char *envp[])
 	data->pipe_nmbs = 2 * (data->cmd_nmbs - 1);
 	data->idx = 0;
 	data->success = 0;
-	data->here_doc = 0; 
+	data->here_doc = g_cmd_table.here_doc;
+	data->append = g_cmd_table.append;
+	data->limiter = g_cmd_table.limiter;
 	data->pipe = (int *)malloc(sizeof(int) * data->pipe_nmbs);
 	if (!data->pipe)
 		close_io_exit(data, "Failed to malloc\n", 2);
