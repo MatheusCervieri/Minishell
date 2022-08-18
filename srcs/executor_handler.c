@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 16:06:00 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:59:54 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void init_data_executor(t_pipex *data, char *envp[])
 	data->pipe_nmbs = 2 * (data->cmd_nmbs - 1);
 	data->idx = 0;
 	data->success = 0;
-	data->here_doc = g_cmd_table.here_doc;
-	data->append = g_cmd_table.append;
-	data->limiter = g_cmd_table.limiter;
+	
+	ft_putnbr_fd(data->pipe_nmbs, 2);
+	ft_putstr_fd("\n", 2);
 	data->pipe = (int *)malloc(sizeof(int) * data->pipe_nmbs);
 	if (!data->pipe)
 		close_io_exit(data, "Failed to malloc\n", 2);
@@ -116,6 +116,9 @@ void executor_handler(char **envp)
 
 	data.infile_exists = g_cmd_table.infile_exists;
 	data.outfile_exists = g_cmd_table.outfile_exists;
+	data.here_doc = g_cmd_table.here_doc;
+	data.append = g_cmd_table.append;
+	data.limiter = g_cmd_table.limiter;
 	put_infile_fd(&data, g_cmd_table.infile);
 	put_outfile_fd(&data, g_cmd_table.outfile);
 	init_data_executor(&data, envp);
@@ -126,7 +129,7 @@ void executor_handler(char **envp)
 	}
 	close_pipes(&data);
 	waitpid(-1, NULL, 0);
-	parent_close(&data, "success", 0);
+	ft_putstr_fd("WTF \n", 2);
 }
 
 /*

@@ -1,0 +1,17 @@
+.
+..
+.git
+.gitignore
+.vscode
+Libft
+Makefile
+includes
+minishell
+objs
+srcs
+test
+text1.txt
+text2.txt
+text5.txt
+text6.txt
+text7.txt
