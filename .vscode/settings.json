@@ -3,6 +3,7 @@
     "files.associations": {
         "minishell.h": "c",
         "criterion.h": "c",
-        "alloc.h": "c"
+        "alloc.h": "c",
+        "history.h": "c"
     }
 }

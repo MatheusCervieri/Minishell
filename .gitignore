@@ -3,3 +3,5 @@
 .vscode/targets.log
 .vscode/tasks.json
 .vscode*
+.gitignore
+reference*
