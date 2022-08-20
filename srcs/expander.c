@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/08/15 13:52:59 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/08/19 21:50:29 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ char	**expander(char **split_line)
 	int		i;
 	int		j;
 
-	new_line = (char **)malloc(sizeof(split_line));
+	j = 0;
+	while (split_line[j])
+		j++;
+	new_line = (char **)malloc(sizeof(split_line) * (j +  1));
 	i = -1;
 	j = 0;
 	while (split_line[++i])

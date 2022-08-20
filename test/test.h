@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/13 18:07:12 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/08/19 21:39:48 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 #include "../includes/minishell.h"
 
 t_list	*lexer(char *line);
+int	is_special(char *arg);
+void	handle_special(char *line, t_list **lst);
 
 #endif

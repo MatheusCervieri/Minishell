@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/16 23:01:04 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/08/19 22:23:46 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_cmd_table
 {
-	char 	***table;	// array com os comandos
+	char 	**table;	// array com os comandos
 	char	*infile;	// por padrao STDIN_FILENO, ou o nome do arquive se a pessoa mudar
 	char	*outfile;	// por padrao STDOUT_FILENO, ou o nome do arquive se a pessoa mudar
 	int		n_of_pipes; // numero de pipes
@@ -39,5 +39,6 @@ int		init_shell(void);
 int		parse_line(char *line);
 void	free_split_line(char **split_line);
 char	**expander(char **split_line);
+char	*join_with_space(char *str1, char *str2);
 
 #endif
