@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/19 22:23:46 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:28:07 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ typedef struct s_cmd_table
 
 extern t_cmd_table *cmd_table;
 
+t_list	*lexer(char *line);
 int		init_shell(void);
 int		parse_line(char *line);
 void	free_split_line(char **split_line);
-char	**expander(char **split_line);
 char	*join_with_space(char *str1, char *str2);
+int		get_cmds(t_list *tct);
+int		is_special(char *arg);
+void	handle_special(char *line, t_list **lst);
 
 #endif

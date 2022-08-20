@@ -6,13 +6,13 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/08/19 21:50:29 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:41:46 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_split_line(char **split_line)
+void	free_split_line(char **split_line)
 {
 	int	i;
 
@@ -82,4 +82,26 @@ char	**expander(char **split_line)
 	new_line[j] = NULL;
 	free_split_line(split_line);
 	return(new_line);
+}
+
+t_list	*lexer(char *line)
+{
+	char	**split_line;
+	int		i;
+	t_list	*tmp;
+	t_list	*rtn;
+
+	split_line = ft_split(line, ' ');
+	split_line = expander(split_line);
+	i = 0;
+	rtn = ft_lstnew(ft_strdup(split_line[i]));
+	i++;
+	while(split_line[i])
+	{
+		tmp = ft_lstnew(ft_strdup(split_line[i]));
+		ft_lstadd_back(&rtn, tmp);
+		i++;
+	}
+	free_split_line(split_line);
+	return (rtn);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+         #
+#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/13 19:24:17 by ghosthologr      ###   ########.fr        #
+#    Updated: 2022/08/20 00:28:23 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ NAME = minishell
 SRC_FILES = main.c \
 			init_shell.c \
 			parser.c \
+			parser_utils.c \
 			expander.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)

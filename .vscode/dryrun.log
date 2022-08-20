@@ -1,14 +1,7 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
-cd ./Libft/ && make --no-print-directory
 mkdir -p ./objs/
-cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/main.c -o objs/main.o
-mkdir -p ./objs/
-cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/init_shell.c -o objs/init_shell.o
-mkdir -p ./objs/
-cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/parser.c -o objs/parser.o
-mkdir -p ./objs/
-cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/expander.c -o objs/expander.o
-cc -o minishell ./objs/main.o ./objs/init_shell.o ./objs/parser.o ./objs/expander.o ./Libft/libft.a  -lreadline
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/parser_utils.c -o objs/parser_utils.o
+cc -o minishell ./objs/main.o ./objs/init_shell.o ./objs/parser.o ./objs/parser_utils.o ./objs/expander.o ./Libft/libft.a  -lreadline
 make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
  

@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/19 23:12:49 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:55:37 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ Test(is_special, rtn_c_special_2)
 Test(parse_line, return_c)
 {
 	char line[] = "< in grep hello | cat -e | ls -la > out";
+	init_global();
 	int rtn = parse_line(line);
 	cr_expect(rtn == 0, "parse_line returns correctly");
 	cr_expect(strcmp(cmd_table->infile, "in") == 0, "in file is correct");
@@ -115,12 +116,12 @@ Test(parse_line, return_c)
 	cr_expect(strcmp(cmd_table->table[0], "grep hello") == 0, "cmd 1 is correct");
 	cr_expect(strcmp(cmd_table->table[1], "cat -e") == 0, "cmd 2 is correct");
 	cr_expect(strcmp(cmd_table->table[2], "ls -la") == 0, "cmd 3 is correct");
-	printf("%s\n", cmd_table->outfile);
 }
 
 Test(parse_line, return_c_2)
 {
 	char line[] = "<< LIMITER grep hello | cat -e | ls -la >> out";
+	init_global();
 	int rtn = parse_line(line);
 	cr_expect(rtn == 0, "parse_line returns correctly");
 	cr_expect(strcmp(cmd_table->infile, "STDIN_FILENO") == 0, "in file is correct");
@@ -131,5 +132,4 @@ Test(parse_line, return_c_2)
 	cr_expect(strcmp(cmd_table->table[0], "grep hello") == 0, "cmd 1 is correct");
 	cr_expect(strcmp(cmd_table->table[1], "cat -e") == 0, "cmd 2 is correct");
 	cr_expect(strcmp(cmd_table->table[2], "ls -la") == 0, "cmd 3 is correct");
-	printf("%s\n", cmd_table->outfile);
 }

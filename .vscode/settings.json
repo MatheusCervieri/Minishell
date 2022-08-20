@@ -4,6 +4,11 @@
         "minishell.h": "c",
         "criterion.h": "c",
         "alloc.h": "c",
-        "history.h": "c"
-    }
+        "history.h": "c",
+        "libft.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
