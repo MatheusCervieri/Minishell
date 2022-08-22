@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/21 22:56:53 by ghenaut-         ###   ########.fr        #
+#    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
+#    Updated: 2022/08/22 15:29:33 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,12 +63,6 @@ test: $(NAME) $(TEST_PATH)/bin $(TESTBINS)
 	@for test in $(TESTBINS) ; do ./$$test --verbose ; done
 
 bonus: all
-
-run: $(NAME)
-	@$(NAME) $(MAP)
-
-valgrind: $(NAME)
-	@$(VALGRIND) $(NAME) $(MAP)
 
 clean:
 	@$(RM) objs test/bin
