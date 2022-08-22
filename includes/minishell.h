@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/21 22:46:09 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:52:13 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_cmd_table
 	int		append;		
 	int		status;
 	int		last_status;
+	t_list	*envp;
 }				t_cmd_table;
 
 extern t_cmd_table	*g_cmd_table;

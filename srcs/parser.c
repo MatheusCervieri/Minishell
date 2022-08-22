@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/21 22:39:49 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:15:51 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ int	parser(t_list *tmp_cmd_table)
 		if (is_special((char *)ptr->content))
 		{
 			handle_special((char *)ptr->content, &ptr);
-			ptr = ptr->next;
+			if (*((char *)ptr->content) != '|')
+				ptr = ptr->next;
 		}
 		else
 		{
 			g_cmd_table->n_of_cmds++;
-			while (ptr->next && is_special((char *)ptr->content))
+			while (ptr->next && !is_special((char *)ptr->next->content))
 				ptr = ptr->next;
 		}
 		ptr = ptr->next;
