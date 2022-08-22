@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/18 18:05:19 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 09:24:16 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ static char	*get_cmd(char **paths, char *cmd)
 {
 	char	*tmp;
 	char	*command;
+
+	if (cmd == "env")
+		return(cmd);
 
 	while (*paths)
 	{
@@ -65,6 +68,9 @@ void	child(t_pipex data, char **envp)
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 			free_cmd(&data);
-		execve(data.cmd, data.cmd_args, envp);
+		if (data.cmd == "env")
+			env_bi(data.cmd_args, envp);
+		else
+			execve(data.cmd, data.cmd_args, envp);
 	}
 }
