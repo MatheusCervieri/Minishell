@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 10:56:26 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:00:54 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ typedef struct s_cmd_table
 int	main(int argc, char **argv, char **envp)
 {
 	char **cmd_args;
-	cmd_args = malloc(sizeof(char *) * 1);
-	cmd_args[0] = ft_strdup("cd");
-	cd_bi(cmd_args, envp);
+	cmd_args = malloc(sizeof(char *) * 4);
+	cmd_args[0] = ft_strdup("echo");
+	cmd_args[1] = ft_strdup("-n");
+	cmd_args[2] = ft_strdup("dasdsadasdasdas");
+	cmd_args[3] = ft_strdup("dasdsadasdasdas");
+	echo_bi(cmd_args);
 /*
 	char **comands_string;
 	comands_string = malloc(sizeof(char*) * 3);
