@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/12 11:09:13 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/18 17:41:03 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/22 09:07:13 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC_FILES = main.c \
 			executer_utils.c \
 			executor_handler.c \
 			here_doc.c \
+			env.c
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))

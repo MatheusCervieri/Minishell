@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 20:52:48 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 09:10:12 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int argc, char **argv, char **envp)
 	comands_string[1] = ft_strdup("grep b");
 	comands_string[2] = ft_strdup("grep c");
 	g_cmd_table.comands_string = comands_string;
+	env_bi(comands_string, envp);
+	/*
 	g_cmd_table.n_of_cmds = 3;
 	g_cmd_table.infile = ft_strdup("text1.txt");
 	g_cmd_table.outfile = ft_strdup("text8.txt");
@@ -63,4 +65,5 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string[1]);
 	free(comands_string[2]);
 	free(comands_string);
+	*/
 }

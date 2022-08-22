@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/18 18:00:16 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 09:06:19 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ void	here_doc(char *argv, t_pipex *pipex);
 
 int	init_shell(char **envp);
 void executor_handler(char **envp);
+
+//Built ins 
+void env_bi(char **cmd_args, char **envp);
 
 
 #endif
