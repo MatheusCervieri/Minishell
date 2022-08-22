@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 17:14:58 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:25:07 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void print_struct(void)
 	printf("last_status\n");
 	printf("%i", g_cmd_table->last_status);
 	printf("\n");
-	
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -87,25 +86,16 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string);
 	
 	*/
-
-	
-	
 	int	rtn;
 	char *line;
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->status = 0;
-	
-	
-	line = ft_strdup("< text1.txt grep a | grep a | grep d > text2.txt");
+	line = ft_strdup("grep a | grep a | grep d");
 	init_global();
 	rtn = 0;
 	rtn = parse_line(line);
-	g_cmd_table->infile_exists = 1;
-	g_cmd_table->outfile_exists = 1;
-	g_cmd_table->infile = ft_strdup("text1.txt");
-	printf("OUTFILE: %s\n", g_cmd_table->outfile);
-	int i;
-	i = 0;
+	g_cmd_table->infile_exists = 0;
+	g_cmd_table->outfile_exists = 0;
 	g_cmd_table->n_of_cmds = g_cmd_table->n_of_cmds - 1;
 	print_struct();
 	executor_handler(envp);
