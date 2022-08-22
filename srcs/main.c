@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 16:35:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:45:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,29 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string[1]);
 	free(comands_string[2]);
 	free(comands_string);
+	
 	*/
 
-	/*
-	printf("WTF\n\n\n");
+	
+	
 	int	rtn;
 	char *line;
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->status = 0;
 	
 	
-	line = ft_strdup("echo aaaa");
+	line = ft_strdup("grep a | grep a | grep d");
 	init_global();
 	rtn = 0;
 	rtn = parse_line(line);
 	g_cmd_table->infile_exists = 1;
 	g_cmd_table->outfile_exists = 1;
 	g_cmd_table->infile = ft_strdup("text1.txt");
-	g_cmd_table->outfile = ft_strdup("text10.txt");
+	g_cmd_table->outfile = ft_strdup("text14.txt");
 	int i;
 	i = 0;
+	g_cmd_table->n_of_cmds = g_cmd_table->n_of_cmds - 1;
+	printf("NCMDS%i \n\n",g_cmd_table->n_of_cmds);
 	while (g_cmd_table->table[i])
 	{
 		printf("COMAND TABLE:::");
@@ -68,5 +71,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	executor_handler(envp);
 	return (rtn);
-	*/
+	
+
 }
