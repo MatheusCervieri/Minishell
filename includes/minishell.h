@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 15:50:47 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:07:48 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void cd_bi(char **cmd_args, char **envp);
 void echo_bi(char **cmd_args);
 int is_builtin(char *cmd);
 void execute_builtin(char *cmd, char **cmd_args, char **envp);
+int	init_global(void);
 
 
 
