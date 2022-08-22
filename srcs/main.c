@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 12:00:54 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:07:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,11 @@ typedef struct s_cmd_table
 
 int	main(int argc, char **argv, char **envp)
 {
-	char **cmd_args;
-	cmd_args = malloc(sizeof(char *) * 4);
-	cmd_args[0] = ft_strdup("echo");
-	cmd_args[1] = ft_strdup("-n");
-	cmd_args[2] = ft_strdup("dasdsadasdasdas");
-	cmd_args[3] = ft_strdup("dasdsadasdasdas");
-	echo_bi(cmd_args);
-/*
 	char **comands_string;
 	comands_string = malloc(sizeof(char*) * 3);
-	comands_string[0] = ft_strdup("env");
+	comands_string[0] = ft_strdup("echo aaaaaa abaaaaa cccc");
 	comands_string[1] = ft_strdup("grep a");
-	comands_string[2] = ft_strdup("grep SHELL");
+	comands_string[2] = ft_strdup("grep d");
 	g_cmd_table.comands_string = comands_string;
 	g_cmd_table.n_of_cmds = 3;
 	g_cmd_table.infile = ft_strdup("text1.txt");
@@ -71,5 +63,4 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string[1]);
 	free(comands_string[2]);
 	free(comands_string);
-*/
 }
