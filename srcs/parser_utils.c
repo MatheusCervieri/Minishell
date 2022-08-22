@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 00:11:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/20 00:59:16 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/21 22:46:45 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,34 @@ int	is_special(char *arg)
 
 void	handle_special(char *line, t_list **lst)
 {
-	if(ft_strncmp(line, "|", 2) == 0)
-		cmd_table->n_of_pipes++;
+	if (ft_strncmp(line, "|", 2) == 0)
+		g_cmd_table->n_of_pipes++;
 	else
 	{
-		if(ft_strncmp(line, "<<", 2) == 0)
+		if (ft_strncmp(line, "<<", 2) == 0)
 		{
-			cmd_table->here_doc = 1;
-			cmd_table->limiter = ft_strdup(((char *)lst[0]->next->content));
+			g_cmd_table->here_doc = 1;
+			g_cmd_table->limiter = ft_strdup(((char *)lst[0]->next->content));
 		}
-		else if(ft_strncmp(line, ">>", 2) == 0)
+		else if (ft_strncmp(line, ">>", 2) == 0)
 		{
-			cmd_table->append = 1;
-			cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
+			g_cmd_table->append = 1;
+			g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
 		}
-		else if(ft_strncmp(line, "<", 1) == 0)
+		else if (ft_strncmp(line, "<", 1) == 0)
 		{
-			free(cmd_table->infile);
-			cmd_table->infile = ft_strdup((char *)lst[0]->next->content);
+			free(g_cmd_table->infile);
+			g_cmd_table->infile = ft_strdup((char *)lst[0]->next->content);
 		}
-		else if(ft_strncmp(line, ">", 1) == 0)
+		else if (ft_strncmp(line, ">", 1) == 0)
 		{
-			free(cmd_table->outfile);
-			cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
+			free(g_cmd_table->outfile);
+			g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
 		}
-		lst[0] = lst[0]->next;
 	}
 }
 
-int cmd_size(t_list *tmp_cmd_table)
+int	cmd_size(t_list *tmp_cmd_table)
 {
 	int	i;
 
@@ -62,15 +61,15 @@ int cmd_size(t_list *tmp_cmd_table)
 
 t_list	*add_cmd(t_list *tct, int i)
 {
-	int size;
+	int	size;
 
 	size = cmd_size(tct);
-	cmd_table->table[i] = ft_strdup((char *)tct->content);
+	g_cmd_table->table[i] = ft_strdup((char *)tct->content);
 	if (tct->next)
 		tct = tct->next;
 	while (size > 1)
 	{
-		cmd_table->table[i] = join_with_space(cmd_table->table[i], \
+		g_cmd_table->table[i] = join_with_space(g_cmd_table->table[i], \
 											(char *)tct->content);
 		if (tct->next)
 			tct = tct->next;
@@ -79,12 +78,13 @@ t_list	*add_cmd(t_list *tct, int i)
 	return (tct);
 }
 
-int get_cmds(t_list *tct)
+int	get_cmds(t_list *tct)
 {
 	int	i;
 
 	i = 0;
-	cmd_table->table = malloc(sizeof(char *) * (cmd_table->n_of_cmds + 1));
+	g_cmd_table->table = (char **)malloc(sizeof(char *) * \
+			(g_cmd_table->n_of_cmds + 1));
 	while (tct)
 	{
 		if (is_special((char *)tct->content))
@@ -96,5 +96,6 @@ int get_cmds(t_list *tct)
 		}
 		tct = tct->next;
 	}
+	g_cmd_table->table[g_cmd_table->n_of_cmds] = NULL;
 	return (0);
 }

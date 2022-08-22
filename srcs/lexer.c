@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/21 20:59:56 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/08/21 12:54:16 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/21 22:37:23 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#include "minishell.h"
 
-#include "../includes/minishell.h"
+t_list	*lexer(char **split_line)
+{
+	int		i;
+	t_list	*tmp;
+	t_list	*rtn;
 
-char	**tokenize(char **split_line, int size);
-int	is_special(char *arg);
-void	handle_special(char *line, t_list **lst);
-void	init_global(void);
-int check_quotes(const char *line);
-char	*expand(char *line, int i);
-void	expand_line(int i);
-
-#endif
+	i = 0;
+	rtn = ft_lstnew(ft_strdup(split_line[i]));
+	i++;
+	while (split_line[i])
+	{
+		tmp = ft_lstnew(ft_strdup(split_line[i]));
+		ft_lstadd_back(&rtn, tmp);
+		i++;
+	}
+	return (rtn);
+}

@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/11 21:12:47 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/21 19:25:28 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(void)
 {
 	int	rtn;
 
-	rtn = init_shell();
+	rtn = 0;
+	rtn = minishell();
 	return (rtn);
 }

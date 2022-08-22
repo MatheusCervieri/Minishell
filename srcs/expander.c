@@ -6,28 +6,15 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/08/20 00:41:46 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/21 22:41:41 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_split_line(char **split_line)
-{
-	int	i;
-
-	i = 0;
-	while (split_line[i])
-	{
-		free(split_line[i]);
-		i++;
-	}
-	free(split_line);
-}
-
 char	*join_with_space(char *str1, char *str2)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strjoin(str1, " ");
 	free(str1);
@@ -37,7 +24,7 @@ char	*join_with_space(char *str1, char *str2)
 
 int	has_quote(char *split_line)
 {
-	char *word;
+	char	*word;
 
 	word = split_line;
 	while ((*word != '"' && ft_strncmp(word, "'", 1)) && *word)
@@ -51,57 +38,60 @@ int	has_quote(char *split_line)
 	return (0);
 }
 
-char	**expander(char **split_line)
+char	*token_with_quotes(char **split_line, int *i)
 {
-	char	**new_line;
+	char	*rtn;
+
+	rtn = ft_strdup(split_line[*i]);
+	if (has_quote(&split_line[*i][1]))
+		return (rtn);
+	*i += 1;
+	while (split_line[*i])
+	{
+		rtn = join_with_space(rtn, split_line[*i]);
+		if (has_quote(split_line[*i]))
+			return (rtn);
+		*i += 1;
+	}
+	return (rtn);
+}
+
+char	**tokenize(char **split_line, int size)
+{
+	char	**tokens;
 	int		i;
 	int		j;
 
-	j = 0;
-	while (split_line[j])
-		j++;
-	new_line = (char **)malloc(sizeof(split_line) * (j +  1));
+	tokens = (char **)malloc(sizeof(char *) * (size + 1));
 	i = -1;
 	j = 0;
 	while (split_line[++i])
 	{
-		if (*split_line[i] == '"' || !ft_strncmp(split_line[i], "'", 1))
-		{
-			new_line[j] = ft_strdup(split_line[i]);
-			while (split_line[++i])
-			{
-				new_line[j] = join_with_space(new_line[j], split_line[i]);
-				if (has_quote(split_line[i]))
-					break ;
-			}
-		}
+		if (*split_line[i] == '"' || *split_line[i] == '\'')
+			tokens[j] = token_with_quotes(split_line, &i);
 		else
-			new_line[j] = ft_strdup(split_line[i]);
+			tokens[j] = ft_strdup(split_line[i]);
 		j++;
 	}
-	new_line[j] = NULL;
+	tokens[j] = NULL;
 	free_split_line(split_line);
-	return(new_line);
+	return (tokens);
 }
 
-t_list	*lexer(char *line)
+char	**expander(char *line)
 {
+	int		size;
 	char	**split_line;
-	int		i;
-	t_list	*tmp;
-	t_list	*rtn;
 
 	split_line = ft_split(line, ' ');
-	split_line = expander(split_line);
-	i = 0;
-	rtn = ft_lstnew(ft_strdup(split_line[i]));
-	i++;
-	while(split_line[i])
+	if (!split_line)
 	{
-		tmp = ft_lstnew(ft_strdup(split_line[i]));
-		ft_lstadd_back(&rtn, tmp);
-		i++;
+		g_cmd_table->status = -1;
+		return (NULL);
 	}
-	free_split_line(split_line);
-	return (rtn);
+	size = 0;
+	while (split_line[size])
+		size++;
+	split_line = tokenize(split_line, size);
+	return (split_line);
 }

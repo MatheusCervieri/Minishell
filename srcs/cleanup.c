@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/21 20:59:56 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/08/21 13:53:07 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/21 22:37:10 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#include "minishell.h"
 
-#include "../includes/minishell.h"
+void	free_split_line(char **split_line)
+{
+	int	i;
 
-char	**tokenize(char **split_line, int size);
-int	is_special(char *arg);
-void	handle_special(char *line, t_list **lst);
-void	init_global(void);
-int check_quotes(const char *line);
-char	*expand(char *line, int i);
-void	expand_line(int i);
+	i = 0;
+	while (split_line[i])
+	{
+		free(split_line[i]);
+		i++;
+	}
+	free(split_line);
+}
 
-#endif
+int	print_and_return(const char *msg, int err_code)
+{
+	printf("%s\n", msg);
+	return (err_code);
+}
