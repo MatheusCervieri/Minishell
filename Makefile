@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/12 11:09:13 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/22 13:01:29 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/22 13:25:29 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC_FILES = main.c \
 			executer_utils.c \
 			executor_handler.c \
 			here_doc.c \
-			env.c \
+			env_bi.c \
 			pwd.c \
 			cd.c \
 			echo.c \
