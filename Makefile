@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/22 16:01:11 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/22 20:06:35 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_FILES = main.c \
 			cd.c \
 			echo.c \
 			executer_builtin.c \
+			export_bi.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
