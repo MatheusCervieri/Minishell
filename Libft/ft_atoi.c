@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:36:49 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/08 22:43:53 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/04/12 15:53:53 by Ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 03:31:10 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	int	signal;
+	int	sign;
 	int	result;
+	int	i;
 
 	result = 0;
-	signal = 1;
-	while (*nptr == ' ' || *nptr == '\n' || *nptr == '\t' || *nptr == '\v'
-		|| *nptr == '\f' || *nptr == '\r')
-			nptr++;
-	if (*nptr == '-' || *nptr == '+')
+	i = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] != '\0' && (str[i] == 43 || str[i] == 45))
 	{
-		if (*nptr == '-')
-		{
-			signal = -1;
-		}
-		nptr++;
+		if (str[i] == 45)
+			sign *= -1;
+		i++;
 	}
-	while (*nptr >= '0' && *nptr <= '9')
+	while (str[i] && str[i] >= 48 && str[i] <= 57)
 	{
-		result = (result * 10) + (*nptr - '0');
-		nptr++;
+		result *= 10;
+		result += str[i] - 48;
+		i++;
 	}
-	return (result * signal);
+	result *= sign;
+	return (result);
 }

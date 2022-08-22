@@ -3,127 +3,131 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 20:22:23 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/26 00:05:05 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/06/08 20:15:31 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/07/07 22:41:29 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	free_memory(char **s1, char **s2, char **s3)
+static char	*join(char *s1, char *s2)
 {
-	if (s1)
+	char	*str;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = -1;
+	if (!s1)
 	{
-		if (*s1)
-			free(*s1);
-		*s1 = NULL;
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
 	}
-	if (s2)
-	{
-		if (*s2)
-			free(*s2);
-		*s2 = NULL;
-	}
-	if (s3)
-	{
-		if (*s3)
-			free(*s3);
-		*s3 = NULL;
-	}
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[++i])
+		str[i] = s1[i];
+	while (s2[++j])
+		str[i + j] = s2[j];
+	str[i + j] = '\0';
+	free(s1);
+	return (str);
 }
 
-char	*save_chars_after_nl(char *line_text)
+static char	*clear_line(char *line)
 {
-	char			*saved;
-	int				nl_position;
-	unsigned int	i;
+	int		i;
+	int		j;
+	char	*rtn;
 
-	nl_position = is_there_nl(line_text);
-	if (!(nl_position >= 0))
-		return (NULL);
-	saved = malloc((ft_strlen(line_text) - nl_position + 1) * sizeof(char));
-	if (!saved)
-		return (NULL);
 	i = 0;
-	while (i < ft_strlen(line_text) - nl_position)
-	{
-		saved[i] = line_text[nl_position + 1 + i];
+	j = 0;
+	while (line[i] != '\n' && line[i])
 		i++;
+	if (!line[i])
+	{
+		free(line);
+		return (NULL);
 	}
-	saved[i] = '\0';
-	return (saved);
+	rtn = (char *)malloc(sizeof(char) * (ft_strlen(line) - i + 1));
+	if (!rtn)
+		return (NULL);
+	while (line[++i])
+	{
+		rtn[j] = line[i];
+		j++;
+	}
+	rtn[j] = '\0';
+	free(line);
+	return (rtn);
 }
 
-char	*get_line(char *line_text)
+static char	*get_line(char *line)
 {
-	char			*line;
-	unsigned int	i;
+	size_t	i;
+	size_t	j;
+	char	*rtn;
 
-	if (!line_text)
-		return (NULL);
 	i = 0;
-	if (is_there_nl(line_text) != -1)
+	j = -1;
+	if (!line[i])
+		return (NULL);
+	while (line[i] != '\n' && line[i])
+		i++;
+	rtn = (char *)malloc(sizeof(char) * (i + 2));
+	if (!rtn)
+		return (NULL);
+	while (line[++j] && line[j] != '\n')
+		rtn[j] = line[j];
+	if (line[j] == '\n')
 	{
-		line = malloc(is_there_nl(line_text) + 2 * sizeof(char));
-		if (!line)
-			return (NULL);
-		while (i <= (unsigned int)is_there_nl(line_text))
-		{
-			line[i] = line_text[i];
-			i++;
-		}
-		line[i] = '\0';
+		rtn[j] = line[j];
+		j++;
 	}
-	else
-	{
-		return (line_text);
-	}
-	free(line_text);
-	return (line);
+	rtn[j] = '\0';
+	return (rtn);
 }
 
-static char	*make_line(char **saved, char **buffer, char **l_text, int a_read)
+static char	*init_line(char *line_cache, int fd)
 {
-	if (a_read == 0)
-	{
-		free_memory(saved, buffer, NULL);
-		if (*l_text && **l_text)
-			return (*l_text);
-		free_memory(l_text, NULL, NULL);
+	char	*buf;
+	int		read_rtn;
+
+	buf = malloc(sizeof(char) * (100 + 1));
+	if (!buf)
 		return (NULL);
+	read_rtn = 1;
+	while (!ft_strchr(line_cache, '\n') && read_rtn != 0)
+	{
+		read_rtn = read(fd, buf, 100);
+		if (read_rtn == -1)
+		{
+			free(buf);
+			return (NULL);
+		}
+		buf[read_rtn] = '\0';
+		line_cache = join(line_cache, buf);
 	}
-	free_memory(saved, buffer, NULL);
-	*saved = save_chars_after_nl(*l_text);
-	*l_text = get_line(*l_text);
-	return (*l_text);
+	free(buf);
+	return (line_cache);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*saved;
-	char		*line_text;
-	char		*buffer;
-	int			actually_read;
+	char		*line;
+	static char	*line_cache[1024];
 
-	if (!saved)
-		saved = ft_strdup("");
-	line_text = ft_strdup(saved);
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (buffer == NULL)
+	if (fd < 0 || fd > 1023)
+		return (0);
+	line_cache[fd] = init_line(line_cache[fd], fd);
+	if (!line_cache[fd])
 		return (NULL);
-	actually_read = BUFFER_SIZE;
-	while (BUFFER_SIZE == actually_read && !(is_there_nl(line_text) >= 0))
-	{
-		actually_read = read(fd, buffer, BUFFER_SIZE);
-		if (actually_read < 0)
-		{
-			free_memory(&saved, &line_text, &buffer);
-			return (NULL);
-		}
-		buffer[actually_read] = '\0';
-		line_text = ft_strjoin_free(line_text, buffer);
-	}
-	return (make_line(&saved, &buffer, &line_text, actually_read));
+	line = get_line(line_cache[fd]);
+	line_cache[fd] = clear_line(line_cache[fd]);
+	return (line);
 }

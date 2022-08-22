@@ -3,26 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:39:55 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/13 17:53:01 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/24 00:15:25 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 21:07:43 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t num, size_t size)
 {
-	void	*allocated_memory;
-	int		over_handling;
+	void	*ptr;
 
-	over_handling = nelem * elsize;
-	if (nelem != 0 && over_handling / nelem != elsize)
+	if (num > 2147483647 || size > 2147483647)
 		return (NULL);
-	allocated_memory = (void *) malloc (nelem * elsize);
-	if (allocated_memory == NULL)
+	ptr = (void *)malloc(num * size);
+	if (!ptr)
 		return (NULL);
-	ft_memset(allocated_memory, 0, nelem * elsize);
-	return (allocated_memory);
+	ft_bzero(ptr, num);
+	return (ptr);
 }

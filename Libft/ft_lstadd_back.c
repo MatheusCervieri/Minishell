@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_string.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 20:22:51 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/26 00:18:59 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/26 20:39:58 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 04:04:00 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	write_string(char *str)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	len;
+	t_list	*tmp;
 
-	len = 0;
-	if (!str)
+	if (!lst || !new)
+		return ;
+	tmp = *lst;
+	if (!tmp)
 	{
-		str = ft_strdup("(null)");
-		while (str[len] != '\0')
-			len += write_plus_one(str[len]);
-		free(str);
+		*lst = new;
+		return ;
 	}
-	else
-	{
-		while (str[len] != '\0')
-		len += write_plus_one(str[len]);
-	}
-	return (len);
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }

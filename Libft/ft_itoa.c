@@ -3,77 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:41:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/06/13 19:34:44 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/05/25 17:49:29 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/05/27 21:06:42 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	digits_amount(int n)
+static size_t	num_len(int n)
 {
-	unsigned int	digits;
+	size_t	size;
 
-	digits = 0;
-	if (n == 0)
-		return (1);
-	while (n > 0)
+	size = 1;
+	if (n == -2147483648)
+	{
+		size += 2;
+		n = (n % 1000000000) * -1;
+	}
+	if (n < 0)
+	{
+		n *= -1;
+		size++;
+	}
+	while (n > 9)
 	{
 		n /= 10;
-		digits++;
+		size++;
 	}
-	return (digits);
-}
-
-static char	*handle_min_int(void)
-{
-	char	*converted_string;
-
-	converted_string = malloc(sizeof(char) * 12);
-	if (!converted_string)
-		return (NULL);
-	converted_string[0] = '-';
-	converted_string[1] = '2';
-	converted_string[2] = '1';
-	converted_string[3] = '4';
-	converted_string[4] = '7';
-	converted_string[5] = '4';
-	converted_string[6] = '8';
-	converted_string[7] = '3';
-	converted_string[8] = '6';
-	converted_string[9] = '4';
-	converted_string[10] = '8';
-	converted_string[11] = '\0';
-	return (converted_string);
+	return (size);
 }
 
 char	*ft_itoa(int n)
 {
-	char			*converted_string;
-	unsigned int	digits;
-	int				number;
+	char	*return_str;
+	size_t	size;
 
-	number = n;
-	digits = digits_amount(n);
-	if (n == -2147483648)
-		return (handle_min_int());
-	if (n < 0)
-	{
-		digits = digits_amount(n * -1) + 1;
-		number = number * -1;
-	}
-	converted_string = (char *)malloc((digits + 1) * sizeof(char));
-	if (!converted_string)
+	size = num_len(n);
+	return_str = malloc(sizeof(char) * (size + 1));
+	if (!return_str)
 		return (NULL);
-	converted_string[digits] = '\0';
-	while (digits > 0)
-	{
-		converted_string[digits-- - 1] = (number % 10) + '0';
-		number /= 10;
-	}
+	return_str[size] = '\0';
 	if (n < 0)
-		converted_string[0] = '-';
-	return (converted_string);
+	{
+		return_str[0] = '-';
+		if (n == -2147483648)
+			return_str[1] = '2';
+		n = (n % 1000000000) * -1;
+	}
+	while (n > 9)
+	{
+		return_str[size - 1] = (n % 10) + 48;
+		n /= 10;
+		size--;
+	}
+	return_str[size - 1] = n + 48;
+	return (return_str);
 }

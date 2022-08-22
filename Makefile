@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/12 11:09:13 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/12 11:09:15 by mvieira-         ###   ########.fr        #
+#    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
+#    Updated: 2022/08/21 22:56:53 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,20 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 TEST_PATH = ./test
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -g3 -std=c11 -I $(HEADERS_PATH)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
 RM = rm -rf
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
 NAME = minishell
 SRC_FILES = main.c \
-			init_shell.c \
+			minishell.c \
+			parser.c \
+			parser_utils.c \
+			expander.c \
+			cleanup.c \
+			lexer.c \
+			env.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
@@ -48,7 +54,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(TEST_PATH)/bin/%: $(TEST_PATH)/%.c
-	@$(CC) $< $(OBJECTS_TEST) -o $@  -lcriterion
+	@$(CC) $(CFLAGS) $< $(OBJECTS_TEST) $(LIBFT_A) -o $@  -lcriterion -lreadline
 	
 $(TEST_PATH)/bin:
 	@$(MKDIR) $@

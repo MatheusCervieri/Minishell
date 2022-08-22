@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   ft_vprintf_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/11 21:43:04 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/06/11 00:42:28 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/07/07 22:49:45 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "ft_printf.h"
 
-int	init_shell(void)
+int	ft_vprintf(const char *fmt, va_list args)
 {
-	char	*line;
+	t_rtn_str	rtn;
 
-	while (1)
-	{
-		line = readline("minishell> ");
-		if (line && *line)
-			add_history(line);
-		if (ft_strncmp(line, "exit", 5) == 0)
-			break;
-	}
-	rl_clear_history();
-	free(line);
-	return (0);
+	rtn.str = ft_strdup("");
+	rtn.size = 0;
+	generate_rtn_str(fmt, args, &rtn);
+	write(STDOUT, rtn.str, rtn.size);
+	free(rtn.str);
+	return (rtn.size);
 }
