@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 09:57:19 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:56:26 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef struct s_cmd_table
 
 int	main(int argc, char **argv, char **envp)
 {
-	pwd_bi();
+	char **cmd_args;
+	cmd_args = malloc(sizeof(char *) * 1);
+	cmd_args[0] = ft_strdup("cd");
+	cd_bi(cmd_args, envp);
 /*
 	char **comands_string;
 	comands_string = malloc(sizeof(char*) * 3);

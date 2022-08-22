@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 09:57:30 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:56:36 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void executor_handler(char **envp);
 //Built ins 
 void env_bi(char **cmd_args, char **envp);
 void pwd_bi(void);
+int args_len(char **cmd_args);
+void cd_bi(char **cmd_args, char **envp);
 
 
 #endif
