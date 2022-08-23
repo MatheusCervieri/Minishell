@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 16:07:48 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:54:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct s_cmd_table
 	char	*limiter;	// limeter para sair do here_doc
 	int		append; // 0 por padrao, 1 se a pessoa tiver especificado uma outfile e especificado append inves de sobreescrever
 	int		status;
-	int		last_status;		
+	int		last_status;	
+	t_list	*envp;	
 }				t_cmd_table;
 
 

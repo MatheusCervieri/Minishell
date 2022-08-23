@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 00:11:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/21 22:46:45 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:56:36 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,25 @@ void	handle_special(char *line, t_list **lst)
 {
 	if (ft_strncmp(line, "|", 2) == 0)
 		g_cmd_table->n_of_pipes++;
-	else
+	else if (ft_strncmp(line, "<<", 2) == 0)
 	{
-		if (ft_strncmp(line, "<<", 2) == 0)
-		{
-			g_cmd_table->here_doc = 1;
-			g_cmd_table->limiter = ft_strdup(((char *)lst[0]->next->content));
-		}
-		else if (ft_strncmp(line, ">>", 2) == 0)
-		{
-			g_cmd_table->append = 1;
-			g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
-		}
-		else if (ft_strncmp(line, "<", 1) == 0)
-		{
-			free(g_cmd_table->infile);
-			g_cmd_table->infile = ft_strdup((char *)lst[0]->next->content);
-		}
-		else if (ft_strncmp(line, ">", 1) == 0)
-		{
-			free(g_cmd_table->outfile);
-			g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
-		}
+		g_cmd_table->here_doc = 1;
+		g_cmd_table->limiter = ft_strdup(((char *)lst[0]->next->content));
+	}
+	else if (ft_strncmp(line, ">>", 2) == 0)
+	{
+		g_cmd_table->append = 1;
+		g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
+	}
+	else if (ft_strncmp(line, "<", 1) == 0)
+	{
+		free(g_cmd_table->infile);
+		g_cmd_table->infile = ft_strdup((char *)lst[0]->next->content);
+	}
+	else if (ft_strncmp(line, ">", 1) == 0)
+	{
+		free(g_cmd_table->outfile);
+		g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
 	}
 }
 

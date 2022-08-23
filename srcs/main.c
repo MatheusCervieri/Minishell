@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 21:00:26 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:03:35 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	main(int argc, char **argv, char **envp)
 	//g_cmd_table->infile_exists = 0;
 	//g_cmd_table->outfile_exists = 0;
 	g_cmd_table->n_of_cmds = g_cmd_table->n_of_cmds - 1;
-	
-	executor_handler(envp);
 	print_struct();
+	executor_handler(envp);
+	
 	return (rtn);
 }
