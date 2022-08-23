@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:57:11 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:15:58 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	make_list(t_list **list, char **envp)
 
 void	print_list(t_list *list)
 {
-	while(list->next)
+	while(list)
 	{
 		printf("%s \n", (char *) list->content);
 		list = list->next;
@@ -91,7 +91,22 @@ int	main(int argc, char **argv, char **envp)
 	make_list(&(g_cmd_table->envp), envp);
 	print_list(g_cmd_table->envp);
 	printf("---------------------------------------------------- \n");
-	change_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, "TERM=BANAAAAAAAAAAAAAAAAAAAAAAAAAAAA"), "TERM=BANAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	char **cmd_args;
+	cmd_args = malloc(sizeof(char*) * 5);
+	cmd_args[0] = ft_strdup("export");
+	cmd_args[1] = ft_strdup("TESTE=giboia");
+	cmd_args[2] = ft_strdup("OLDPWD=BALEIA");
+	cmd_args[3] = ft_strdup("ESTRATOSFERA=terrestre");
+	cmd_args[4] = ft_strdup("GIBOIA=agressiva");
+	cmd_args[5] = NULL;
+	export_bi(cmd_args);
+	cmd_args[0] = ft_strdup("export");
+	cmd_args[1] = ft_strdup("TESTE=sequela");
+	cmd_args[2] = ft_strdup("OLDPWD=home");
+	cmd_args[3] = ft_strdup("ESTRATOSFERA=terrestre");
+	cmd_args[4] = ft_strdup("GIBOIA=agressiva");
+	cmd_args[5] = NULL;
+	export_bi(cmd_args);
 	print_list(g_cmd_table->envp);
 	/*
 	char **args;

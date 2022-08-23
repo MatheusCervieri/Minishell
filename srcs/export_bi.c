@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:59:19 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:14:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int find_equal_position(char *arg)
 			return (i);
 		i++;
 	}
-	return (0);	
+	return (-1);	
 }
 
 
@@ -110,21 +110,34 @@ int	lst_find_var_p(t_list *head, char *var_name)
 
 void change_or_create(char *arg)
 {
+	if (find_equal_position(arg) > 0)
+	{
 	if (lst_find_var_p(g_cmd_table->envp, arg) >= 0)
 	{
 		change_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, arg), arg);
 	}
 	else 
 		ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)arg));
-}
-
-void export_bi(char **cmd_args, t_list *envp)
-{
-	int i;
-	i = 1;
-	while (cmd_args[i])
-	{
-		change_or_create(cmd_args[i]);
-		i++;
 	}
 }
+
+void export_bi(char **cmd_args)
+{
+	int i;
+	if(args_len(cmd_args) == 0)
+	{
+		printf("export declare");
+	}
+	else
+	{
+		i = 0;
+		while (i < args_len(cmd_args))
+		{
+		change_or_create(cmd_args[i]);
+		i++;
+		}
+	}
+}
+
+//falta implementar para escrever todas as variáveis de ambiente - só fazer um if se tem igual
+//falta implementar o export sem nenhum parametro
