@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 09:56:53 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:23:14 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_cmd_table
 	int		append; // 0 por padrao, 1 se a pessoa tiver especificado uma outfile e especificado append inves de sobreescrever
 	int		status;
 	int		last_status;
-	t_list	*envpl;		
+	t_list	*envp;		
 }				t_cmd_table;
 
 
@@ -103,6 +103,7 @@ void echo_bi(char **cmd_args);
 int is_builtin(char *cmd);
 void execute_builtin(char *cmd, char **cmd_args, char **envp);
 int	init_global(void);
+void export_bi(char **cmd_args, t_list *envp);
 
 
 

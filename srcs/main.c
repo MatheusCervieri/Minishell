@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 11:12:52 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:28:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	make_list(t_list **list, char **envp)
 
 void	print_list(t_list *list)
 {
-	while(list)
+	while(list->next)
 	{
 		printf("%s \n", (char *) list->content);
 		list = list->next;
@@ -86,9 +86,17 @@ void	print_list(t_list *list)
 int	main(int argc, char **argv, char **envp)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	g_cmd_table->envpl = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envpl), envp);
-	print_list(g_cmd_table->envpl);
+	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
+	make_list(&(g_cmd_table->envp), envp);
+	print_list(g_cmd_table->envp);
+	printf("---------------------------------------------------- \n");
+	char **args;
+	args = malloc(sizeof(char*) * 3);
+	args[0] = ft_strdup("export");
+	args[1] = ft_strdup("TESTE123=ALMONDEGA");
+	args[2] = ft_strdup("ZOO=GIRAFA");
+	export_bi(args ,g_cmd_table->envp);
+	print_list(g_cmd_table->envp);
 	
 }
 //printf("%s\n", (char *)list->content);
