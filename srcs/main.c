@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 17:25:07 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:00:26 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,15 @@ int	main(int argc, char **argv, char **envp)
 	char *line;
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->status = 0;
-	line = ft_strdup("grep a | grep a | grep d");
+	line = ft_strdup("echo dadasdsad");
 	init_global();
 	rtn = 0;
 	rtn = parse_line(line);
-	g_cmd_table->infile_exists = 0;
-	g_cmd_table->outfile_exists = 0;
+	//g_cmd_table->infile_exists = 0;
+	//g_cmd_table->outfile_exists = 0;
 	g_cmd_table->n_of_cmds = g_cmd_table->n_of_cmds - 1;
-	print_struct();
+	
 	executor_handler(envp);
+	print_struct();
 	return (rtn);
 }

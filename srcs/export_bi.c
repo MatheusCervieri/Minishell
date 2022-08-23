@@ -6,12 +6,12 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:51:47 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:53:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+/*
 int already_var(t_list *envp, char *arg)
 {
 	//quebrar no sinal de igual e gerar uma nova string (var)
@@ -40,3 +40,4 @@ void export_bi(char **cmd_args, t_list *envp)
 
 int ft_lstadd_front(t_list **lst, t_list *new);
 t_list *ft_lstnew(void *content);
+*/

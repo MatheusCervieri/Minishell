@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 15:47:02 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:59:53 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	put_infile_fd(t_pipex *data, char *infile_path)
 {
+	if(ft_strncmp(infile_path, "STDIN_FILENO", 13) == 0)
+		data->infile_exists = 0;
+	else
+		data->infile_exists = 1;	
 	if (data->infile_exists != 0 && data->here_doc == 0)
 	{
 		data->infile = open(infile_path, O_RDONLY);
@@ -32,6 +36,10 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 
 void	put_outfile_fd(t_pipex *data, char *outfile_path)
 {
+	if(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0)
+		data->outfile_exists = 0;
+	else
+		data->outfile_exists = 1;	
 	if (data->outfile_exists != 0)
 	{
 		if (data->append == 1)
