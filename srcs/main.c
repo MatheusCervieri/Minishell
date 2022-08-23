@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:45:49 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:57:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	main(int argc, char **argv, char **envp)
 	make_list(&(g_cmd_table->envp), envp);
 	print_list(g_cmd_table->envp);
 	printf("---------------------------------------------------- \n");
-	printf("%i", lst_find_var_p(g_cmd_table->envp, "USER=BANANA"));
-	
+	change_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, "TERM=BANAAAAAAAAAAAAAAAAAAAAAAAAAAAA"), "TERM=BANAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	print_list(g_cmd_table->envp);
 	/*
 	char **args;
 	args = malloc(sizeof(char*) * 3);

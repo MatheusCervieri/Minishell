@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:45:31 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:59:19 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ void	remove_node(t_list **head, int position)
 			break ;	
 		}
 		prev_node = aux;
+		i++;
+		aux = aux->next;
+	}
+}
+
+void	change_node(t_list **head, int position, char *arg)
+{
+	t_list *aux;
+
+	int i;
+	aux = *head;
+	i = 0;
+	while(aux)
+	{
+
+		if (i == position)
+		{
+			aux->content = ft_strdup(arg);
+			break ;	
+		}
 		i++;
 		aux = aux->next;
 	}
@@ -76,7 +96,6 @@ void change_var_value(t_list *envp)
 int	lst_find_var_p(t_list *head, char *var_name)
 {
 	int p;
-	printf("Find equal postion: %i \n", find_equal_position(var_name));
 	p = 0;
 	while (head)
 	{
@@ -89,17 +108,11 @@ int	lst_find_var_p(t_list *head, char *var_name)
 }
 
 
-
-
 void change_or_create(char *arg)
 {
-	if (already_var(g_cmd_table->envp, arg) == 1)
+	if (lst_find_var_p(g_cmd_table->envp, arg) >= 0)
 	{
-		lst_find_var_p(g_cmd_table->envp, arg);
-		
-		//remover
-		//adicionar a nova. 
-		//substituir a string;
+		change_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, arg), arg);
 	}
 	else 
 		ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)arg));
