@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:17:30 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:34:43 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ Test(parse_line, return_c)
 	char line[] = "< in grep hello | cat | ls -la > out";
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	int rtn = parse_line(line);
 	cr_expect(rtn == 0, "parse_line returns correctly");
 	cr_expect(strcmp(g_cmd_table->infile, "in") == 0, "in file is correct");
@@ -131,6 +134,9 @@ Test(parse_line, return_c_2)
 	char line[] = "<< LIMITER grep hello | cat -e | ls -la >> out";
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	int rtn = parse_line(line);
 	cr_expect(rtn == 0, "parse_line returns correctly");
 	cr_expect(strcmp(g_cmd_table->infile, "STDIN_FILENO") == 0, "in file is correct");
@@ -163,6 +169,9 @@ Test(expand, return_c_exit_code)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->last_status = 0;
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$?");
@@ -174,6 +183,9 @@ Test(expand, return_c_var)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$SHELL");
 	char *rtn = expand(g_cmd_table->table[0], 0);
@@ -184,6 +196,9 @@ Test(expand, return_c_var_in_quotes)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("echo \"$SHELL\"");
 	char *rtn = expand(g_cmd_table->table[0], 0);
@@ -194,6 +209,9 @@ Test(expand, return_c_invalid_var)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$INVALID");
 	char *rtn = expand(g_cmd_table->table[0], 0);
@@ -204,6 +222,9 @@ Test(expand, return_c_no_var)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->last_status = 0;
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$");
@@ -215,6 +236,9 @@ Test(expand_env, return_c_exit_code)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->last_status = 0;
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$?");
@@ -226,6 +250,9 @@ Test(expand_env, return_c_var)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$SHELL");
 	expand_env();
@@ -236,6 +263,9 @@ Test(expand_env, return_c_var_in_dquotes)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("'\"$SHELL\"'");
 	expand_env();
@@ -246,6 +276,9 @@ Test(expand_env, return_c_var_in_squotes)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	init_global();
+	int garbage = 0;
+	reset_global(&garbage);
+	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("\"'$SHELL'\"");
 	expand_env();
