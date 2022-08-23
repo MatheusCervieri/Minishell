@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 11:28:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:35:04 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	print_list(t_list *list)
 	}
 }
 
+
 int	main(int argc, char **argv, char **envp)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
@@ -90,6 +91,9 @@ int	main(int argc, char **argv, char **envp)
 	make_list(&(g_cmd_table->envp), envp);
 	print_list(g_cmd_table->envp);
 	printf("---------------------------------------------------- \n");
+	remove_node(&(g_cmd_table->envp),3);
+	print_list(g_cmd_table->envp);
+	/*
 	char **args;
 	args = malloc(sizeof(char*) * 3);
 	args[0] = ft_strdup("export");
@@ -97,7 +101,7 @@ int	main(int argc, char **argv, char **envp)
 	args[2] = ft_strdup("ZOO=GIRAFA");
 	export_bi(args ,g_cmd_table->envp);
 	print_list(g_cmd_table->envp);
-	
+	*/
 }
 //printf("%s\n", (char *)list->content);
 	//make_list(&list, envp);
