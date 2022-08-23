@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:15:51 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:41:00 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,16 @@ int	parser(t_list *tmp_cmd_table)
 int	parse_line(char *line)
 {
 	t_list	*tmp_cmd_table;
-	int		rtn;
 	char	**split_line;
 
 	if (!line)
 		return (0);
-	rtn = check_line(line);
-	if (rtn)
-		return (rtn);
+	g_cmd_table->status = check_line(line);
+	if (g_cmd_table->status != 0)
+		return (1);
 	split_line = expander(line);
 	if (g_cmd_table->status == -1)
-		print_and_return("malloc error", 1);
+		return(print_and_return("malloc error", 1));
 	tmp_cmd_table = lexer(split_line);
 	free_split_line(split_line);
 	parser(tmp_cmd_table);

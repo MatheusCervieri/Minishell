@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 23:30:08 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:52:03 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,21 @@ int	minishell(void)
 	int		rtn;
 
 	rtn = 0;
-	if (init_global())
-		print_and_return("Failed to malloc", 1);
+	init_global();
 	while (rtn != 1)
 	{
 		if (reset_global(&rtn))
 			break ;
 		rtn = prompt(&line);
-		if (rtn == 1)
-			break ;
 		if (rtn == 2)
 			continue ;
-		rtn = parse_line(line);
+		if (parse_line(line))
+			continue ;
 		if (ft_strncmp(g_cmd_table->table[0], "exit", 5) == 0)
 			rtn = 1;
 		free(line);
 		free_global();
 	}
-	if (rtn == 1)
-		rtn = 0;
-	if (rtn == 3)
-		print_and_return("Failed to malloc", 1);
 	rl_clear_history();
 	free(g_cmd_table);
 	return (rtn);
