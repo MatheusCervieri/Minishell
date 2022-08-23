@@ -6,34 +6,13 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 16:14:10 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:07:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	remove_node(t_list **head, int position)
-{
-	t_list *aux;
-	t_list *prev_node;
-	t_list *next_node;
-	int i;
-	aux = *head;
-	i = 0;
-	while(aux)
-	{
-		next_node = aux->next;
-		if (i == position)
-		{
-			prev_node->next = next_node;
-			free(aux);
-			break ;	
-		}
-		prev_node = aux;
-		i++;
-		aux = aux->next;
-	}
-}
+
 
 void	change_node(t_list **head, int position, char *arg)
 {
@@ -99,7 +78,7 @@ int	lst_find_var_p(t_list *head, char *var_name)
 	p = 0;
 	while (head)
 	{
-		if (ft_strncmp(head->content, var_name, find_equal_position(var_name) + 1) == 0)
+		if (ft_strncmp((char *)head->content, var_name, find_equal_position(var_name) + 1) == 0)
 			return (p);
 		p++;
 		head = head->next;

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 16:15:58 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:08:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,53 @@ void	print_list(t_list *list)
 int	main(int argc, char **argv, char **envp)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
+	g_cmd_table->status = 0;
+	init_global();
+	char **comands_string;
+	comands_string = malloc(sizeof(char*) * 3);
+	comands_string[0] = ft_strdup("grep a");
+	comands_string[1] = ft_strdup("grep a");
+	comands_string[2] = ft_strdup("grep d");
+	g_cmd_table->table = comands_string;
+	g_cmd_table->n_of_cmds = 3;
+	g_cmd_table->infile = ft_strdup("text1.txt");
+	g_cmd_table->outfile = ft_strdup("text8.txt");
+	g_cmd_table->infile_exists = 1;
+	g_cmd_table->outfile_exists = 1;
+	g_cmd_table->here_doc = 0;
+	g_cmd_table->append = 1;
+	g_cmd_table->limiter = ft_strdup("teste");
+	executor_handler(envp);
+	free(g_cmd_table->infile);
+	free(g_cmd_table->outfile);
+	free(g_cmd_table->limiter);
+	free(comands_string[0]);
+	free(comands_string[1]);
+	free(comands_string[2]);
+	free(comands_string);
+	/*
+		g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
+	char *baleia = ft_strdup("baleiavermelinha");
+	printf("%i", lst_find_var_p(g_cmd_table->envp, baleia));
+	*/
+/*
+	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
+	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
+	ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)envp[1]));
+	ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)envp[2]));
+	print_list(g_cmd_table->envp);
+	char **cmd_args;
+	cmd_args = malloc(sizeof(char*) * 4);
+	cmd_args[0] = ft_strdup("dsadsada");
+	cmd_args[1] = ft_strdup("BALEIAvermelinha12345");
+	cmd_args[2] = ft_strdup("DASDSADS");
+	cmd_args[3] = NULL;
+	unset_bi(cmd_args);
+	printf("------------------------------------------------------------------\n");
+	print_list(g_cmd_table->envp);
+	*/
+	/*
+	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
 	make_list(&(g_cmd_table->envp), envp);
 	print_list(g_cmd_table->envp);
@@ -100,14 +147,15 @@ int	main(int argc, char **argv, char **envp)
 	cmd_args[4] = ft_strdup("GIBOIA=agressiva");
 	cmd_args[5] = NULL;
 	export_bi(cmd_args);
-	cmd_args[0] = ft_strdup("export");
-	cmd_args[1] = ft_strdup("TESTE=sequela");
-	cmd_args[2] = ft_strdup("OLDPWD=home");
-	cmd_args[3] = ft_strdup("ESTRATOSFERA=terrestre");
-	cmd_args[4] = ft_strdup("GIBOIA=agressiva");
-	cmd_args[5] = NULL;
-	export_bi(cmd_args);
 	print_list(g_cmd_table->envp);
+	char **cmd_args2;
+	cmd_args2 = malloc(sizeof(char*) * 3);
+	cmd_args2[0] = ft_strdup("unset");
+	cmd_args2[1] = ft_strdup("TESTE");
+	cmd_args2[2] = NULL;
+	remove_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, "TESTE"));
+	print_list(g_cmd_table->envp);
+	*/
 	/*
 	char **args;
 	args = malloc(sizeof(char*) * 3);

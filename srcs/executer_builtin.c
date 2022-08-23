@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 13:06:21 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:05:23 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ void execute_builtin(char *cmd, char **cmd_args, char **envp)
 	if (ft_strncmp(cmd, "pwd", 4) == 0)
 		pwd_bi();
 	if (ft_strncmp(cmd, "exit", 5) == 0)
-		printf("Built in não existe");
+		exit_bi(cmd_args);
 	if (ft_strncmp(cmd, "export", 7) == 0)
-		ft_putstr_fd("EXPORT \n\n\n", 2);
+		export_bi(cmd_args);
 	if (ft_strncmp(cmd, "unset", 5) == 0)
-		printf("Built in não existe");
-	if (ft_strncmp(cmd, "exit", 5) == 0)
-		printf("Built in não existe");
+		unset_bi(cmd_args);
 }
