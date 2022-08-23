@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:31:38 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:38:16 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void execute_builtin(char *cmd, char **cmd_args, char **envp);
 int	init_global(void);
 void export_bi(char **cmd_args, t_list *envp);
 void	remove_node(t_list **head, int position);
+int	lst_find_var_p(t_list *head, char *var_name);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:33:33 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:45:31 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	remove_node(t_list **head, int position)
 		aux = aux->next;
 	}
 }
-/*
+
 
 int find_equal_position(char *arg)
 {
@@ -56,7 +56,7 @@ int already_var(t_list *envp, char *arg)
 	
 	while(envp)
 	{
-	if (ft_strncmp((char*)envp->content, arg, find_equal_position) == 0)
+	if (ft_strncmp((char*)envp->content, arg, find_equal_position(arg)) == 0)
 	{
 		return (1);
 	}
@@ -73,14 +73,14 @@ void change_var_value(t_list *envp)
 {
 }
 
-int	*lst_find_var_p(t_list *head, char *var_name)
+int	lst_find_var_p(t_list *head, char *var_name)
 {
 	int p;
-
+	printf("Find equal postion: %i \n", find_equal_position(var_name));
 	p = 0;
 	while (head)
 	{
-		if (ft_strncmp(head->content, var_name, find_equal_position(var_name) == 0)
+		if (ft_strncmp(head->content, var_name, find_equal_position(var_name) + 1) == 0)
 			return (p);
 		p++;
 		head = head->next;
@@ -115,4 +115,3 @@ void export_bi(char **cmd_args, t_list *envp)
 		i++;
 	}
 }
-*/
