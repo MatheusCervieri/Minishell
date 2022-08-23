@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/21 22:45:43 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:10:15 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	prompt(char **line)
 	buf = readline("minishell> ");
 	if (buf == NULL)
 		return (1);
+	if (*buf == '\0')
+		return (2);
 	trimmed = ft_strtrim(buf, " ");
 	free(buf);
 	if (trimmed == NULL)
@@ -83,8 +85,11 @@ int	minishell(void)
 	g_cmd_table->status = 0;
 	while (rtn != 1)
 	{
-		if (prompt(&line))
+		rtn = prompt(&line);
+		if (rtn == 1)
 			break ;
+		if (rtn == 2)
+			continue ;
 		if (init_global())
 			break ;
 		rtn = parse_line(line);
