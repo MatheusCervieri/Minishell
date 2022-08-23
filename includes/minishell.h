@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 20:03:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:39:16 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	change_node(t_list **head, int position, char *arg);
 void unset_bi(char **cmd_args);
 void	print_list(t_list *list);
 void    exit_bi(char **cmd_args);
+char	**convert_list_to_char(t_list *head);
 
 
 t_list	*lexer(char **line);

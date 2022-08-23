@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:59:53 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:45:46 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	executor_handler(char **envp)
 {
 	t_pipex	data;
 	int		status;
+	
 
 	data.infile_exists = g_cmd_table->infile_exists;
 	data.outfile_exists = g_cmd_table->outfile_exists;

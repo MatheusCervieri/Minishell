@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 20:05:23 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:44:30 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,27 @@ int is_builtin(char *cmd)
 	return (0);
 }
 
+char	**convert_list_to_char(t_list *head)
+{
+	int		size;
+	char	**envp;
+	int		i;
+
+	size = ft_lstsize(head);
+	envp = malloc(sizeof(char *) * size);
+	i = 0;
+	while (head)
+	{
+		envp[i] = ft_strdup(head->content);
+		i++;
+		head = head->next;
+	}
+	return (envp);
+}
+
 void execute_builtin(char *cmd, char **cmd_args, char **envp)
 {
+
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		env_bi(cmd_args, envp);
 	if (ft_strncmp(cmd, "cd", 3) == 0)
