@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 23:03:35 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:12:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,48 @@ void print_struct(void)
 	printf("\n");
 }
 
+
+void	make_list(t_list **list, char **envp)
+{
+	int i;
+	t_list *head;
+	i = 1;
+	
+	while(envp[i])
+	{
+		ft_lstadd_back(list, ft_lstnew((char *)envp[i]));
+		//if (i == 0)
+			//head = *list;
+		i++;
+	}
+	
+	//printf("%s \n", (char *) head->next->content);
+}
+
+void	print_list(t_list *list)
+{
+	while(list)
+	{
+		printf("%s \n", (char *) list->content);
+		list = list->next;
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
+	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
+	g_cmd_table->envpl = ft_lstnew((char *)envp[0]);
+	make_list(&(g_cmd_table->envpl), envp);
+	print_list(g_cmd_table->envpl);
+	
+}
+//printf("%s\n", (char *)list->content);
+	//make_list(&list, envp);
+	
+	//printf("\n\n\n\n");
+	//printf("%s \n", (char *) g_cmd_table->envpl->content);
+	//print_list();
+	
 	/*
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->status = 0;
@@ -86,6 +126,7 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string);
 	
 	*/
+	/*
 	int	rtn;
 	char *line;
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
@@ -97,8 +138,9 @@ int	main(int argc, char **argv, char **envp)
 	//g_cmd_table->infile_exists = 0;
 	//g_cmd_table->outfile_exists = 0;
 	g_cmd_table->n_of_cmds = g_cmd_table->n_of_cmds - 1;
-	print_struct();
-	executor_handler(envp);
 	
+	executor_handler(envp);
+	print_struct();
 	return (rtn);
-}
+	*/
+	

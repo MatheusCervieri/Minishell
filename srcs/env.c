@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:09:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 22:54:54 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/21 22:48:20 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	expand_env(void)
 
 	i = -1;
 	while (g_cmd_table->table[++i])
-		if (ft_strchr(g_cmd_table->table[i], '$')
-			&& g_cmd_table->table[i][0] != '\'')
+		if (ft_strchr(g_cmd_table->table[i], '$') &&
+			g_cmd_table->table[i][0] != '\'')
 			expand_line(i);
 }

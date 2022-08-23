@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 22:33:13 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/21 22:47:48 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "test.h"
 #include <criterion/new/assert.h>
@@ -21,7 +20,6 @@
 // 	test...
 // }
 
-/*
 Test(lexer, return_something)
 {
 	char *line[] = {"grep", "hello"};
@@ -249,4 +247,3 @@ Test(expand_env, return_c_var_in_squotes)
 	expand_env();
 	cr_expect(strcmp(g_cmd_table->table[0], "\"'/usr/bin/zsh'\"") == 0, "expand_env returns %s", g_cmd_table->table[0]);
 }
-*/
