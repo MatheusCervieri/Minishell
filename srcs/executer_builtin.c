@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 11:51:34 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:55:43 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int is_builtin(char *cmd)
 	return (0);
 }
 
-char	**convert_list_to_char(t_list *ticaratica)
+char	**convert_list_to_char(void)
 {
 	int		size;
 	char	**envp;

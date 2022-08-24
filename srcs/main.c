@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 11:47:31 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:55:08 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int    main(int argc, char **argv, char **envp)
 	//g_cmd_table->outfile_exists = 0;
     g_cmd_table->envp = ft_lstnew((char *)envp[0]);
 	make_list(&(g_cmd_table->envp), envp);
- 
 	executor_handler();
 
 	return (rtn);

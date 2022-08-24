@@ -5,14 +5,7 @@ includes
 infile
 minishell
 objs
-out
 srcs
 test
-test1.txt
 test1original.txt
-test2.txt
-test2original.txt
-test3.txt
-test3original.txt
-test4.txt
 tests.sh
