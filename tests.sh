@@ -1,3 +1,4 @@
+rm test1original.txt test2original.txt test3original.txt test4original.txt test5original.txt
 echo "Test 1 - ls -a >(One-comand)! -----------------------------"
 ls > test1original.txt
 echo $?
@@ -19,6 +20,11 @@ echo $?
 echo "Original:"
 cat test4original.txt
 echo "Test 5 - < text1.txt grep c | grep a | grep t >> test3.txt! (heredoc) -----------------------------"
+echo "Test 5 - ls >> test5.txt -----------------------------"
+ls >> test5original.txt
+echo $?
+echo "Original:"
+cat test5original.txt
 
 
 

@@ -8,4 +8,8 @@ objs
 srcs
 test
 test1original.txt
+test2original.txt
+test3original.txt
+test4original.txt
+test5original.txt
 tests.sh

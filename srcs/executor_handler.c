@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 13:28:10 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:58:35 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	put_outfile_fd(t_pipex *data, char *outfile_path)
 		else{
 			data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC,
 					0000644);
-			write(1, "WTF", 4);
 			}
 		if (data->outfile < 0)
 		{
