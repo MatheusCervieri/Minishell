@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 10:28:52 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:28:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	put_outfile_fd(t_pipex *data, char *outfile_path)
 		if (data->append == 1)
 			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_APPEND,
 					0000644);
-		else
+		else{
 			data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC,
 					0000644);
+			write(1, "WTF", 4);
+			}
 		if (data->outfile < 0)
 		{
 			close(data->infile);
@@ -86,7 +88,7 @@ void	executor_handler(void)
 
 
 	
-	envp = convert_list_to_char(g_cmd_table->envp);
+	envp = convert_list_to_char();
 	data.infile_exists = g_cmd_table->infile_exists;
 	data.outfile_exists = g_cmd_table->outfile_exists;
 	data.here_doc = g_cmd_table->here_doc;

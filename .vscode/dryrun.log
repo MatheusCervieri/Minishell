@@ -1,7 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/matheuscervieri/newminishell'
 cd ./Libft/ && make --no-print-directory
- 
 mkdir -p ./objs/
 cc -g -g3 -I ./includes/ -c srcs/main.c -o objs/main.o
 mkdir -p ./objs/
@@ -34,7 +33,6 @@ mkdir -p ./objs/
 cc -g -g3 -I ./includes/ -c srcs/pwd.c -o objs/pwd.o
 mkdir -p ./objs/
 cc -g -g3 -I ./includes/ -c srcs/cd.c -o objs/cd.o
- 
 mkdir -p ./objs/
 cc -g -g3 -I ./includes/ -c srcs/echo.c -o objs/echo.o
 mkdir -p ./objs/
