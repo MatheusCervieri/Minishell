@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 15:46:30 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:36:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static void	sub_dup2(int read_fd, int write_fd)
 	dup2(write_fd, STDOUT_FILENO);
 }
 
+
+
+
 static void	handle_dup(t_pipex *data)
 {
 	if (data->idx == 0)
@@ -61,6 +64,7 @@ void	child(t_pipex data, char **envp)
 	data.pid = fork();
 	if (!data.pid)
 	{
+		
 		handle_dup(&data);
 		close_pipes(&data);
 		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
@@ -71,6 +75,11 @@ void	child(t_pipex data, char **envp)
 		if (is_builtin(data.cmd) == 1)
 			execute_builtin(data.cmd, data.cmd_args, envp);
 		else
-			execve(data.cmd, data.cmd_args, envp);
+		{
+			if(execve(data.cmd, data.cmd_args, envp) < 0)
+				printf("C É UMA MERDA, O MINISHELL É MAIS");
+		}
+			
+		
 	}
 }

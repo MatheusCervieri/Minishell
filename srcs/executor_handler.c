@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 15:58:35 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:29:51 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,18 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 	{
 		data->infile = 0;
 	}
+	printf("INFILE: %s \n", get_next_line(data->infile));
 }
 
 void	put_outfile_fd(t_pipex *data, char *outfile_path)
 {
-	if(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0)
-	{
-		data->outfile_exists = 0;
-		
-	}
-	else
-		data->outfile_exists = 1;	
-	if (data->outfile_exists != 0)
+	if(!(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0))
 	{
 		if (data->append == 1)
 			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_APPEND,
 					0000644);
 		else{
-			data->outfile = open(outfile_path, O_CREAT | O_RDWR | O_TRUNC,
+			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_TRUNC,
 					0000644);
 			}
 		if (data->outfile < 0)
@@ -57,6 +51,7 @@ void	put_outfile_fd(t_pipex *data, char *outfile_path)
 			close(data->infile);
 			msg_error("Bad Permission Outfile\n", 8);
 		}
+		
 	}
 	else
 	{
@@ -88,8 +83,8 @@ void	executor_handler(void)
 
 	
 	envp = convert_list_to_char();
-	data.infile_exists = g_cmd_table->infile_exists;
-	data.outfile_exists = g_cmd_table->outfile_exists;
+	//data.infile_exists = g_cmd_table->infile_exists;
+	//data.outfile_exists = g_cmd_table->outfile_exists;
 	data.here_doc = g_cmd_table->here_doc;
 	data.append = g_cmd_table->append;
 	data.limiter = g_cmd_table->limiter;
@@ -103,6 +98,8 @@ void	executor_handler(void)
 	}
 	close_pipes(&data);
 	waitpid(-1, &status, 0);
+	close(data.outfile);
+	close(data.infile);
 	parent_close(&data, "success", 0);
 	g_cmd_table->status = WEXITSTATUS(status);
 }

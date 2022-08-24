@@ -9,7 +9,8 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "assert.h": "c"
+        "assert.h": "c",
+        "string": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
