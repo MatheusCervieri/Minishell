@@ -1,2 +1,0 @@
-hello
-WT_PROFILE_ID

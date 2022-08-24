@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 23:24:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:28:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 void	put_outfile_fd(t_pipex *data, char *outfile_path)
 {
 	if(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0)
+	{
 		data->outfile_exists = 0;
+		
+	}
 	else
 		data->outfile_exists = 1;	
 	if (data->outfile_exists != 0)
@@ -51,7 +54,7 @@ void	put_outfile_fd(t_pipex *data, char *outfile_path)
 		if (data->outfile < 0)
 		{
 			close(data->infile);
-			msg_error("Invalid Outfile\n", 8);
+			msg_error("Bad Permission Outfile\n", 8);
 		}
 	}
 	else
