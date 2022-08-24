@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 21:15:56 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:09:12 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*find_path(char **envp)
 {
-	printf("%s", envp[0]);
 	while (ft_strncmp("PATH", *envp, 4))
 	{
 		envp++;

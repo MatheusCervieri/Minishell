@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 22:24:46 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:54:50 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void unset_bi(char **cmd_args);
 void	print_list(t_list *list);
 void    exit_bi(char **cmd_args);
 char	**convert_list_to_char(t_list *head);
+void	make_list(t_list **list, char **envp);
+
 
 
 t_list	*lexer(char **line);

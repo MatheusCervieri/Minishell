@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 21:22:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:24:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ void	executor_handler(void)
 	close_pipes(&data);
 	waitpid(-1, &status, 0);
 	parent_close(&data, "success", 0);
-	g_cmd_table->last_status = WEXITSTATUS(status);
+	g_cmd_table->status = WEXITSTATUS(status);
 }
