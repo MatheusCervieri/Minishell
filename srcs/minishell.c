@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 23:52:03 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:05:01 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 t_cmd_table	*g_cmd_table;
 
-int	init_global(void)
+int	init_global(char **envp)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	if (!g_cmd_table)
-		return (1);
+	{
+		printf("malloc error");
+		exit(1);
+	}
+	g_cmd_table->envp = make_list(envp);
+	if (!g_cmd_table->envp)
+	{
+		printf("malloc error");
+		free(g_cmd_table);
+		exit(1);
+	}
 	g_cmd_table->status = 0;
 	g_cmd_table->last_status = g_cmd_table->status;
 	return (0);
@@ -86,14 +96,14 @@ int	prompt(char **line)
 	return (0);
 }
 
-int	minishell(void)
+void	minishell(char **envp)
 {
 	char	*line;
 	int		rtn;
 
+	init_global(envp);
 	rtn = 0;
-	init_global();
-	while (rtn != 1)
+	while (rtn != 1 && rtn != 3)
 	{
 		if (reset_global(&rtn))
 			break ;
@@ -103,11 +113,11 @@ int	minishell(void)
 		if (parse_line(line))
 			continue ;
 		if (ft_strncmp(g_cmd_table->table[0], "exit", 5) == 0)
-			rtn = 1;
+			rtn = 3;
 		free(line);
 		free_global();
 	}
 	rl_clear_history();
+	ft_lstclear(&g_cmd_table->envp, free);
 	free(g_cmd_table);
-	return (rtn);
 }
