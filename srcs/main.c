@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 21:36:56 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:27:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,21 @@ void	print_list(t_list *list)
 
 int	main(int argc, char **argv, char **envp)
 {
+	int	rtn;
+	char *line;
+	rtn = 0;
+
+	line = ft_strdup("echo dadasdsad");
+	init_global();
+	reset_global(&rtn);
+	rtn = 0;
+	rtn = parse_line(line);
+	//g_cmd_table->infile_exists = 0;
+	//g_cmd_table->outfile_exists = 0;
+	print_struct();
+	executor_handler();
+	
+	return (rtn);
 	/*
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
@@ -95,7 +110,7 @@ int	main(int argc, char **argv, char **envp)
 	printf("-------------------------------\n");
 	printf("%s \n", teste[4]);
 	*/
-	
+	/*
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
 	make_list(&(g_cmd_table->envp), envp);
@@ -124,7 +139,7 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string[1]);
 	free(comands_string[2]);
 	free(comands_string);
-	
+	*/
 	/*
 		g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	char *baleia = ft_strdup("baleiavermelinha");

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 22:18:31 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:24:46 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ void	handle_special(char *line, t_list **lst);
 char	**expander(char *line);
 int		print_and_return(const char *msg, int err_code);
 void	expand_env(void);
+int		reset_global(int *rtn);
 
 #endif
