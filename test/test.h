@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/21 20:59:56 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/22 23:31:32 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	init_global(void);
 int check_quotes(const char *line);
 char	*expand(char *line, int i);
 void	expand_line(int i);
+int	reset_global(int *rtn);
 
 #endif
