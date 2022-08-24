@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 23:07:55 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:51:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ char	**convert_list_to_char(t_list *ticaratica)
 	int		i;
 	t_list *head;
 	
-	size = ft_lstsize(head);
 	head = g_cmd_table->envp;
+	size = ft_lstsize(head);
 	envp = malloc(sizeof(char *) * (size + 1));
 	i = 0;
 	while (head)
