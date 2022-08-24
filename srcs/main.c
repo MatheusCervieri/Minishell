@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 13:38:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:55:02 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int    main(int argc, char **argv, char **envp)
 	g_cmd_table->append = 0;
 	g_cmd_table->here_doc = 0;
 	g_cmd_table->infile = ft_strdup("infile");
-	g_cmd_table->outfile = ft_strdup("test4.txt");
+	g_cmd_table->outfile = ft_strdup("testblabla.txt");
 	g_cmd_table->infile_exists = 1;
 	g_cmd_table->outfile_exists = 1;
 	g_cmd_table->last_status = 0;
@@ -47,13 +47,17 @@ int    main(int argc, char **argv, char **envp)
 	make_list(&(g_cmd_table->envp), envp);
 	print_struct();
 	executor_handler();
-	int fd = open("./test4.txt", O_RDWR);
-	char *lineout = get_next_line(fd);
-
+	int fd = open("./testblabla.txt", O_RDWR);
+	int read_rtn;
+	read_rtn = 1;
+	char *buf = malloc (sizeof(char *) * 101);
+	read(fd, buf, 100);
+	
+	
     
 	if (g_cmd_table->status == 0)
         printf("Status: %i , is correct \n", g_cmd_table->status);
-    printf("%s\n", lineout);
+    printf("%s\n", buf);
   
 	/*
     int	rtn;
