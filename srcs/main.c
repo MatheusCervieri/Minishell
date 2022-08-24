@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 16:10:12 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:43:54 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,33 @@ int    main(int argc, char **argv, char **envp)
 */
 int    main(int argc, char **argv, char **envp)
 {
+	/*
+	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	int rtn;
 	char **table;
 	table = malloc(sizeof(char *) * 2);
-	table[0] = ft_strdup("ls");
+	table[0] = ft_strdup("env");
 	table[1] = NULL;
+	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
+	make_list(&(g_cmd_table->envp), envp);
+	char **newenv = convert_list_to_char();
+	env_bi(table, newenv);
+	*/
+	char **table;
+	table = malloc(sizeof(char *) * 3);
+	table[0] = ft_strdup("env");
+	table[1] = ft_strdup("grep a");
+	table[2] = NULL;
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	g_cmd_table->append = 0;
+	g_cmd_table->append = 1;
 	g_cmd_table->here_doc = 0;
-	g_cmd_table->infile = ft_strdup("infile");
+	g_cmd_table->infile = ft_strdup("STDIN_FILENO");
 	g_cmd_table->outfile = ft_strdup("testblabla.txt");
 	g_cmd_table->infile_exists = 0;
 	g_cmd_table->outfile_exists = 1;
 	g_cmd_table->last_status = 0;
 	g_cmd_table->limiter = ft_strdup("nao sera usado");
-	g_cmd_table->n_of_cmds = 1;
+	g_cmd_table->n_of_cmds = 2;
 	g_cmd_table->status = 0;
 	g_cmd_table->table = table;
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
@@ -77,7 +89,8 @@ int    main(int argc, char **argv, char **envp)
     printf("%s\n", lineout);
     printf("%s\n", lineout2);
 	*/
-    return (rtn);
+    //return (rtn);
+	
     /*
 	char line[] = "< infile grep c | grep a | grep t > test4.txt";
 	init_global();

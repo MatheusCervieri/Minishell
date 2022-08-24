@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 08:59:18 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 15:48:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 16:33:41 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int args_len(char **cmd_args)
 
 void	env_bi(char **cmd_args, char **envp)
 {
-	ft_putstr_fd("UHUULL \n \n \n", 2);
 	if (args_len(cmd_args) > 1)
 	{
 		ft_putstr_fd("env: ‘", 2);
