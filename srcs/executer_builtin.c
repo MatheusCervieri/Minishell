@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 20:44:30 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 21:30:47 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,25 @@ int is_builtin(char *cmd)
 	return (0);
 }
 
-char	**convert_list_to_char(t_list *head)
+char	**convert_list_to_char(t_list *ticaratica)
 {
 	int		size;
 	char	**envp;
 	int		i;
-
+	t_list *head;
+	
 	size = ft_lstsize(head);
-	envp = malloc(sizeof(char *) * size);
+	head = g_cmd_table->envp;
+	envp = malloc(sizeof(char *) * (size + 1));
 	i = 0;
 	while (head)
 	{
-		envp[i] = ft_strdup(head->content);
+		envp[i] = ft_strdup((char *)head->content);
 		i++;
 		head = head->next;
 	}
+	envp[i] = NULL;
+	printf("%s\n", envp[0]);
 	return (envp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 20:45:46 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 21:22:40 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,15 @@ void	init_data_executor(t_pipex *data, char *envp[])
 	init_pipes(data);
 }
 
-void	executor_handler(char **envp)
+void	executor_handler(void)
 {
 	t_pipex	data;
 	int		status;
-	
+	char	**envp;
 
+
+	
+	envp = convert_list_to_char(g_cmd_table->envp);
 	data.infile_exists = g_cmd_table->infile_exists;
 	data.outfile_exists = g_cmd_table->outfile_exists;
 	data.here_doc = g_cmd_table->here_doc;

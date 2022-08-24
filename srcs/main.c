@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 20:42:47 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/23 21:36:56 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,25 @@ void	print_list(t_list *list)
 
 int	main(int argc, char **argv, char **envp)
 {
+	/*
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)envp[1]));
-	ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)envp[2]));
+	make_list(&(g_cmd_table->envp), envp);
 	print_list(g_cmd_table->envp);
 	char **teste = convert_list_to_char(g_cmd_table->envp);
 	printf("-------------------------------\n");
-	printf("%s \n", teste[2]);
-	/*
+	printf("%s \n", teste[4]);
+	*/
+	
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
+	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
+	make_list(&(g_cmd_table->envp), envp);
+	print_list(g_cmd_table->envp);
 	g_cmd_table->status = 0;
 	init_global();
 	char **comands_string;
 	comands_string = malloc(sizeof(char*) * 3);
-	comands_string[0] = ft_strdup("grep a");
+	comands_string[0] = ft_strdup("export TESTE=JUJUBA BALEIA=MAÇA ");
 	comands_string[1] = ft_strdup("grep a");
 	comands_string[2] = ft_strdup("grep d");
 	g_cmd_table->table = comands_string;
@@ -112,7 +116,7 @@ int	main(int argc, char **argv, char **envp)
 	g_cmd_table->here_doc = 0;
 	g_cmd_table->append = 1;
 	g_cmd_table->limiter = ft_strdup("teste");
-	executor_handler(envp);
+	executor_handler();
 	free(g_cmd_table->infile);
 	free(g_cmd_table->outfile);
 	free(g_cmd_table->limiter);
@@ -120,8 +124,8 @@ int	main(int argc, char **argv, char **envp)
 	free(comands_string[1]);
 	free(comands_string[2]);
 	free(comands_string);
+	
 	/*
-	*
 		g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	char *baleia = ft_strdup("baleiavermelinha");
 	printf("%i", lst_find_var_p(g_cmd_table->envp, baleia));
