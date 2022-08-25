@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 18:07:52 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:26:29 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,6 @@ int already_var(t_list *envp, char *arg)
 	// se não tiver nenhuma igual retorna zero e dae adiciona na lista.
 	
 	return (0);
-}
-
-void change_var_value(t_list *envp)
-{
 }
 
 int	lst_find_var_p(t_list *head, char *var_name)

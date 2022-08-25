@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 20:19:30 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:25:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int    main(int argc, char **argv, char **envp)
 	env_bi(table, newenv);
 	*/
 	/* "< infile grep c | grep a | grep t > test4.txt" */
-	
+	if (argc > 0)
+		printf("%s \n", argv[0]);
 	char **table;
 	table = malloc(sizeof(char *) * 3);
 	table[0] = ft_strdup("grep c");
@@ -59,8 +60,7 @@ int    main(int argc, char **argv, char **envp)
 	//print_struct();
 	executor_handler();
 	int fd = open("./testblabla.txt", O_RDWR);
-	int read_rtn;
-	read_rtn = 1;
+
 	char *buf = calloc(sizeof(char), 101);
 	read(fd, buf, 100);
 	

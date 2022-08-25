@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 20:29:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 09:42:59 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	executor_handler(void)
 	int		status;
 	char	**envp;
 
-
-	
 	envp = convert_list_to_char();
 	//data.infile_exists = g_cmd_table->infile_exists;
 	//data.outfile_exists = g_cmd_table->outfile_exists;
@@ -98,8 +96,6 @@ void	executor_handler(void)
 	}
 	close_pipes(&data);
 	waitpid(-1, &status, 0);
-	close(data.outfile);
-	close(data.infile);
 	parent_close(&data, "success", 0);
 	g_cmd_table->status = WEXITSTATUS(status);
 }

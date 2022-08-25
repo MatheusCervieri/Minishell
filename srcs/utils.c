@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 22:51:22 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 22:51:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:33:59 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void print_struct(void)
 void	make_list(t_list **list, char **envp)
 {
 	int i;
-	t_list *head;
 	i = 1;
 	
 	while(envp[i])

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:03 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/23 18:19:17 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:33:08 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void unset_bi(char **cmd_args)
     if (args_len(cmd_args) > 0)
     {
         int i;
-        char *equal_string;
-        t_list *aux;
 
         i = 1;
         while (i < args_len(cmd_args))
