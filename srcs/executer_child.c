@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/24 20:36:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:05:06 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,13 @@ void	child(t_pipex data, char **envp)
 	data.pid = fork();
 	if (!data.pid)
 	{
-		
-		handle_dup(&data);
+		if(data.cmd_nmbs != 1)
+			handle_dup(&data);
+		else
+			{
+				dup2(data.infile, STDIN_FILENO);
+				dup2(data.outfile, STDOUT_FILENO);
+			}
 		close_pipes(&data);
 		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
 				' ');

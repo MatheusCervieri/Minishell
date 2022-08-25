@@ -11,8 +11,11 @@ test
 test1.txt
 test10.txt
 test11.txt
+test13.txt
+test14.txt
 test2.txt
 test3.txt
 test4.txt
 test5.txt
+teste.txt
 tests.sh
