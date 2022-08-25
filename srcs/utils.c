@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 18:30:09 by ghenaut-         ###   ########.fr       */
+/*   Created: 2022/08/24 18:24:34 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/24 18:45:19 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+t_list	*make_list(char **envp)
 {
-	if (argc > 1 && argv)
-		return (print_and_return("No args needed", 1));
-	minishell(envp);
-	return (0);
+	int	i;
+	t_list *lst;
+
+	i = 0;
+	lst = ft_lstnew(envp[i]);
+	while (envp[++i])
+		ft_lstadd_back(&lst, ft_lstnew(envp[i]));
+	return (lst);
 }

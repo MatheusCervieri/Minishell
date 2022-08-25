@@ -6,19 +6,20 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 24 21:00:57 2022
+# Make data base, printed on Wed Aug 24 19:25:16 2022
 
 # Variables
 
 # environment
+ 
 LC_ALL = C
 # makefile (from 'Makefile', line 13)
 HEADERS_PATH = ./includes/
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
-# makefile (from 'Makefile', line 40)
+# makefile (from 'Makefile', line 41)
 OBJECTS_TEST = $(filter-out ./objs/main.o, $(OBJECTS))
-# makefile (from 'Makefile', line 34)
+# makefile (from 'Makefile', line 35)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
 # environment
 WSLENV = ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID
@@ -30,7 +31,7 @@ MAKE_COMMAND := make
 VSCODE_HANDLES_SIGPIPE = true
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
-# makefile (from 'Makefile', line 36)
+# makefile (from 'Makefile', line 37)
 LIBFT_A = $(LIBS_PATH)libft.a 
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
@@ -116,7 +117,7 @@ PATH = /home/GabrielHenaut/.vscode-server/bin/e4503b30fc78200f846c62cf8091b76ff5
 MAKEFILES := 
 # automatic
 ^F = $(notdir $^)
-# makefile (from 'Makefile', line 38)
+# makefile (from 'Makefile', line 39)
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 # environment
 WT_SESSION = ca3db02e-12bb-437c-8d75-52c175e8d62c
@@ -133,7 +134,7 @@ HOSTTYPE = x86_64
 +F = $(notdir $+)
 # environment
 WSL_INTEROP = /run/WSL/8_interop
-# makefile (from 'Makefile', line 39)
+# makefile (from 'Makefile', line 40)
 OBJECTS = $(addprefix $(OBJS_PATH), $(OBJ_FILES))
 # 'override' directive
 GNUMAKEFLAGS := 
@@ -153,10 +154,10 @@ DISPLAY = :0
 USER = GabrielHenaut
 # default
 MAKE_VERSION := 4.3
-# makefile (from 'Makefile', line 33)
+# makefile (from 'Makefile', line 34)
 TESTS = $(wildcard $(TEST_PATH)/*.c)
 # makefile (from 'Makefile', line 24)
-SRC_FILES = main.c minishell.c parser.c parser_utils.c expander.c cleanup.c lexer.c env.c 
+SRC_FILES = main.c minishell.c parser.c parser_utils.c expander.c cleanup.c lexer.c env.c utils.c 
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
@@ -189,12 +190,12 @@ WSL_DISTRO_NAME = Arch
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
 # makefile (from 'Makefile', line 18)
 CC = cc
-# makefile (from 'Makefile', line 37)
+# makefile (from 'Makefile', line 38)
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 # environment
 DOTNET_ROOT = /usr/share/dotnet
 # variable set hash-table stats:
-# Load=91/1024=9%, Rehash=0, Collisions=4/151=3%
+# Load=91/1024=9%, Rehash=0, Collisions=3/144=2%
 
 # Pattern-specific Variable Values
 
@@ -203,100 +204,158 @@ DOTNET_ROOT = /usr/share/dotnet
 # Directories
 
 # ./test (device 2096, inode 85272): 4 files, no impossibilities.
-# . (device 2096, inode 101485): 10 files, no impossibilities.
+# . (device 2096, inode 101485): 12 files, no impossibilities.
 # test (device 2096, inode 85272): 4 files, no impossibilities.
-# srcs (device 2096, inode 155242): No files, no impossibilities so far.
+# srcs (device 2096, inode 155242): 11 files, no impossibilities so far.
 
-# 18 files, no impossibilities in 4 directories.
+# 31 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
 objs/%.o: srcs/%.c
-#  recipe to execute (from 'Makefile', line 53):
+#  recipe to execute (from 'Makefile', line 54):
 	@$(MKDIR) $(OBJS_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 test/bin/%: test/%.c
-#  recipe to execute (from 'Makefile', line 57):
+#  recipe to execute (from 'Makefile', line 58):
 	@$(CC) $(CFLAGS) $< $(OBJECTS_TEST) $(LIBFT_A) -o $@  -lcriterion -lreadline
 	
 
 # 2 implicit rules, 0 (0.0%) terminal.
 # Files
 
-minishell: Libft/libft.a objs/main.o objs/minishell.o objs/parser.o objs/parser_utils.o objs/expander.o objs/cleanup.o objs/lexer.o objs/env.o
-#  Implicit rule search has not been done.
-#  File does not exist.
+# Not a target:
+srcs/env.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-24 18:55:52.8611194
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
-#  recipe to execute (from 'Makefile', line 50):
+ 
+#  Successfully updated.
+
+# Not a target:
+srcs/expander.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-21 22:54:57.6283426
+#  File has been updated.
+#  Successfully updated.
+
+minishell: Libft/libft.a objs/main.o objs/minishell.o objs/parser.o objs/parser_utils.o objs/expander.o objs/cleanup.o objs/lexer.o objs/env.o objs/utils.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-08-24 19:22:55.7311194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 51):
 	@$(CC) -o $(NAME) $(OBJECTS) $(LIBFT_A) -lreadline
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-24 21:00:37.8611194
+#  Last modified 2022-08-24 18:28:50.2111194
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-objs/parser.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+objs/parser.o: srcs/parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser'
+#  Last modified 2022-08-24 19:22:55.2011194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Not a target:
-objs/minishell.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+objs/minishell.o: srcs/minishell.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'minishell'
+#  Last modified 2022-08-24 19:22:55.0911194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+srcs/parser_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-22 20:19:12.555729
+#  File has been updated.
+#  Successfully updated.
+
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 68):
+#  recipe to execute (from 'Makefile', line 69):
 	@$(RM) objs test/bin
 	@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
 
-# Not a target:
-objs/expander.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+objs/expander.o: srcs/expander.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'expander'
+#  Last modified 2022-08-24 19:22:55.3611194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
- 
+# Not a target:
+srcs/utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-24 18:45:19.1611194
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/minishell.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-24 19:05:01.4411194
+#  File has been updated.
+#  Successfully updated.
+
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 
-# Not a target:
-objs/parser_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+objs/parser_utils.o: srcs/parser_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser_utils'
+#  Last modified 2022-08-24 19:22:55.2911194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+ 
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Not a target:
-objs/cleanup.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+objs/cleanup.o: srcs/cleanup.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'cleanup'
+#  Last modified 2022-08-24 19:22:55.4311194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Not a target:
-objs/main.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+objs/main.o: srcs/main.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main'
+#  Last modified 2022-08-24 19:22:55.0111194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
 .DEFAULT:
@@ -310,16 +369,14 @@ all: minishell
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  Successfully updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 73):
+#  recipe to execute (from 'Makefile', line 74):
 	@$(RM) $(NAME)
 	@$(MAKE_NOPRINT) fclean -C $(LIBS_PATH)
 
@@ -330,16 +387,27 @@ run:
 #  File has not been updated.
 
 # Not a target:
-objs/lexer.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/lexer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-21 22:54:57.6283426
+#  File has been updated.
+#  Successfully updated.
+
+objs/lexer.o: srcs/lexer.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'lexer'
+#  Last modified 2022-08-24 19:22:55.4911194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 test: minishell test/bin test/bin/test
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 63):
+#  recipe to execute (from 'Makefile', line 64):
 	@for test in $(TESTBINS) ; do ./$$test --verbose ; done
 
 # Not a target:
@@ -348,51 +416,44 @@ test/bin/test:
 #  Modification time never checked.
 #  File has not been updated.
 
+objs/env.o: srcs/env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'env'
+#  Last modified 2022-08-24 19:22:55.5711194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 # Not a target:
-objs/env.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-22 23:41:00.09379
+#  File has been updated.
+#  Successfully updated.
 
 Libft/libft.a:
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2022-08-24 19:22:54.9311194
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := Libft/libft.a
-# automatic
-# * := 
-# automatic
-# < := 
-# automatic
-# + := 
-# automatic
-# % := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=4/15=27%
-#  recipe to execute (from 'Makefile', line 47):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 48):
 	@cd $(LIBS_PATH) && $(MAKE_NOPRINT)
 	
 
 # Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/cleanup.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-21 22:54:57.6283426
+#  File has been updated.
+#  Successfully updated.
 
 test/bin:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 60):
+#  recipe to execute (from 'Makefile', line 61):
 	@$(MKDIR) $@
 
 .PHONY: all run clean fclean re
@@ -400,20 +461,37 @@ test/bin:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+srcs/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-24 18:30:09.4511194
+#  File has been updated.
+#  Successfully updated.
+
+objs/utils.o: srcs/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'utils'
+#  Last modified 2022-08-24 19:22:55.6311194
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 54):
+	@$(MKDIR) $(OBJS_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 # files hash-table stats:
-# Load=23/1024=2%, Rehash=0, Collisions=0/58=0%
+# Load=33/1024=3%, Rehash=0, Collisions=0/95=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 40 / storage = 375 B / avg = 9 B
-# current buf: size = 8162 B / used = 375 B / count = 40 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 68 / storage = 668 B / avg = 9 B
+# current buf: size = 8162 B / used = 668 B / count = 68 / avg = 9 B
 
-# strcache performance: lookups = 73 / hit rate = 45%
+# strcache performance: lookups = 113 / hit rate = 39%
 # hash-table stats:
-# Load=40/8192=0%, Rehash=0, Collisions=0/73=0%
-# Finished Make data base on Wed Aug 24 21:00:57 2022
+# Load=68/8192=1%, Rehash=0, Collisions=0/113=0%
+# Finished Make data base on Wed Aug 24 19:25:16 2022
 
  
