@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 11:09:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:15:02 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ void	free_cmd(t_pipex *data);
 void	init_data(t_pipex *data, int argc, char *envp[]);
 
 //child.c
-void	child(t_pipex data, char **table, char **envp);
+void	child(t_pipex data, char **argv, char **envp);
 void	close_pipes(t_pipex *data);
+void	get_file(char *infile, char *outfile, t_pipex *data);
 
 //Pipex 2.0 
-
+int	pipex(int argc, char **argv, char **envp);
 static void here_doc(char *argv, t_pipex *pipex);
 
 

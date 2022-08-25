@@ -6,11 +6,11 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 12:18:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:17:12 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 /*
 int    main(int argc, char **argv, char **envp)
@@ -24,92 +24,18 @@ int    main(int argc, char **argv, char **envp)
 */
 int    main(int argc, char **argv, char **envp)
 {
-	/*
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	int rtn;
-	char **table;
-	table = malloc(sizeof(char *) * 2);
-	table[0] = ft_strdup("env");
-	table[1] = NULL;
-	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envp), envp);
-	char **newenv = convert_list_to_char();
-	env_bi(table, newenv);
-	*/
-	/* "< infile grep c | grep a | grep t > test4.txt" */
-	int	rtn;
-	char *line;
-	rtn = 0;
-	line = ft_strdup("< infile grep c | grep a | grep b > test4.txt");
-	init_global();
-	reset_global(&rtn);
-	rtn = 0;
-	rtn = parse_line(line);
-	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envp), envp);
-	executor_handler(g_cmd_table, envp);
+	char **argvwtf;
+	argvwtf = malloc(sizeof(char *) * 7);
+	argvwtf[0] = ft_strdup("pipex_bonus");
+	argvwtf[1] = ft_strdup("infile");
+	argvwtf[2] = ft_strdup("grep c");
+	argvwtf[3] = ft_strdup("grep b");
+	argvwtf[4] = ft_strdup("grep a");
+	argvwtf[5] = ft_strdup("test4.txt");
+	argvwtf[6] = ft_strdup("NULL");
+	pipex(6, argvwtf, envp);
 	int fd = open("./test4.txt", O_RDWR);
-
-	char *buf = calloc(sizeof(char), 101);
-	read(fd, buf, 100);
-	
-	
-	printf("Status: %i , is correct \n", g_cmd_table->status);
- 	printf("%s\n", buf);
+	char *buf = get_next_line(fd);
+	printf("%s \n", buf);
 	close(fd);
-  
-	/*
-    int	rtn;
-	char *line;
-	rtn = 0;
-	line = ft_strdup("< infile grep c | grep a | grep t > test4.txt");
-	init_global();
-	reset_global(&rtn);
-	rtn = 0;
-	rtn = parse_line(line);
-    g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envp), envp);
-	executor_handler();
-    int fd = open("./test4.txt", O_RDWR);
-	char *lineout = get_next_line(fd);
-	int fd2 = open("./test4original.txt", O_RDONLY);
-	char *lineout2 = get_next_line(fd2);
-    
-	if (g_cmd_table->status == 0)
-        printf("Status: %i , is correct \n", g_cmd_table->status);
-    printf("%s\n", lineout);
-    printf("%s\n", lineout2);
-	*/
-    //return (rtn);
-	
-    /*
-	char line[] = "< infile grep c | grep a | grep t > test4.txt";
-	init_global();
-	int garbage = 0;
-	reset_global(&garbage);
-	int rtn = parse_line(line);
-	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envp), envp);
-	executor_handler();
-    
-	int fd = open("./test4.txt", O_RDONLY);
-	char *lineout = get_next_line(fd);
-	int fd2 = open("./test4original.txt", O_RDONLY);
-	char *lineout2 = get_next_line(fd2);
-	if (g_cmd_table->status == 0)
-        printf("Status: %i , is correct \n", g_cmd_table->status);
-    if(strcmp(lineout, lineout2) == 0)
-        printf("Outfile is correct");
-
-	free(envp[0]);
-	free(envp[1]);
-	free(envp[2]);
-	free(envp[3]);
-	free(envp);
-	free(lineout);
-	free(lineout2);
-	close(fd);
-	close(fd2);
-    */
-    
 }

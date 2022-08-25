@@ -6,11 +6,11 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 11:03:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:14:21 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 static char	*get_cmd(char **paths, char *cmd)
 {
@@ -47,16 +47,14 @@ static void	handle_dup(t_pipex *data)
 					data->pipe[(2 * data->idx) + 1]);
 }
 
-//mudei
-void	child(t_pipex data, char **table, char **envp)
+void	child(t_pipex data, char **argv, char **envp)
 {
 	data.pid = fork();
 	if (!data.pid)
 	{
 		handle_dup(&data);
 		close_pipes(&data);
-		data.cmd_args = ft_split(table[data.idx], ' ');
-		printf("Comands: %s\n", data.cmd_args[0]);
+		data.cmd_args = ft_split(argv[2 + data.here_doc + data.idx], ' ');
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 			free_cmd(&data);

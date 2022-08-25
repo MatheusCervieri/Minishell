@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/25 10:48:51 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/25 13:13:52 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRC_FILES = main.c \
 			cleanup.c \
 			lexer.c \
 			env.c \
-			executor_handler.c \
 			here_doc.c \
 			env_bi.c \
 			pwd.c \
@@ -44,7 +43,7 @@ SRC_FILES = main.c \
 			child_bonus.c \
 			error_bonus.c \
 			handle_file_bonus.c \
-			init_data_bonus.c \
+			init_data_bonus.c
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))

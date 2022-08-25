@@ -6,11 +6,11 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:31:36 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 10:48:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:14:41 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 static int	args_in(char *arg, t_pipex *pipex)
 {
@@ -45,4 +45,21 @@ void	close_pipes(t_pipex *data)
 		i++;
 	}
 	data->success = 1;
+}
+
+int	pipex(int argc, char **argv, char **envp)
+{
+	t_pipex	data;
+
+	check_args(argc, argv, &data);
+	init_data(&data, argc, envp);
+	while (data.idx < data.cmd_nmbs)
+	{
+		child(data, argv, envp);
+		data.idx++;
+	}
+	close_pipes(&data);
+	waitpid(-1, NULL, 0);
+	parent_close(&data, "success", 0);
+	return (0);
 }

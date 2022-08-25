@@ -6,11 +6,12 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 10:44:19 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:14:29 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
+
 
 static void	here_doc(char *argv, t_pipex *pipex)
 {

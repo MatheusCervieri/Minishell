@@ -6,11 +6,11 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 10:44:24 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:14:22 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 void	msg_error(char *error, int exit_code)
 {
