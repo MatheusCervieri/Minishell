@@ -1,6 +1,4 @@
 rm test1original.txt test2original.txt test3original.txt test4original.txt test5original.txt test6original.txt test7original.txt
-rm test1.txt test2.txt test3.txt test4.txt test5.txt test6o.txt test7.txt
-
 echo "Test 1 - ls -a >(One-comand)! -----------------------------"
 ls > test1original.txt
 echo $?

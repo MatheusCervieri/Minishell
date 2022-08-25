@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 17:09:24 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:57:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int    main(int argc, char **argv, char **envp)
 	int	rtn;
 	char *line;
 	rtn = 0;
-	line = ft_strdup("< infile ls | grep a > test11.txt");
+	line = ft_strdup("ls >> test5.txt");
 	init_global();
 	reset_global(&rtn);
 	rtn = 0;

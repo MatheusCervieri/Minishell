@@ -20,8 +20,5 @@ test4.txt
 test4original.txt
 test5.txt
 test5original.txt
-test6.txt
-test6original.txt
-test7original.txt
 tests
 tests.sh
