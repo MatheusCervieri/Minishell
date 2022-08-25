@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executer_utils.c                                   :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 23:09:12 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/07/07 15:31:36 by ghenaut-          #+#    #+#             */
+/*   Updated: 2022/08/25 10:48:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*find_path(char **envp)
+static int	args_in(char *arg, t_pipex *pipex)
 {
-	while (ft_strncmp("PATH", *envp, 4))
+	if (arg && !ft_strncmp("here_doc", arg, 9))
 	{
-		envp++;
-		if (!envp)
-			break ;
+		pipex->here_doc = 1;
+		return (6);
 	}
-	return (*envp + 5);
+	else
+	{
+		pipex->here_doc = 0;
+		return (5);
+	}
 }
 
-void	init_pipes(t_pipex *data)
+static void	check_args(int argc, char **argv, t_pipex *data)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->cmd_nmbs - 1)
-	{
-		if (pipe(data->pipe + (2 * i)) < 0)
-			parent_close(data, "Failed to pipe\n", 4);
-		i++;
-	}
+	if (argc < args_in(argv[1], data))
+		msg_error("Invalid number of arguments.\n", 1);
+	get_infile(argv, data);
+	get_outfile(argv[argc - 1], data);
 }
 
 void	close_pipes(t_pipex *data)

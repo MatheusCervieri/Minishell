@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 21:25:34 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 11:06:00 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,18 @@ int    main(int argc, char **argv, char **envp)
 	env_bi(table, newenv);
 	*/
 	/* "< infile grep c | grep a | grep t > test4.txt" */
-	if (argc > 0)
-		printf("%s \n", argv[0]);
-	char **table;
-	table = malloc(sizeof(char *) * 3);
-	table[0] = ft_strdup("grep c");
-	table[1] = ft_strdup("grep a");
-	table[2] = ft_strdup("cat");
-	table[3] = NULL;
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	g_cmd_table->append = 0;
-	g_cmd_table->here_doc = 0;
-	g_cmd_table->infile = ft_strdup("infile");
-	g_cmd_table->outfile = ft_strdup("testblabla.txt");
-	g_cmd_table->last_status = 0;
-	g_cmd_table->limiter = ft_strdup("nao sera usado");
-	g_cmd_table->n_of_cmds = 3;
-	g_cmd_table->status = 0;
-	g_cmd_table->table = table;
+	int	rtn;
+	char *line;
+	rtn = 0;
+	line = ft_strdup("< infile ls | grep a | grep b > test4.txt");
+	init_global();
+	reset_global(&rtn);
+	rtn = 0;
+	rtn = parse_line(line);
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
 	make_list(&(g_cmd_table->envp), envp);
-	//print_struct();
-	executor_handler();
-	int fd = open("./testblabla.txt", O_RDWR);
+	executor_handler(g_cmd_table, envp);
+	int fd = open("./test4.txt", O_RDWR);
 
 	char *buf = calloc(sizeof(char), 101);
 	read(fd, buf, 100);

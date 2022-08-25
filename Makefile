@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/24 21:23:59 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/25 10:48:51 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 TEST_PATH = ./test
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
-#
+CC = gcc
+CFLAGS = -g3 -I $(HEADERS_PATH)
+#-Wall -Wextra -Werror
 RM = rm -rf
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
@@ -30,20 +30,21 @@ SRC_FILES = main.c \
 			cleanup.c \
 			lexer.c \
 			env.c \
-			executer_child.c \
-			executer_error.c \
-			executer_utils.c \
 			executor_handler.c \
 			here_doc.c \
 			env_bi.c \
 			pwd.c \
 			cd.c \
 			echo.c \
-			executer_builtin.c \
 			export_bi.c \
 			unset_bi.c \
 			exit_bi.c \
-			utils.c
+			utils.c \
+			pipex_bonus.c \
+			child_bonus.c \
+			error_bonus.c \
+			handle_file_bonus.c \
+			init_data_bonus.c \
 
 TESTS=$(wildcard $(TEST_PATH)/*.c)
 TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
