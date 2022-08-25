@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 09:42:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:57:22 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 	{
 		data->infile = 0;
 	}
-	printf("INFILE: %s \n", get_next_line(data->infile));
 }
 
 void	put_outfile_fd(t_pipex *data, char *outfile_path)

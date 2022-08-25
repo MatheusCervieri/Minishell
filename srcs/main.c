@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 21:25:34 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:56:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,7 @@ int    main(int argc, char **argv, char **envp)
 	make_list(&(g_cmd_table->envp), envp);
 	//print_struct();
 	executor_handler();
-	int fd = open("./testblabla.txt", O_RDWR);
-
-	char *buf = calloc(sizeof(char), 101);
-	read(fd, buf, 100);
 	
-	if (g_cmd_table->status == 0)
-    	printf("Status: %i , is correct \n", g_cmd_table->status);
- 	printf("%s\n", buf);
   
 	/*
     int	rtn;
