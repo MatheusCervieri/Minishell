@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:09:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/24 18:55:52 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 00:43:40 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 char	*my_getenv(char *token)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
+	if (!strlen(token))
+		return (NULL);
 	tmp = g_cmd_table->envp;
 	while (tmp)
 	{
 		if (ft_strncmp((char *)tmp->content, token, strlen(token)) == 0)
-			return(ft_strdup(&(((char *)tmp->content)[strlen(token) + 1])));
+			return (ft_strdup(&(((char *)tmp->content)[strlen(token) + 1])));
 		tmp = tmp->next;
 	}
-	return (token);
+	return (NULL);
 }
 
 char	*sanitize_token(const char *token)

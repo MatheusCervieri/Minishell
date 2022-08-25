@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 23:34:43 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 00:41:44 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 // Test(function you are testing, test name){
 // 	test...
 // }
+
+char * envp[] = {
+    "PATH=/home/GabrielHenaut/.asdf/shims:/opt/asdf-vm/bin:/home/GabrielHenaut/.local/bin:/home/GabrielHenaut/.cargo/bin:/home/GabrielHenaut/.asdf/installs/python/3.10.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Program Files/dotnet/:/mnt/c/Users/gabri/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/gabri/AppData/Local/Programs/Microsoft VS Code/bin:/home/GabrielHenaut/.dotnet/tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl",
+    "P9K_SSH=0",
+    "SHELL=/usr/bin/zsh",
+};
 
 Test(lexer, return_something)
 {
@@ -113,8 +119,7 @@ Test(is_special, rtn_c_special_2)
 Test(parse_line, return_c)
 {
 	char line[] = "< in grep hello | cat | ls -la > out";
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -132,8 +137,7 @@ Test(parse_line, return_c)
 Test(parse_line, return_c_2)
 {
 	char line[] = "<< LIMITER grep hello | cat -e | ls -la >> out";
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -167,8 +171,7 @@ Test(check_quotes, rtn_c_unbalanced)
 
 Test(expand, return_c_exit_code)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -181,8 +184,7 @@ Test(expand, return_c_exit_code)
 
 Test(expand, return_c_var)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -194,8 +196,7 @@ Test(expand, return_c_var)
 
 Test(expand, return_c_var_in_quotes)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -207,21 +208,19 @@ Test(expand, return_c_var_in_quotes)
 
 Test(expand, return_c_invalid_var)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$INVALID");
 	char *rtn = expand(g_cmd_table->table[0], 0);
-	cr_expect(strcmp(rtn, "") == 0, "expand returns correctly");
+	cr_expect(strcmp(rtn, "") == 0, "expand returns %s", rtn);
 }
 
 Test(expand, return_c_no_var)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -229,13 +228,12 @@ Test(expand, return_c_no_var)
 	g_cmd_table->table = malloc(sizeof(char *) * 3);
 	g_cmd_table->table[0] = ft_strdup("$");
 	char *rtn = expand(g_cmd_table->table[0], 0);
-	cr_expect(strcmp(rtn, "$") == 0, "expand returns correctly");
+	cr_expect(strcmp(rtn, "$") == 0, "expand returns %s", rtn);
 }
 
 Test(expand_env, return_c_exit_code)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -248,8 +246,7 @@ Test(expand_env, return_c_exit_code)
 
 Test(expand_env, return_c_var)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -261,8 +258,7 @@ Test(expand_env, return_c_var)
 
 Test(expand_env, return_c_var_in_dquotes)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");
@@ -272,10 +268,10 @@ Test(expand_env, return_c_var_in_dquotes)
 	cr_expect(strcmp(g_cmd_table->table[0], "'\"$SHELL\"'") == 0, "expand_env returns %s", g_cmd_table->table[0]);
 }
 
+
 Test(expand_env, return_c_var_in_squotes)
 {
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	init_global();
+	init_global(envp);
 	int garbage = 0;
 	reset_global(&garbage);
 	cr_expect(garbage == 0, "no malloc error");

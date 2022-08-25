@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/24 19:05:01 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 00:56:14 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_cmd_table	*g_cmd_table;
 
-int	init_global(char **envp)
+int	init_global(char *envp[])
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	if (!g_cmd_table)
@@ -96,7 +96,7 @@ int	prompt(char **line)
 	return (0);
 }
 
-void	minishell(char **envp)
+void	minishell(char *envp[])
 {
 	char	*line;
 	int		rtn;
