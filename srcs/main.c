@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 15:56:34 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:42:36 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,43 +24,66 @@ int    main(int argc, char **argv, char **envp)
 */
 int    main(int argc, char **argv, char **envp)
 {
-	/*
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	int rtn;
-	char **table;
-	table = malloc(sizeof(char *) * 2);
-	table[0] = ft_strdup("env");
-	table[1] = NULL;
-	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envp), envp);
-	char **newenv = convert_list_to_char();
-	env_bi(table, newenv);
-	*/
-	/* "< infile grep c | grep a | grep t > test4.txt" */
-	if (argc > 0)
-		printf("%s \n", argv[0]);
-	char **table;
-	table = malloc(sizeof(char *) * 3);
-	table[0] = ft_strdup("grep c");
-	table[1] = ft_strdup("grep a");
-	table[2] = ft_strdup("cat");
-	table[3] = NULL;
-	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
-	g_cmd_table->append = 0;
-	g_cmd_table->here_doc = 0;
-	g_cmd_table->infile = ft_strdup("infile");
-	g_cmd_table->outfile = ft_strdup("testblabla.txt");
-	g_cmd_table->last_status = 0;
-	g_cmd_table->limiter = ft_strdup("nao sera usado");
-	g_cmd_table->n_of_cmds = 3;
-	g_cmd_table->status = 0;
-	g_cmd_table->table = table;
-	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
-	make_list(&(g_cmd_table->envp), envp);
-	//print_struct();
-	executor_handler();
 	
-  
+	printf("%s, %i \n", argv[0], argc);
+	
+	//Testar um por vez
+	/*
+	int	rtn;
+	char *line;
+	rtn = 0;
+	line = ft_strdup("ls > outfile");
+	init_global();
+	reset_global(&rtn);
+	rtn = 0;
+	rtn = parse_line(line);
+    g_cmd_table->envp = ft_lstnew((char *)envp[0]);
+	make_list(&(g_cmd_table->envp), envp);
+	executor_handler();
+	*/
+
+	
+	
+	printf("Test 10\n");
+	int	rtn;
+	char *line;
+	rtn = 0;
+	line = ft_strdup("< infile grep c | grep a | grep t > test10.txt");
+	init_global();
+	reset_global(&rtn);
+	rtn = 0;
+	rtn = parse_line(line);
+    g_cmd_table->envp = ft_lstnew((char *)envp[0]);
+	make_list(&(g_cmd_table->envp), envp);
+	executor_handler();
+	printf("END: Test 10 \n");
+	printf("Test 11\n");
+	line = ft_strdup("< infile ls | grep a > test11.txt");
+	reset_global(&rtn);
+	rtn = parse_line(line);
+	executor_handler();
+	printf("END: Test 11\n");
+	//printf("Test 12\n");
+	//line = ft_strdup("< infile ls | grep a");
+	//reset_global(&rtn);
+	//rtn = parse_line(line);
+	//executor_handler();
+	printf("END: Test 12\n");
+	printf("Test 13 \n");
+	line = ft_strdup("ls | grep a > test13.txt");
+	reset_global(&rtn);
+	rtn = parse_line(line);
+	executor_handler();
+	printf("END: Test 13 \n");
+	printf("Test 14 \n");
+	line = ft_strdup("ls > test14.txt");
+	reset_global(&rtn);
+	rtn = parse_line(line);
+	executor_handler();
+	printf("END: Test 14 \n");
+	
+	return(rtn);
+	
 	/*
     int	rtn;
 	char *line;
