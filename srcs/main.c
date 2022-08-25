@@ -6,29 +6,15 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 17:57:34 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:20:39 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/*
-int    main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-    int    rtn;
-
-    rtn = 0;
-    rtn = minishell();
-    return (rtn);
-}
-*/
-int    main(int argc, char **argv, char **envp)
-{
-	
 	printf("%s, %i \n", argv[0], argc);
-	
-	
-
 	int	rtn;
 	char *line;
 	rtn = 0;
@@ -40,7 +26,6 @@ int    main(int argc, char **argv, char **envp)
     g_cmd_table->envp = ft_lstnew((char *)envp[0]);
 	make_list(&(g_cmd_table->envp), envp);
 	executor_handler();
-	
 	/*
 	printf("Test 10\n");
 	int	rtn;
@@ -113,7 +98,4 @@ int    main(int argc, char **argv, char **envp)
 	printf("END: Test 14 \n");
 	*/
 	return(rtn);
-	
-
-    
 }

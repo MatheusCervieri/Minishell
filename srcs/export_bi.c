@@ -6,71 +6,63 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 21:26:29 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:23:35 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-
 void	change_node(t_list **head, int position, char *arg)
 {
-	t_list *aux;
+	t_list	*aux;
+	int		i;
 
-	int i;
 	aux = *head;
 	i = 0;
-	while(aux)
+	while (aux)
 	{
-
 		if (i == position)
 		{
 			aux->content = ft_strdup(arg);
-			break ;	
+			break ;
 		}
 		i++;
 		aux = aux->next;
 	}
 }
 
-
-int find_equal_position(char *arg)
+int	find_equal_position(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arg[i])
 	{
-		if(arg[i] == '=')
+		if (arg[i] == '=')
 			return (i);
 		i++;
 	}
-	return (-1);	
+	return (-1);
 }
 
-
-int already_var(t_list *envp, char *arg)
+int	already_var(t_list *envp, char *arg)
 {
-	
-	while(envp)
+	while (envp)
 	{
-	if (ft_strncmp((char*)envp->content, arg, find_equal_position(arg)) == 0)
-	{
-		return (1);
-	}
+		if (ft_strncmp( (char*) envp->content, arg,
+				find_equal_position(arg)) == 0)
+		{
+			return (1);
+		}
 		envp = envp->next;	
 	}
-	//fazer um strncmp com cada elemento da lista procurando para ver se tem alguma igual a var;
-	// se tiver alguma igual retorna 1 e troca o valor da variavel.
-	// se não tiver nenhuma igual retorna zero e dae adiciona na lista.
-	
 	return (0);
 }
 
 int	lst_find_var_p(t_list *head, char *var_name)
 {
 	int p;
+
 	p = 0;
 	while (head)
 	{
@@ -81,7 +73,6 @@ int	lst_find_var_p(t_list *head, char *var_name)
 	}
 	return (-1);
 }
-
 
 void change_or_create(char *arg)
 {
@@ -113,6 +104,3 @@ void export_bi(char **cmd_args)
 		}
 	}
 }
-
-//falta implementar para escrever todas as variáveis de ambiente - só fazer um if se tem igual
-//falta implementar o export sem nenhum parametro
