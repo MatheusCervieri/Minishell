@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'objs/parser.o', needed by 'minishell'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'objs/parser.o', needed by 'minishell'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Aug 25 17:32:40 2022
+# Make data base, printed on Thu Aug 25 18:36:47 2022
 
 # Variables
 
@@ -63,7 +61,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/GabrielHenaut/Projects/42/Minishell
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -167,7 +165,7 @@ XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # makefile (from 'Makefile', line 19)
 CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-8fba31c2-cbf8-4f04-abd3-7e0aaf8a7021.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-b66c9a3f-4976-428b-9687-5a70bdddb7be.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -195,7 +193,7 @@ SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 # environment
 DOTNET_ROOT = /usr/share/dotnet
 # variable set hash-table stats:
-# Load=91/1024=9%, Rehash=0, Collisions=3/144=2%
+# Load=91/1024=9%, Rehash=0, Collisions=4/151=3%
 
 # Pattern-specific Variable Values
 
@@ -204,11 +202,11 @@ DOTNET_ROOT = /usr/share/dotnet
 # Directories
 
 # ./test (device 2112, inode 85272): 4 files, no impossibilities.
-# . (device 2112, inode 101485): 11 files, no impossibilities.
+# . (device 2112, inode 101485): 10 files, no impossibilities.
 # test (device 2112, inode 85272): 4 files, no impossibilities.
-# srcs (device 2112, inode 155242): 6 files, 1 impossibilities.
+# srcs (device 2112, inode 155242): No files, no impossibilities so far.
 
-# 25 files, 1 impossibilities in 4 directories.
+# 18 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -228,32 +226,31 @@ test/bin/%: test/%.c
 minishell: Libft/libft.a objs/main.o objs/minishell.o objs/parser.o objs/parser_utils.o objs/expander.o objs/cleanup.o objs/lexer.o objs/env.o objs/utils.o
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 #  recipe to execute (from 'Makefile', line 51):
 	@$(CC) -o $(NAME) $(OBJECTS) $(LIBFT_A) -lreadline
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-25 17:30:44.703945
+#  Last modified 2022-08-25 18:36:35.534868
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 objs/parser.o:
-#  Implicit rule search has been done.
-#  File does not exist.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
-objs/minishell.o: srcs/minishell.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'minishell'
-#  Last modified 2022-08-25 17:30:22.791527
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 54):
-	@$(MKDIR) $(OBJS_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+# Not a target:
+objs/minishell.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 bonus: all
 #  Implicit rule search has not been done.
@@ -275,14 +272,6 @@ objs/expander.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-srcs/minishell.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-25 17:23:54.453227
- 
-#  File has been updated.
-#  Successfully updated.
-
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
@@ -290,6 +279,7 @@ re: fclean all
 #  File has not been updated.
 
 # Not a target:
+ 
 objs/parser_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -301,15 +291,11 @@ objs/cleanup.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/main.o: srcs/main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'main'
-#  Last modified 2022-08-25 17:30:22.741527
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 54):
-	@$(MKDIR) $(OBJS_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+# Not a target:
+objs/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -322,7 +308,10 @@ all: minishell
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
@@ -366,12 +355,37 @@ objs/env.o:
 
 Libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-25 17:30:22.701527
+#  Implicit/static pattern stem: ''
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := Libft/libft.a
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=4/15=27%
 #  recipe to execute (from 'Makefile', line 48):
 	@cd $(LIBS_PATH) && $(MAKE_NOPRINT)
 	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 test/bin:
 #  Implicit rule search has not been done.
@@ -386,32 +400,25 @@ test/bin:
 #  File has not been updated.
 
 # Not a target:
-srcs/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-25 00:58:04.0291184
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
 objs/utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=26/1024=3%, Rehash=0, Collisions=0/69=0%
+# Load=24/1024=2%, Rehash=0, Collisions=0/60=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 51 / storage = 482 B / avg = 9 B
-# current buf: size = 8162 B / used = 482 B / count = 51 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 41 / storage = 388 B / avg = 9 B
+# current buf: size = 8162 B / used = 388 B / count = 41 / avg = 9 B
 
-# strcache performance: lookups = 89 / hit rate = 42%
+# strcache performance: lookups = 74 / hit rate = 44%
 # hash-table stats:
-# Load=51/8192=1%, Rehash=0, Collisions=0/89=0%
-# Finished Make data base on Thu Aug 25 17:32:40 2022
+# Load=41/8192=1%, Rehash=0, Collisions=0/74=0%
+# Finished Make data base on Thu Aug 25 18:36:47 2022
 
  

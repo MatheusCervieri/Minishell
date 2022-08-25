@@ -1,12 +1,24 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
+cd ./Libft/ && make --no-print-directory
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/main.c -o objs/main.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/minishell.c -o objs/minishell.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/parser.c -o objs/parser.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/parser_utils.c -o objs/parser_utils.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/expander.c -o objs/expander.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/cleanup.c -o objs/cleanup.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/lexer.c -o objs/lexer.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/env.c -o objs/env.o
+mkdir -p ./objs/
+cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/utils.c -o objs/utils.o
+cc -o minishell ./objs/main.o ./objs/minishell.o ./objs/parser.o ./objs/parser_utils.o ./objs/expander.o ./objs/cleanup.o ./objs/lexer.o ./objs/env.o ./objs/utils.o ./Libft/libft.a  -lreadline
 make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
  
-make: *** No rule to make target 'objs/parser.o', needed by 'minishell'.
-make: *** No rule to make target 'objs/parser_utils.o', needed by 'minishell'.
-make: *** No rule to make target 'objs/expander.o', needed by 'minishell'.
-make: *** No rule to make target 'objs/cleanup.o', needed by 'minishell'.
-make: *** No rule to make target 'objs/lexer.o', needed by 'minishell'.
-make: *** No rule to make target 'objs/env.o', needed by 'minishell'.
-make: *** No rule to make target 'objs/utils.o', needed by 'minishell'.
-
