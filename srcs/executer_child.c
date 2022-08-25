@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 17:05:06 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:12:19 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static char	*get_cmd(char **paths, char *cmd)
 	char	*command;
 
 	if (is_builtin(cmd) == 1)
-		return(cmd);
-
+		return (cmd);
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
@@ -38,9 +37,6 @@ static void	sub_dup2(int read_fd, int write_fd)
 	dup2(read_fd, STDIN_FILENO);
 	dup2(write_fd, STDOUT_FILENO);
 }
-
-
-
 
 static void	handle_dup(t_pipex *data)
 {
@@ -64,13 +60,13 @@ void	child(t_pipex data, char **envp)
 	data.pid = fork();
 	if (!data.pid)
 	{
-		if(data.cmd_nmbs != 1)
+		if (data.cmd_nmbs != 1)
 			handle_dup(&data);
 		else
-			{
-				dup2(data.infile, STDIN_FILENO);
-				dup2(data.outfile, STDOUT_FILENO);
-			}
+		{
+			dup2(data.infile, STDIN_FILENO);
+			dup2(data.outfile, STDOUT_FILENO);
+		}
 		close_pipes(&data);
 		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
 				' ');
@@ -81,10 +77,8 @@ void	child(t_pipex data, char **envp)
 			execute_builtin(data.cmd, data.cmd_args, envp);
 		else
 		{
-			if(execve(data.cmd, data.cmd_args, envp) < 0)
+			if (execve(data.cmd, data.cmd_args, envp) < 0)
 				printf("C É UMA MERDA, O MINISHELL É MAIS");
 		}
-			
-		
 	}
 }

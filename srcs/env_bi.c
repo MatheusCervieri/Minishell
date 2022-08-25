@@ -6,15 +6,15 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 08:59:18 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 16:33:41 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:13:17 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void print_envp(char **envp)
+void	print_envp(char **envp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (envp[i])
@@ -25,9 +25,9 @@ void print_envp(char **envp)
 	}
 }
 
-int args_len(char **cmd_args)
+int	args_len(char **cmd_args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (cmd_args[i])

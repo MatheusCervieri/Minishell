@@ -6,16 +6,16 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 11:55:43 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:13:48 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int is_builtin(char *cmd)
+int	is_builtin(char *cmd)
 {
 	if (ft_strncmp(cmd, "env", 4) == 0)
-		return(1);
+		return (1);
 	if (ft_strncmp(cmd, "cd", 3) == 0)
 		return (1);
 	if (ft_strncmp(cmd, "echo", 5) == 0)
@@ -38,8 +38,8 @@ char	**convert_list_to_char(void)
 	int		size;
 	char	**envp;
 	int		i;
-	t_list *head;
-	
+	t_list	*head;
+
 	head = g_cmd_table->envp;
 	size = ft_lstsize(head);
 	envp = malloc(sizeof(char *) * (size + 1));
@@ -54,9 +54,8 @@ char	**convert_list_to_char(void)
 	return (envp);
 }
 
-void execute_builtin(char *cmd, char **cmd_args, char **envp)
+void	execute_builtin(char *cmd, char **cmd_args, char **envp)
 {
-
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		env_bi(cmd_args, envp);
 	if (ft_strncmp(cmd, "cd", 3) == 0)

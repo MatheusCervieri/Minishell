@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 09:58:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 13:04:38 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:12:43 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*find_home_env(char *envp[])
 	return (path);
 }
 
-void enter_dir(char *dir)
+void	enter_dir(char *dir)
 {
 	if (chdir(dir) != 0)
 	{
@@ -38,9 +38,10 @@ void enter_dir(char *dir)
 	}
 }
 
-void cd_bi(char **cmd_args, char **envp)
+void	cd_bi(char **cmd_args, char **envp)
 {
-	char *home_path;
+	char	*home_path;
+
 	if (args_len(cmd_args) == 1)
 	{
 		home_path = find_home_env(envp);

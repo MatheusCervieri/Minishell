@@ -6,15 +6,16 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 22:51:22 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 21:33:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:15:37 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void print_struct(void)
+void	print_struct(void)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	printf("**table\n");
 	while (g_cmd_table->table[i])
@@ -56,26 +57,21 @@ void print_struct(void)
 	printf("\n");
 }
 
-
 void	make_list(t_list **list, char **envp)
 {
-	int i;
+	int	i;
+
 	i = 1;
-	
-	while(envp[i])
+	while (envp[i])
 	{
 		ft_lstadd_back(list, ft_lstnew((char *)envp[i]));
-		//if (i == 0)
-			//head = *list;
 		i++;
 	}
-	
-	//printf("%s \n", (char *) head->next->content);
 }
 
 void	print_list(t_list *list)
 {
-	while(list)
+	while (list)
 	{
 		printf("%s \n", (char *) list->content);
 		list = list->next;

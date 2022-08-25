@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 15:57:22 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:17:01 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	put_infile_fd(t_pipex *data, char *infile_path)
 {
-	if(ft_strncmp(infile_path, "STDIN_FILENO", 13) == 0)
+	if (ft_strncmp(infile_path, "STDIN_FILENO", 13) == 0)
 		data->infile_exists = 0;
 	else
-		data->infile_exists = 1;	
+		data->infile_exists = 1;
 	if (data->infile_exists != 0 && data->here_doc == 0)
 	{
 		data->infile = open(infile_path, O_RDONLY);
@@ -36,21 +36,21 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 
 void	put_outfile_fd(t_pipex *data, char *outfile_path)
 {
-	if(!(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0))
+	if (!(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0))
 	{
 		if (data->append == 1)
 			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_APPEND,
 					0000644);
-		else{
-			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_TRUNC,
+		else
+		{
+		data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_TRUNC,
 					0000644);
-			}
+		}
 		if (data->outfile < 0)
 		{
 			close(data->infile);
 			msg_error("Bad Permission Outfile\n", 8);
 		}
-		
 	}
 	else
 	{
@@ -80,8 +80,6 @@ void	executor_handler(void)
 	char	**envp;
 
 	envp = convert_list_to_char();
-	//data.infile_exists = g_cmd_table->infile_exists;
-	//data.outfile_exists = g_cmd_table->outfile_exists;
 	data.here_doc = g_cmd_table->here_doc;
 	data.append = g_cmd_table->append;
 	data.limiter = g_cmd_table->limiter;

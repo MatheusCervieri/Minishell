@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 17:59:23 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:11:02 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <criterion/criterion.h>
 #include "../includes/minishell.h"
 #include <string.h>
-
-
 
 Test(executer_handler, test1_test)
 {
@@ -45,7 +43,6 @@ Test(executer_handler, test1_test)
 	free(envp);
 
 }
-
 
 Test(executer_handler, test2_test)
 {
@@ -121,13 +118,11 @@ Test(executer_handler, test4_test)
 	g_cmd_table->envp = ft_lstnew((char *)envp[0]);
 	make_list(&(g_cmd_table->envp), envp);
 	executor_handler();
-
 	free(envp[0]);
 	free(envp[1]);
 	free(envp[2]);
 	free(envp[3]);
 	free(envp);
-
 }
 
 Test(executer_handler, test5_test)

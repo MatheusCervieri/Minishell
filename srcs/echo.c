@@ -6,15 +6,15 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:00:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/22 12:00:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:12:59 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void write_echo(char **cmd_args, int parameter)
+void	write_echo(char **cmd_args, int parameter)
 {
-	int i;
+	int	i;
 
 	i = parameter;
 	while (i < args_len(cmd_args))
@@ -26,7 +26,7 @@ void write_echo(char **cmd_args, int parameter)
 	}
 }
 
-void echo_bi(char **cmd_args)
+void	echo_bi(char **cmd_args)
 {
 	if (args_len(cmd_args) == 1)
 	{

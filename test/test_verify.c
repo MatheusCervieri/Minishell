@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:40:11 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 17:56:26 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:18:57 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Test(VERIFY_executer_handler, test1_verify)
     char *buf2 = calloc(sizeof(char), 101);
 	read(fd2, buf2, 100);
 	
-	cr_expect(strcmp(buf1, buf2) == 0, "outfile is correct");
+	cr_expect(strncmp(buf1, buf2, 20) == 0, "outfile is correct");
 	close(fd);
 }
 
@@ -84,7 +84,7 @@ Test(VERIFY_executer_handler, test5_verify)
     char *buf2 = calloc(sizeof(char), 101);
 	read(fd2, buf2, 100);
 	
-	cr_expect(strcmp(buf1, buf2) == 0, "outfile is correct");
+	cr_expect(strncmp(buf1, buf2, 15) == 0, "outfile is correct");
 	close(fd);
 }
 /*
