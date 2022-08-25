@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/matheuscervieri/newminishell'
+make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
 cd ./Libft/ && make --no-print-directory
 mkdir -p ./objs/
 cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/main.c -o objs/main.o
@@ -46,5 +46,5 @@ cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/exit_bi.c -o objs/exit_bi
 mkdir -p ./objs/
 cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/utils.c -o objs/utils.o
 cc -o minishell ./objs/main.o ./objs/minishell.o ./objs/parser.o ./objs/parser_utils.o ./objs/expander.o ./objs/cleanup.o ./objs/lexer.o ./objs/env.o ./objs/executer_child.o ./objs/executer_error.o ./objs/executer_utils.o ./objs/executor_handler.o ./objs/here_doc.o ./objs/env_bi.o ./objs/pwd.o ./objs/cd.o ./objs/echo.o ./objs/executer_builtin.o ./objs/export_bi.o ./objs/unset_bi.o ./objs/exit_bi.o ./objs/utils.o ./Libft/libft.a  -lreadline
-make: Leaving directory '/home/matheuscervieri/newminishell'
+make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
  
