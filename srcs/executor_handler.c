@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 11:07:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:24:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	init_data_executor(t_pipex *data, char *envp[])
 void	executor_handler(t_cmd_table *table, char **envp)
 {
 	t_pipex	data;
-	int		status;
 
 	data.cmd_nmbs = table->n_of_cmds;
 	data.here_doc = table->here_doc;
@@ -68,7 +67,7 @@ void	executor_handler(t_cmd_table *table, char **envp)
 		data.idx++;
 	}
 	close_pipes(&data);
-	waitpid(-1, &status, 0);
-	parent_close(&data, "success", 0);
-	g_cmd_table->status = WEXITSTATUS(status);
+	waitpid(-1, NULL, 0);
+	//parent_close(&data, "success", 0);
+	//g_cmd_table->status = WEXITSTATUS(status);
 }

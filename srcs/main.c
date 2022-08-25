@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 11:06:00 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:18:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int    main(int argc, char **argv, char **envp)
 	int	rtn;
 	char *line;
 	rtn = 0;
-	line = ft_strdup("< infile ls | grep a | grep b > test4.txt");
+	line = ft_strdup("< infile grep c | grep a | grep b > test4.txt");
 	init_global();
 	reset_global(&rtn);
 	rtn = 0;
@@ -53,9 +53,10 @@ int    main(int argc, char **argv, char **envp)
 	char *buf = calloc(sizeof(char), 101);
 	read(fd, buf, 100);
 	
-	if (g_cmd_table->status == 0)
-    	printf("Status: %i , is correct \n", g_cmd_table->status);
+	
+	printf("Status: %i , is correct \n", g_cmd_table->status);
  	printf("%s\n", buf);
+	close(fd);
   
 	/*
     int	rtn;
