@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 00:56:14 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:23:54 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,6 @@ int	reset_global(int *rtn)
 	return (*rtn);
 }
 
-void	free_global(void)
-{
-	int	i;
-
-	i = -1;
-	while (++i < g_cmd_table->n_of_cmds)
-		free(g_cmd_table->table[i]);
-	free(g_cmd_table->table);
-	free(g_cmd_table->infile);
-	free(g_cmd_table->outfile);
-}
-
 int	prompt(char **line)
 {
 	char	*buf;
@@ -117,7 +105,5 @@ void	minishell(char *envp[])
 		free(line);
 		free_global();
 	}
-	rl_clear_history();
-	ft_lstclear(&g_cmd_table->envp, free);
-	free(g_cmd_table);
+	clear_memory();
 }

@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 18:37:40 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:24:16 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ char	**expander(char *line);
 int		print_and_return(const char *msg, int err_code);
 void	expand_env(void);
 t_list	*make_list(char **envp);
+void	clear_memory(void);
+void	free_global(void);
+
 
 #endif
