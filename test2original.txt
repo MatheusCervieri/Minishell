@@ -1,5 +1,0 @@
-Makefile
-a.out
-jabuticaba.c
-test1original.txt
-test2original.txt
