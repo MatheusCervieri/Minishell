@@ -1,3 +1,14 @@
+Libft
 Makefile
 a.out
+includes
+infile
 jabuticaba.c
+minishell
+objs
+srcs
+test
+test1.txt
+test11.txt
+test2.txt
+tests.sh
