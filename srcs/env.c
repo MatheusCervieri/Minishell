@@ -6,16 +6,25 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:09:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:20:10 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 00:43:40 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*handle_status(char *token)
+char	*my_getenv(char *token)
 {
-	if (token[1] == '?' && token[2] == '\0')
-		return (ft_itoa(g_cmd_table->last_status));
+	t_list	*tmp;
+
+	if (!strlen(token))
+		return (NULL);
+	tmp = g_cmd_table->envp;
+	while (tmp)
+	{
+		if (ft_strncmp((char *)tmp->content, token, strlen(token)) == 0)
+			return (ft_strdup(&(((char *)tmp->content)[strlen(token) + 1])));
+		tmp = tmp->next;
+	}
 	return (NULL);
 }
 
@@ -46,10 +55,9 @@ char	*expand(char *line, int i)
 	len = ft_strlen(line);
 	token = ft_strchr(line, '$');
 	token = sanitize_token(token);
-	rtn = handle_status(token);
-	if (rtn)
-		return (rtn);
-	rtn = getenv(&token[1]);
+	if (token[1] == '?' && token[2] == '\0')
+		return (ft_itoa(g_cmd_table->last_status));
+	rtn = my_getenv(&token[1]);
 	free(token);
 	if (rtn)
 		return (ft_strdup(rtn));

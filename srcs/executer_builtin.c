@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_builtin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:13:48 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:54:01 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	execute_builtin(char *cmd, char **cmd_args, char **envp)
 	if (ft_strncmp(cmd, "pwd", 4) == 0)
 		pwd_bi();
 	if (ft_strncmp(cmd, "exit", 5) == 0)
-		exit_bi(cmd_args);
+		exit_bi();
 	if (ft_strncmp(cmd, "export", 7) == 0)
 		export_bi(cmd_args);
 	if (ft_strncmp(cmd, "unset", 5) == 0)

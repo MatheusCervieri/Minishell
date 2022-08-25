@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit_bi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:01:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:14:48 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:54:11 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	exit_bi(char **cmd_args)
+void	exit_bi(void)
 {
-	printf("EXIT BUILT IN AQUI %s \n", cmd_args[0]);
+	free_global();
+	clear_memory();
+	exit(0);
 }

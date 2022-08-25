@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   executer_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/18 17:02:49 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:42:35 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	msg_error(char *error, int exit_code)
 {
 	write(2, error, ft_strlen(error));
-	exit(exit_code);
+	//exit(exit_code);
+	g_cmd_table->status = exit_code;
 }
 
 void	close_io_exit(t_pipex *data, char *error, int exit_code)
@@ -65,5 +66,5 @@ void	free_cmd(t_pipex *data)
 	write(2, tmp, ft_strlen(tmp));
 	write(2, "\n", 1);
 	free(tmp);
-	exit(6);
+	g_cmd_table->status = 6;
 }

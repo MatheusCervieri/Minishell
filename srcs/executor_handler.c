@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:17:01 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:15:36 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ void	executor_handler(void)
 	}
 	close_pipes(&data);
 	waitpid(-1, &status, 0);
-	parent_close(&data, "success", 0);
 	g_cmd_table->status = WEXITSTATUS(status);
+	parent_close(&data, "success", 0);
 }

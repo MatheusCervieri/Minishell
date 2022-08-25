@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_bi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:03 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 21:33:08 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:53:14 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ void unset_bi(char **cmd_args)
         while (i < args_len(cmd_args))
         {
             remove_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, cmd_args[i]));
-            printf("---------------------------------------------------\n");
-            print_list(g_cmd_table->envp);
-             printf("---------------------------------------------------\n");
             i++;
         }
     }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 23:24:00 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:24:18 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 t_cmd_table	*g_cmd_table;
 
-int	init_global(void)
+int	init_global(char *envp[])
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	if (!g_cmd_table)
-		return (1);
+	{
+		printf("malloc error");
+		exit(1);
+	}
+	g_cmd_table->envp = make_list(envp);
+	if (!g_cmd_table->envp)
+	{
+		printf("malloc error");
+		free(g_cmd_table);
+		exit(1);
+	}
 	g_cmd_table->status = 0;
 	g_cmd_table->last_status = g_cmd_table->status;
 	return (0);
@@ -45,22 +55,10 @@ int	reset_global(int *rtn)
 	g_cmd_table->n_of_cmds = 0;
 	g_cmd_table->n_of_pipes = 0;
 	g_cmd_table->append = 0;
-	g_cmd_table->last_status = g_cmd_table->status;
 	g_cmd_table->status = 0;
+	g_cmd_table->last_status = g_cmd_table->status;
 	*rtn = 0;
 	return (*rtn);
-}
-
-void	free_global(void)
-{
-	int	i;
-
-	i = -1;
-	while (++i < g_cmd_table->n_of_cmds)
-		free(g_cmd_table->table[i]);
-	free(g_cmd_table->table);
-	free(g_cmd_table->infile);
-	free(g_cmd_table->outfile);
 }
 
 int	prompt(char **line)
@@ -86,14 +84,14 @@ int	prompt(char **line)
 	return (0);
 }
 
-int	minishell(void)
+void	minishell(char *envp[])
 {
 	char	*line;
 	int		rtn;
 
+	init_global(envp);
 	rtn = 0;
-	init_global();
-	while (rtn != 1)
+	while (rtn != 1 && rtn != 3)
 	{
 		if (reset_global(&rtn))
 			break ;
@@ -102,12 +100,9 @@ int	minishell(void)
 			continue ;
 		if (parse_line(line))
 			continue ;
-		if (ft_strncmp(g_cmd_table->table[0], "exit", 5) == 0)
-			rtn = 1;
 		free(line);
+		executor_handler();
 		free_global();
 	}
-	rl_clear_history();
-	free(g_cmd_table);
-	return (rtn);
+	clear_memory();
 }

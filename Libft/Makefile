@@ -6,7 +6,7 @@
 #    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 14:54:52 by ghenaut-          #+#    #+#              #
-#    Updated: 2022/07/12 00:22:15 by ghenaut-         ###   ########.fr        #
+#    Updated: 2022/08/25 20:20:01 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ PRINTF_SRCS = ./src/ft_printf_bonus.c \
 
 OBJS	= $(SRCS:.c=.o)
 NAME	= libft.a
-
+CFLAGS = -g3
 
 all: ${NAME}
 # @make clean

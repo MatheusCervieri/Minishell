@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/24 21:23:59 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/25 18:41:56 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ LIBS_PATH = ./Libft/
 TEST_PATH = ./test
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -g3 -I $(HEADERS_PATH)
-#
 RM = rm -rf
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory

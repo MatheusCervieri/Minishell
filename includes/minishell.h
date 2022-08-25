@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/24 11:55:54 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:54:39 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,20 @@
 # include <sys/wait.h>
 # include <string.h>
 
-
-
 typedef struct s_cmd_table
 {
-    char    **table;	// array com os comandos
-	char	*infile;	// por padrao STDIN_FILENO, ou o nome do arquive se a pessoa mudar
-	char	*outfile;	// por padrao STDOUT_FILENO, ou o nome do arquive se a pessoa mudar
-	int		infile_exists; //0 se não existir 1 se exisitir (no caso é se < existir);
-	int		outfile_exists; //0 se não existir 1 se existir (no caso é se > existir); 
-	int		n_of_pipes; // numero de pipes
-	int		n_of_cmds;	// numeros de comandos
-	int		here_doc;	// 0 por padrao, 1 se a pessoa tiver usando here_doc
-	char	*limiter;	// limeter para sair do here_doc
-	int		append; // 0 por padrao, 1 se a pessoa tiver especificado uma outfile e especificado append inves de sobreescrever
+	char	**table;	
+	char	*infile;	
+	char	*outfile;	
+	int		n_of_pipes;
+	int		n_of_cmds;	
+	int		here_doc;	
+	char	*limiter;	
+	int		append;		
 	int		status;
 	int		last_status;
-	t_list	*envp;		
+	t_list	*envp;
 }				t_cmd_table;
-
 
 typedef struct s_pipex
 {
@@ -91,33 +86,26 @@ char	*find_path(char **envp);
 void	here_doc(char *argv, t_pipex *pipex);
 
 
-int	init_shell(char **envp);
 void	executor_handler(void);
 
 //Built ins 
-void env_bi(char **cmd_args, char **envp);
-void pwd_bi(void);
-int args_len(char **cmd_args);
-void cd_bi(char **cmd_args, char **envp);
-void echo_bi(char **cmd_args);
-int is_builtin(char *cmd);
-void execute_builtin(char *cmd, char **cmd_args, char **envp);
-int	init_global(void);
-void export_bi(char **cmd_args);
+void	env_bi(char **cmd_args, char **envp);
+void	pwd_bi(void);
+int		args_len(char **cmd_args);
+void	cd_bi(char **cmd_args, char **envp);
+void	echo_bi(char **cmd_args);
+int		is_builtin(char *cmd);
+void	execute_builtin(char *cmd, char **cmd_args, char **envp);
+void	export_bi(char **cmd_args);
 void	remove_node(t_list **head, int position);
-int	lst_find_var_p(t_list *head, char *var_name);
+int		lst_find_var_p(t_list *head, char *var_name);
 void	change_node(t_list **head, int position, char *arg);
-void unset_bi(char **cmd_args);
-void	print_list(t_list *list);
-void    exit_bi(char **cmd_args);
+void	unset_bi(char **cmd_args);
+void	exit_bi(void);
 char	**convert_list_to_char(void);
-void	make_list(t_list **list, char **envp);
-void	print_struct(void);
-
-
 
 t_list	*lexer(char **line);
-int		minishell(void);
+void	minishell(char **envp);
 int		parse_line(char *line);
 void	free_split_line(char **split_line);
 char	*join_with_space(char *str1, char *str2);
@@ -127,6 +115,8 @@ void	handle_special(char *line, t_list **lst);
 char	**expander(char *line);
 int		print_and_return(const char *msg, int err_code);
 void	expand_env(void);
-int		reset_global(int *rtn);
+t_list	*make_list(char **envp);
+void	clear_memory(void);
+void	free_global(void);
 
 #endif
