@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 21:22:33 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:40:15 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ void	parent_close(t_pipex *data, char *error, int exit_code)
 void	free_cmd(t_pipex *data)
 {
 	int		i;
-	char	*tmp;
 
 	i = 0;
-	tmp = ft_strjoin("Unable to locate command: ", data->cmd_args[0]);
 	while (data->cmd_args[i])
 	{
 		free(data->cmd_args[i]);
@@ -65,8 +63,6 @@ void	free_cmd(t_pipex *data)
 	}
 	free(data->cmd_args);
 	free(data->cmd);
-	write(2, tmp, ft_strlen(tmp));
-	write(2, "\n", 1);
-	free(tmp);
-	g_cmd_table->status = 6;
+	perror("Command not found");
+	exit(127);
 }
