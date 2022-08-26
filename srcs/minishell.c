@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 17:23:54 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:49:09 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ int	prompt(char **line)
 		return (2);
 	trimmed = ft_strtrim(buf, " ");
 	free(buf);
-	if (trimmed == NULL)
+	if (!trimmed)
 		return (1);
+	if (*trimmed == '\0')
+		return (2);
 	*line = ft_strdup(trimmed);
 	free(trimmed);
 	if (*line == NULL)
