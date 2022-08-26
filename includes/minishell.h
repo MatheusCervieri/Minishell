@@ -6,11 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/08/25 17:24:16 by ghenaut-         ###   ########.fr       */
-=======
 /*   Updated: 2022/08/25 21:48:53 by ghenaut-         ###   ########.fr       */
->>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +119,5 @@ void	expand_env(void);
 t_list	*make_list(char **envp);
 void	clear_memory(void);
 void	free_global(void);
-<<<<<<< HEAD
-
-=======
->>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
 
 #endif
