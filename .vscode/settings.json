@@ -10,7 +10,8 @@
         "string_view": "c",
         "initializer_list": "c",
         "assert.h": "c",
-        "string": "c"
+        "string": "c",
+        "*.tcc": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -1,5 +1,6 @@
 Libft
 Makefile
+a.out
 includes
 infile
 minishell
@@ -18,5 +19,7 @@ test5.txt
 test5original.txt
 test6original.txt
 test7original.txt
+test8.txt
+test8original.txt
 tests
 tests.sh

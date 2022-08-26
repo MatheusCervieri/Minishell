@@ -37,6 +37,11 @@ pwd | grep a >> test7original.txt
 echo $?
 echo "Original:"
 cat test7original.txt
+echo "Test 8 echo dasdasdsa -----------------------------"
+echo dasdasdsa >> test8original.txt
+echo $?
+echo "Original:"
+cat test8original.txt
 
 
 

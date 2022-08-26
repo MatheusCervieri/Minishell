@@ -1,3 +1,4 @@
+a.out
 test1original.txt
 test2original.txt
 test3original.txt
@@ -5,3 +6,4 @@ test4original.txt
 test5original.txt
 test6original.txt
 test7original.txt
+test8original.txt

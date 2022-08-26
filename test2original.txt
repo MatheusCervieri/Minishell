@@ -1,3 +1,4 @@
 Makefile
+a.out
 test1original.txt
 test2original.txt

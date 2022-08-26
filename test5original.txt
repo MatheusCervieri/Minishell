@@ -1,7 +1,10 @@
 Libft
 Makefile
+a.out
 includes
 infile
+minishell
+objs
 srcs
 test
 test1original.txt
