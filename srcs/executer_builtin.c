@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:54:01 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:16:06 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,20 @@ char	**convert_list_to_char(void)
 	return (envp);
 }
 
-void	execute_builtin(char *cmd, char **cmd_args, char **envp)
+void	execute_builtin(char *cmd, char **cmd_args, char **envp, int pid)
 {
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		env_bi(cmd_args, envp);
-	if (ft_strncmp(cmd, "cd", 3) == 0)
+	else if (ft_strncmp(cmd, "cd", 3) == 0)
 		cd_bi(cmd_args, envp);
-	if (ft_strncmp(cmd, "echo", 5) == 0)
+	else if (ft_strncmp(cmd, "echo", 5) == 0)
 		echo_bi(cmd_args);
-	if (ft_strncmp(cmd, "pwd", 4) == 0)
+	else if (ft_strncmp(cmd, "pwd", 4) == 0)
 		pwd_bi();
-	if (ft_strncmp(cmd, "exit", 5) == 0)
-		exit_bi();
-	if (ft_strncmp(cmd, "export", 7) == 0)
+	else if (ft_strncmp(cmd, "exit", 5) == 0)
+		exit_bi(pid);
+	else if (ft_strncmp(cmd, "export", 7) == 0)
 		export_bi(cmd_args);
-	if (ft_strncmp(cmd, "unset", 5) == 0)
+	else if (ft_strncmp(cmd, "unset", 5) == 0)
 		unset_bi(cmd_args);
 }

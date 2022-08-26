@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 20:24:18 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:24:16 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	prompt(char **line)
 	char	*buf;
 	char	*trimmed;
 
-	buf = readline("minishell> ");
+	buf = readline("> ");
 	if (buf == NULL)
 		return (1);
 	if (*buf == '\0')

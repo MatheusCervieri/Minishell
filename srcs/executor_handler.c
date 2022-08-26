@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 20:15:36 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:16:41 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 		here_doc(data->limiter, data);
 	}
 	else
-	{
 		data->infile = 0;
-	}
 }
 
 void	put_outfile_fd(t_pipex *data, char *outfile_path)
@@ -77,8 +75,10 @@ void	executor_handler(void)
 {
 	t_pipex	data;
 	int		status;
+	int		pipe_stdin;
 	char	**envp;
 
+	pipe_stdin = dup(STDIN_FILENO);
 	envp = convert_list_to_char();
 	data.here_doc = g_cmd_table->here_doc;
 	data.append = g_cmd_table->append;
@@ -94,5 +94,8 @@ void	executor_handler(void)
 	close_pipes(&data);
 	waitpid(-1, &status, 0);
 	g_cmd_table->status = WEXITSTATUS(status);
+	dup2(pipe_stdin, STDIN_FILENO);
 	parent_close(&data, "success", 0);
+	if (g_cmd_table->status == 42)
+		exit_bi(1);
 }

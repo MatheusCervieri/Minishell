@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 19:08:51 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:19:04 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,9 @@ void	child(t_pipex data, char **envp)
 		if (!data.cmd)
 			free_cmd(&data);
 		if (is_builtin(data.cmd) == 1)
-			execute_builtin(data.cmd, data.cmd_args, envp);
+			execute_builtin(data.cmd, data.cmd_args, envp, data.pid);
 		else
-		{
-			if (execve(data.cmd, data.cmd_args, envp) < 0)
-				printf("C É UMA MERDA, O MINISHELL É MAIS");
-		}
+			execve(data.cmd, data.cmd_args, envp);
+		exit(0);
 	}
 }

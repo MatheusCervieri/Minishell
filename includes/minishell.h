@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:54:39 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:48:53 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,14 @@ int		args_len(char **cmd_args);
 void	cd_bi(char **cmd_args, char **envp);
 void	echo_bi(char **cmd_args);
 int		is_builtin(char *cmd);
-void	execute_builtin(char *cmd, char **cmd_args, char **envp);
+void	execute_builtin(char *cmd, char **cmd_args, char **envp, int pid);
 void	export_bi(char **cmd_args);
 void	remove_node(t_list **head, int position);
 int		lst_find_var_p(t_list *head, char *var_name);
+int	find_equal_position(char *arg);
 void	change_node(t_list **head, int position, char *arg);
 void	unset_bi(char **cmd_args);
-void	exit_bi(void);
+void	exit_bi(int pid);
 char	**convert_list_to_char(void);
 
 t_list	*lexer(char **line);

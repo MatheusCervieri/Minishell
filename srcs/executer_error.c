@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 19:42:35 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:22:33 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	msg_error(char *error, int exit_code)
 
 void	close_io_exit(t_pipex *data, char *error, int exit_code)
 {
-	close(data->infile);
-	close(data->outfile);
+	if (data->infile != 0)
+		close(data->infile);
+	if (data->outfile != 1)
+		close(data->outfile);
 	if (data->here_doc)
 		unlink(".heredoc_tmp");
 	if (!data->success)
