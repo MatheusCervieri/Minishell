@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/matheuscervieri/minishellagoravai'
 cd ./Libft/ && make --no-print-directory
@@ -22,4 +23,10 @@ mkdir -p ./objs/
 cc -Wall -Wextra -Werror -g -g3 -I ./includes/ -c srcs/utils.c -o objs/utils.o
 cc -o minishell ./objs/main.o ./objs/minishell.o ./objs/parser.o ./objs/parser_utils.o ./objs/expander.o ./objs/cleanup.o ./objs/lexer.o ./objs/env.o ./objs/utils.o ./Libft/libft.a  -lreadline
 make: Leaving directory '/home/matheuscervieri/minishellagoravai'
+=======
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
+>>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
  

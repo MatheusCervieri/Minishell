@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstfind.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 00:20:43 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:09:13 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/08/22 09:32:04 by mvieira-          #+#    #+#             */
+/*   Updated: 2022/08/22 09:58:03 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-t_list	*ft_lstfind(t_list *head, void *target)
+void pwd_bi(void)
 {
-	while (head)
-	{
-		if (head->content == target)
-			return (head);
-		head = head->next;
-	}
-	return (NULL);
+    char    *current_directory;
+    
+    current_directory = getcwd(NULL, 0);
+    ft_putstr_fd(current_directory, 1);
+    ft_putstr_fd("\n", 1);
 }

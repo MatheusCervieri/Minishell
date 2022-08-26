@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstfind.c                                       :+:      :+:    :+:   */
+/*   exit_bi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 00:20:43 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 12:09:13 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/08/23 20:01:42 by mvieira-          #+#    #+#             */
+/*   Updated: 2022/08/25 22:17:13 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-t_list	*ft_lstfind(t_list *head, void *target)
+void	exit_bi(int pid)
 {
-	while (head)
+	if (pid != 1)
+		exit(42);
+	else
 	{
-		if (head->content == target)
-			return (head);
-		head = head->next;
+		write(1, "exit\n", 6);
+		free_global();
+		clear_memory();
+		exit(0);
 	}
-	return (NULL);
 }

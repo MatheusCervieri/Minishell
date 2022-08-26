@@ -6,7 +6,11 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/25 17:24:16 by ghenaut-         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/25 21:48:53 by ghenaut-         ###   ########.fr       */
+>>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +21,13 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <string.h>
 
 typedef struct s_cmd_table
 {
@@ -33,7 +44,70 @@ typedef struct s_cmd_table
 	t_list	*envp;
 }				t_cmd_table;
 
-extern t_cmd_table	*g_cmd_table;
+typedef struct s_pipex
+{
+	int		infile;
+	int		outfile;
+    int     infile_exists;
+    int     outfile_exists;
+	char	**cmd_paths;
+	char	*cmd;
+	char	**cmd_args;
+	int		here_doc;
+	char	*limiter;
+	int		append; 
+	pid_t	pid;
+	int		cmd_nmbs;
+	int		pipe_nmbs;
+	int		*pipe;
+	int		idx;
+	int		success;
+}				t_pipex;
+
+extern t_cmd_table *g_cmd_table;
+
+//hadle_file.c
+void	get_outfile(char *argv, t_pipex *data);
+void	get_infile(char **argv, t_pipex *data);
+
+//error.c
+void	msg_error(char *error, int exit_code);
+void	parent_close(t_pipex *data, char *error, int exit_code);
+void	pipe_free(t_pipex *data, char *error, int exit_code);
+void	close_io_exit(t_pipex *data, char *error, int exit_code);
+void	free_cmd(t_pipex *data);
+
+//init_data.c
+void	init_data(t_pipex *data, int argc, char *envp[]);
+
+//child.c
+void	child(t_pipex data, char **envp);
+void	close_pipes(t_pipex *data);
+
+//Pipex 2.0 
+void	init_pipes(t_pipex *data);
+char	*find_path(char **envp);
+void	here_doc(char *argv, t_pipex *pipex);
+
+
+void	executor_handler(void);
+
+//Built ins 
+void	env_bi(char **cmd_args, char **envp);
+void	pwd_bi(void);
+int		args_len(char **cmd_args);
+void	cd_bi(char **cmd_args, char **envp);
+void	echo_bi(char **cmd_args);
+int		is_builtin(char *cmd);
+void	execute_builtin(char *cmd, char **cmd_args, char **envp, int pid);
+void	export_bi(char **cmd_args);
+void	remove_node(t_list **head, int position);
+int		lst_find_var_p(t_list *head, char *var_name);
+int	find_equal_position(char *arg);
+void	change_node(t_list **head, int position, char *arg);
+void	unset_bi(char **cmd_args);
+void	exit_bi(int pid);
+char	**convert_list_to_char(void);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);
@@ -49,6 +123,9 @@ void	expand_env(void);
 t_list	*make_list(char **envp);
 void	clear_memory(void);
 void	free_global(void);
+<<<<<<< HEAD
 
+=======
+>>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
 
 #endif

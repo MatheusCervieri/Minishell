@@ -6,7 +6,11 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/25 17:23:54 by ghenaut-         ###   ########.fr       */
+=======
+/*   Updated: 2022/08/25 21:24:16 by ghenaut-         ###   ########.fr       */
+>>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +70,7 @@ int	prompt(char **line)
 	char	*buf;
 	char	*trimmed;
 
-	buf = readline("minishell> ");
+	buf = readline("> ");
 	if (buf == NULL)
 		return (1);
 	if (*buf == '\0')
@@ -100,9 +104,13 @@ void	minishell(char *envp[])
 			continue ;
 		if (parse_line(line))
 			continue ;
+<<<<<<< HEAD
 		if (ft_strncmp(g_cmd_table->table[0], "exit", 5) == 0)
 			rtn = 3;
+=======
+>>>>>>> a09e60a317bb093cb2d7f91ab92c50b8146de697
 		free(line);
+		executor_handler();
 		free_global();
 	}
 	clear_memory();
