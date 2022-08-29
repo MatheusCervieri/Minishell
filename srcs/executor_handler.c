@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 17:53:50 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:31:17 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,38 @@ void wait_pids(t_pipex *data)
 
 void convert_fd_to_list(t_pipex data)
 {
-	char *buf = calloc(sizeof(char), 100);
-	read(data.fd_bi[0], buf, 99);
-	printf("SUPERSTRING%s", buf);
-	printf("\n");
+	/*
+	char *node_content;
+	t_list *lst;
+	node_content = get_next_line(data.fd_bi[0]);
+	lst = ft_lstnew(node_content);
+	printf("%s\n", (char *)lst->content);
+	while (node_content)
+	{
+		node_content = get_next_line(data.fd_bi[0]);
+		ft_lstadd_back(&lst, ft_lstnew(node_content));
+		ft_putstr_fd("WTF \n", 2);
+	}
+	ft_putstr_fd(":(\n", 2);
+	while(lst)
+	{
+		printf("%s", (char *) lst->content);
+		lst = lst->next;
+	}
+	*/
+	char *buf = malloc(sizeof(char) * 100);
+	char *final_string;
+	final_string = ft_strdup("");
+	int read_rn;
+	read_rn = 99;
+	while (read_rn >= 99)
+	{
+		read_rn = read(data.fd_bi[0], buf, 99);
+		if(buf != NULL)
+			final_string = ft_strjoin(final_string, buf);	
+	}
+	printf("\n\n%s\n\n", final_string);
+	ft_putstr_fd("\n", 1);
 }
 
 
@@ -122,9 +150,9 @@ void	executor_handler(void)
 	}
 	close_pipes(&data);
 	convert_fd_to_list(data);
-	wait_pids(&data);
 	close(data.fd_bi[0]);
 	close(data.fd_bi[1]);
+	wait_pids(&data);
 
 	free(data.pids);
 	dup2(pipe_stdin, STDIN_FILENO);

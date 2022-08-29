@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 17:54:30 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:30:54 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void convert_list_to_fd(t_pipex data)
 		ft_putstr_fd("\n", data.fd_bi[1]);
 		aux = aux->next;
 	}
-	
 	close(data.fd_bi[0]);
 	close(data.fd_bi[1]);
 }
