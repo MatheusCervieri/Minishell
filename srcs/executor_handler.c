@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 22:39:50 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:14:59 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,23 @@ void	init_data_executor(t_pipex *data, char *envp[])
 	init_pipes(data);
 }
 
+void wait_pids(t_pipex *data)
+{
+	int i;
+	int status;
+
+	i = 0;
+	while (i < data->cmd_nmbs)
+	{
+		waitpid(data->pids[i], &status, 0);
+		g_cmd_table->status = WEXITSTATUS(status);
+		i++;
+	}	
+}
+
 void	executor_handler(void)
 {
 	t_pipex	data;
-	int		status;
 	int		pipe_stdin;
 	char	**envp;
 
@@ -86,14 +99,16 @@ void	executor_handler(void)
 	put_infile_fd(&data, g_cmd_table->infile);
 	put_outfile_fd(&data, g_cmd_table->outfile);
 	init_data_executor(&data, envp);
+	data.pids = malloc(sizeof(int) * data.cmd_nmbs);
 	while (data.idx < data.cmd_nmbs)
 	{
-		child(data, envp);
+		data.pids[data.idx] = fork();
+		if(data.pids[data.idx] == 0)
+			child(data, envp);
 		data.idx++;
 	}
 	close_pipes(&data);
-	waitpid(-1, &status, 0);
-	g_cmd_table->status = WEXITSTATUS(status);
+	wait_pids(&data);
 	dup2(pipe_stdin, STDIN_FILENO);
 	parent_close(&data, "success", 0);
 	if (g_cmd_table->status == 42)

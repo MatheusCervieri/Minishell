@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 22:19:04 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:05:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ static void	handle_dup(t_pipex *data)
 
 void	child(t_pipex data, char **envp)
 {
-	data.pid = fork();
-	if (!data.pid)
-	{
 		if (data.cmd_nmbs != 1)
 			handle_dup(&data);
 		else
@@ -78,5 +75,4 @@ void	child(t_pipex data, char **envp)
 		else
 			execve(data.cmd, data.cmd_args, envp);
 		exit(0);
-	}
 }
