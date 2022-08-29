@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 20:30:54 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:47:53 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int is_directory(char *cmd)
 	return(0);
 }
 
+
 void convert_list_to_fd(t_pipex data)
 {
 	t_list *aux;
@@ -94,9 +95,10 @@ void	child(t_pipex data, char **envp)
 			data.cmd = data.cmd_args[0];
 		if (!data.cmd)
 			free_cmd(&data);
+		convert_list_to_fd(data);
 		if (is_builtin(data.cmd) == 1)
 		{
-			convert_list_to_fd(data);
+			
 			execute_builtin(data.cmd, data.cmd_args, envp, data.pid);
 		}
 		else
