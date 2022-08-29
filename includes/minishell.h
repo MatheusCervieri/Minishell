@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 12:09:58 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:26:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	change_node(t_list **head, int position, char *arg);
 void	unset_bi(char **cmd_args);
 void	exit_bi(int pid);
 char	**convert_list_to_char(void);
+void	signals(void);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);
