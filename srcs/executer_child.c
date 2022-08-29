@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 13:09:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:54:30 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ int is_directory(char *cmd)
 	return(0);
 }
 
+void convert_list_to_fd(t_pipex data)
+{
+	t_list *aux;
+	aux = g_cmd_table->envp;
+	while(aux)
+	{
+		ft_putstr_fd(aux->content, data.fd_bi[1]);
+		ft_putstr_fd("\n", data.fd_bi[1]);
+		aux = aux->next;
+	}
+	
+	close(data.fd_bi[0]);
+	close(data.fd_bi[1]);
+}
+
 void	child(t_pipex data, char **envp)
 {
 		if (data.cmd_nmbs != 1)
@@ -81,8 +96,15 @@ void	child(t_pipex data, char **envp)
 		if (!data.cmd)
 			free_cmd(&data);
 		if (is_builtin(data.cmd) == 1)
+		{
+			convert_list_to_fd(data);
 			execute_builtin(data.cmd, data.cmd_args, envp, data.pid);
+		}
 		else
+		{
+			close(data.fd_bi[0]);
+			close(data.fd_bi[1]);
 			execve(data.cmd, data.cmd_args, envp);
+		}
 		exit(0);
 }

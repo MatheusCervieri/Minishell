@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 13:26:11 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 16:38:41 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_pipex
 	int		idx;
 	int		success;
 	int		*pids;
+	int		fd_bi[2];
 }				t_pipex;
 
 extern t_cmd_table *g_cmd_table;

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 13:16:23 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:53:50 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,23 @@ void wait_pids(t_pipex *data)
 	free(status);
 }
 
+void convert_fd_to_list(t_pipex data)
+{
+	char *buf = calloc(sizeof(char), 100);
+	read(data.fd_bi[0], buf, 99);
+	printf("SUPERSTRING%s", buf);
+	printf("\n");
+}
+
+
+
 void	executor_handler(void)
 {
 	t_pipex	data;
 	int		pipe_stdin;
 	char	**envp;
 
+	pipe(data.fd_bi);
 	pipe_stdin = dup(STDIN_FILENO);
 	envp = convert_list_to_char();
 	data.here_doc = g_cmd_table->here_doc;
@@ -110,7 +121,11 @@ void	executor_handler(void)
 		data.idx++;
 	}
 	close_pipes(&data);
+	convert_fd_to_list(data);
 	wait_pids(&data);
+	close(data.fd_bi[0]);
+	close(data.fd_bi[1]);
+
 	free(data.pids);
 	dup2(pipe_stdin, STDIN_FILENO);
 	parent_close(&data, "success", 0);
