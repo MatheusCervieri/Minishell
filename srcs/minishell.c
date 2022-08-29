@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/26 13:49:09 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/29 10:36:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	prompt(char **line)
 	char	*buf;
 	char	*trimmed;
 
-	buf = readline("minishell> ");
+	buf = readline("> ");
 	if (buf == NULL)
 		return (1);
 	if (*buf == '\0')
@@ -102,9 +102,8 @@ void	minishell(char *envp[])
 			continue ;
 		if (parse_line(line))
 			continue ;
-		if (ft_strncmp(g_cmd_table->table[0], "exit", 5) == 0)
-			rtn = 3;
 		free(line);
+		executor_handler();
 		free_global();
 	}
 	clear_memory();

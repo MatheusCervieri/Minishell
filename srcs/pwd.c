@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 22:48:09 by mvieira-         ###   ########.fr       */
+/*   Created: 2022/08/22 09:32:04 by mvieira-          #+#    #+#             */
+/*   Updated: 2022/08/22 09:58:03 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
-
 #include "../includes/minishell.h"
 
-char	**tokenize(char **split_line, int size);
-int	is_special(char *arg);
-void	handle_special(char *line, t_list **lst);
-int check_quotes(const char *line);
-char	*expand(char *line, int i);
-void	expand_line(int i);
-int	reset_global(int *rtn);
-
-#endif
+void pwd_bi(void)
+{
+    char    *current_directory;
+    
+    current_directory = getcwd(NULL, 0);
+    ft_putstr_fd(current_directory, 1);
+    ft_putstr_fd("\n", 1);
+}
