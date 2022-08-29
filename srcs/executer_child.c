@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 13:07:07 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:09:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	child(t_pipex data, char **envp)
 		if(is_directory(data.cmd_args[0]) == 0)
 			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		else
-		{
 			data.cmd = data.cmd_args[0];
 		if (!data.cmd)
 			free_cmd(&data);
