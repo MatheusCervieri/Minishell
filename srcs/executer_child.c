@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 12:05:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:07:07 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ static void	handle_dup(t_pipex *data)
 					data->pipe[(2 * data->idx) + 1]);
 }
 
+int is_directory(char *cmd)
+{
+	if (cmd[0] == '/')
+		return (1);
+	return(0);
+}
+
 void	child(t_pipex data, char **envp)
 {
 		if (data.cmd_nmbs != 1)
@@ -67,7 +74,11 @@ void	child(t_pipex data, char **envp)
 		close_pipes(&data);
 		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
 				' ');
-		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
+		if(is_directory(data.cmd_args[0]) == 0)
+			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
+		else
+		{
+			data.cmd = data.cmd_args[0];
 		if (!data.cmd)
 			free_cmd(&data);
 		if (is_builtin(data.cmd) == 1)
