@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 13:09:07 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:16:23 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,17 @@ void	init_data_executor(t_pipex *data, char *envp[])
 void wait_pids(t_pipex *data)
 {
 	int i;
-	int status;
+	int *status;
 
+	status = malloc(sizeof(int) * data->cmd_nmbs);
 	i = 0;
 	while (i < data->cmd_nmbs)
 	{
-		waitpid(data->pids[i], &status, 0);
-		g_cmd_table->status = WEXITSTATUS(status);
+		waitpid(data->pids[i], &status[i], 0);
+		g_cmd_table->status = WEXITSTATUS(status[i]);
 		i++;
-	}	
+	}
+	free(status);
 }
 
 void	executor_handler(void)
