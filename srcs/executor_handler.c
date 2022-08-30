@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 09:59:17 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 10:15:06 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	executor_handler(void)
 	int		pipe_stdin;
 	char	**envp;
 
-	pipe_stdin = dup(STDIN_FILENO);
+
 	envp = convert_list_to_char();
 	data.here_doc = g_cmd_table->here_doc;
 	data.append = g_cmd_table->append;
@@ -133,6 +133,5 @@ void	executor_handler(void)
 	close_pipes(&data);
 	wait_pids(&data);
 	free(data.pids);
-	dup2(pipe_stdin, STDIN_FILENO);
 	parent_close(&data, "success", 0);
 }

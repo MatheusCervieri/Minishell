@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:25:16 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 13:28:14 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 10:05:57 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ctrlc_handler()
 {
-    ft_putendl_fd("Start to handle signals kaka", 1);
+    exit_bi();
 }
 
 void	ctrld_handler()
