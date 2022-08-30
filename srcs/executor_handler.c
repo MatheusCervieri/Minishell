@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 20:48:15 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:01:17 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ void convert_fd_to_list(t_pipex data)
 		if(buf != NULL)
 			final_string = ft_strjoin(final_string, buf);	
 	}
-	//printf("\n\n%s\n\n", final_string);
-	//ft_putstr_fd("\n", 1);
+	printf("\n\n%s\n\n", final_string);
+	ft_putstr_fd("\n", 1);
 }
 
 void	executor_handler(void)
@@ -146,10 +146,10 @@ void	executor_handler(void)
 		data.idx++;
 	}
 	close_pipes(&data);
+	wait_pids(&data);
 	convert_fd_to_list(data);
 	close(data.fd_bi[0]);
 	close(data.fd_bi[1]);
-	wait_pids(&data);
 	free(data.pids);
 	dup2(pipe_stdin, STDIN_FILENO);
 	parent_close(&data, "success", 0);
