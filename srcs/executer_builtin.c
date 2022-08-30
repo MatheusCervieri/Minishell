@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 10:25:41 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:55:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,8 @@ char	**convert_list_to_char(void)
 	return (envp);
 }
 
-void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp)
+void	choose_bultin(char **cmd_args, char *cmd, char **envp)
 {
-	int saved_stdout;
-	int saved_stdin; 
-
-	saved_stdin = dup(0);
-	saved_stdout = dup(1);
-
-	if (data->cmd_nmbs != 1)
-		handle_dup(data);
-	else
-	{
-		dup2(data->infile, STDIN_FILENO);
-		dup2(data->outfile, STDOUT_FILENO);
-	}
-
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		env_bi(cmd_args, envp);
 	else if (ft_strncmp(cmd, "cd", 3) == 0)
@@ -84,6 +70,23 @@ void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp)
 		export_bi(cmd_args);
 	else if (ft_strncmp(cmd, "unset", 5) == 0)
 		unset_bi(cmd_args);
+}
+
+void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp)
+{
+	int	saved_stdout;
+	int	saved_stdin;
+
+	saved_stdin = dup(0);
+	saved_stdout = dup(1);
+	if (data->cmd_nmbs != 1)
+		handle_dup(data);
+	else
+	{
+		dup2(data->infile, STDIN_FILENO);
+		dup2(data->outfile, STDOUT_FILENO);
+	}
+	choose_bultin(cmd_args, cmd, envp);
 	dup2(saved_stdin, 0);
 	close(saved_stdin);
 	dup2(saved_stdout, 1);

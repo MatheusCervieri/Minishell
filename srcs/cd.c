@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 09:58:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:12:43 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:52:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	enter_dir(char *dir)
 {
 	if (chdir(dir) != 0)
 	{
-		ft_putstr_fd("minishell: cd: ", 2); 
-		ft_putstr_fd(dir, 2); 
-		ft_putstr_fd(": No such file or directory", 2); 
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(dir, 2);
+		ft_putstr_fd(": No such file or directory", 2);
 	}
 }
 
