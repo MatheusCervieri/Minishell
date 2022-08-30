@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:25:16 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 16:21:57 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:12:26 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	ctrlc_here_doc_handler()
 
 void	ctrld_handler()
 {
-	exit_bi();
+	char c;
+	c = 'a';
+	write(1, &c, 1);
+	g_cmd_table->signal = 1;
 }
 
 void	signals_parent(void)

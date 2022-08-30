@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 11:09:39 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:17:51 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	prompt(char **line)
 
 	buf = readline("> ");
 	if (buf == NULL)
-		return (1);
+		exit_bi();
 	if (*buf == '\0')
 		return (2);
 	trimmed = ft_strtrim(buf, " ");
@@ -95,7 +95,8 @@ void	minishell(char *envp[])
 	rtn = 0;
 	while (rtn != 1 && rtn != 3)
 	{
-		signals_parent();
+		if (g_cmd_table->signal == 1)
+			break ;
 		if (reset_global(&rtn))
 			break ;
 		rtn = prompt(&line);
@@ -106,6 +107,7 @@ void	minishell(char *envp[])
 		free(line);
 		executor_handler();
 		free_global();
+		signals_parent();
 	}
 	clear_memory();
 }
