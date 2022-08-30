@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 09:55:12 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 11:10:27 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void	change_node(t_list **head, int position, char *arg);
 void	unset_bi(char **cmd_args);
 void	exit_bi(void);
 char	**convert_list_to_char(void);
-void	signals(void);
+void	signals_parent(void);
+void	signals_child(void);
 char	*get_cmd(char **paths, char *cmd);
 void	handle_dup(t_pipex *data);
 void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);

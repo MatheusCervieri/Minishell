@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 10:33:32 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 11:12:51 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	executor_handler(void)
 	data.pids = malloc(sizeof(int) * data.cmd_nmbs);
 	while (data.idx < data.cmd_nmbs)
 	{
+		signals_child();
 		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
 				' ');
 		if(is_directory(data.cmd_args[0]) == 0)
