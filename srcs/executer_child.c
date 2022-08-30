@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 09:50:36 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 10:38:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_cmd(char **paths, char *cmd)
 		free(command);
 		paths++;
 	}
-	return (NULL);
+	return (cmd);
 }
 
 static void	sub_dup2(int read_fd, int write_fd)
@@ -66,6 +66,7 @@ void	child(t_pipex data, char **envp)
 			dup2(data.outfile, STDOUT_FILENO);
 		}
 		close_pipes(&data);
-		execve(data.cmd, data.cmd_args, envp);
+		if(execve(data.cmd, data.cmd_args, envp) < 0)
+			perror(data.cmd);
 		exit(0);
 }

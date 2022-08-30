@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 22:40:15 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/30 10:30:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,4 @@ void	free_cmd(t_pipex *data)
 	free(data->cmd_args);
 	free(data->cmd);
 	perror("Command not found");
-	exit(127);
 }

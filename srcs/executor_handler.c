@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 10:15:06 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 10:33:32 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ void	executor_handler(void)
 			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		else
 			data.cmd = data.cmd_args[0];
-		if (!data.cmd)
-			free_cmd(&data);
 		if (is_builtin(data.cmd) == 1)
 			execute_builtin(&data, data.cmd, data.cmd_args, envp);
 		else
