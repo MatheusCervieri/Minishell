@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 09:58:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:12:43 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:45:15 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	enter_dir(char *dir)
 	}
 }
 
-void	cd_bi(char **cmd_args, char **envp)
+void	cd_bi(char **cmd_args, char **envp, int fd[2])
 {
 	char	*home_path;
 
@@ -53,4 +53,5 @@ void	cd_bi(char **cmd_args, char **envp)
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 	}
+	convert_list_to_fd_fds(fd);
 }

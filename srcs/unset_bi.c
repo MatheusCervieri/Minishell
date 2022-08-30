@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_bi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:03 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 22:09:15 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:45:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	remove_node(t_list **head, int position)
     }
 }
 
-void unset_bi(char **cmd_args)
+void unset_bi(char **cmd_args, int fd[2])
 {
     if (args_len(cmd_args) > 0)
     {
@@ -74,4 +74,5 @@ void unset_bi(char **cmd_args)
             i++;
         }
     }
+	convert_list_to_fd_fds(fd);
 }

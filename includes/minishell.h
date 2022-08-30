@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 20:40:02 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:46:06 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,24 @@ void	here_doc(char *argv, t_pipex *pipex);
 void	executor_handler(void);
 
 //Built ins 
-void	env_bi(char **cmd_args, char **envp);
-void	pwd_bi(void);
+void	env_bi(char **cmd_args, char **envp, int fd[2]);
+void	pwd_bi(int fd[2]);
 int		args_len(char **cmd_args);
-void	cd_bi(char **cmd_args, char **envp);
-void	echo_bi(char **cmd_args);
+void	cd_bi(char **cmd_args, char **envp, int fd[2]);
+void	echo_bi(char **cmd_args, int fd[2]);
 int		is_builtin(char *cmd);
-void	execute_builtin(char *cmd, char **cmd_args, char **envp, int pid);
-void	export_bi(char **cmd_args);
+void	execute_builtin(char *cmd, char **cmd_args, char **envp, int pid, int fd[2]);
+void	export_bi(char **cmd_args, int fd[2]);
 void	remove_node(t_list **head, int position);
 int		lst_find_var_p(t_list *head, char *var_name);
 int	find_equal_position(char *arg);
 void	change_node(t_list **head, int position, char *arg);
-void	unset_bi(char **cmd_args);
+void	unset_bi(char **cmd_args, int fd[2]);
 void	exit_bi(int pid);
 char	**convert_list_to_char(void);
 void	signals(void);
+void convert_list_to_fd(t_pipex data);
+void convert_list_to_fd_fds(int fd[2]);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);

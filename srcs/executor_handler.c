@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 21:22:55 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 22:05:05 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void wait_pids(t_pipex *data)
 }
 void convert_fd_to_list(t_pipex data)
 {
-	char *buf = malloc(sizeof(char) * 100);
+	char *buf;
+	buf = ft_calloc(sizeof(char), 100);
 	char **envp;
 	char *final_string;
 	final_string = ft_strdup("");
@@ -98,8 +99,11 @@ void convert_fd_to_list(t_pipex data)
 	{
 		read_rn = read(data.fd_bi[0], buf, 99);
 		if(buf != NULL)
-			final_string = ft_strjoin(final_string, buf);	
+			final_string = ft_strjoin(final_string, buf);
+		buf = ft_calloc(sizeof(char), 100);
+	
 	}
+	
 	envp = ft_split(final_string, '\n');
 	g_cmd_table->envp = make_list(envp);
 }

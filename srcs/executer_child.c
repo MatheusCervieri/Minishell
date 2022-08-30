@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 20:59:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:42:24 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,22 @@ void convert_list_to_fd(t_pipex data)
 	close(data.fd_bi[1]);
 }
 
+void convert_list_to_fd_fds(int fd[2])
+{
+	t_list *aux;
+	aux = g_cmd_table->envp;
+	while(aux)
+	{
+		ft_putstr_fd(aux->content, fd[1]);
+		ft_putstr_fd("\n", fd[1]);
+		aux = aux->next;
+	}
+	close(fd[0]);
+	close(fd[1]);
+}
+
 void	child(t_pipex data, char **envp)
 {
-		convert_list_to_fd(data);
 		if (data.cmd_nmbs != 1)
 			handle_dup(&data);
 		else
@@ -99,11 +112,17 @@ void	child(t_pipex data, char **envp)
 		
 		if (is_builtin(data.cmd) == 1)
 		{
-			
-			execute_builtin(data.cmd, data.cmd_args, envp, data.pid);
+			if(ft_strncmp(data.cmd, "exit", 5) == 0)
+			{
+			convert_list_to_fd(data);
+			close(data.fd_bi[0]);
+			close(data.fd_bi[1]);
+			}
+			execute_builtin(data.cmd, data.cmd_args, envp, data.pid, data.fd_bi);
 		}
 		else
 		{
+			convert_list_to_fd(data);
 			close(data.fd_bi[0]);
 			close(data.fd_bi[1]);
 			execve(data.cmd, data.cmd_args, envp);

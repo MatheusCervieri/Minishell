@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 08:59:18 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 18:13:17 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:45:03 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	args_len(char **cmd_args)
 	return (i);
 }
 
-void	env_bi(char **cmd_args, char **envp)
+void	env_bi(char **cmd_args, char **envp, int fd[2])
 {
 	if (args_len(cmd_args) > 1)
 	{
@@ -49,4 +49,5 @@ void	env_bi(char **cmd_args, char **envp)
 	}
 	else
 		print_envp(envp);
+	convert_list_to_fd_fds(fd);
 }

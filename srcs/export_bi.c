@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 21:47:35 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:45:37 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void change_or_create(char *arg)
 	}
 }
 
-void export_bi(char **cmd_args)
+void export_bi(char **cmd_args, int fd[2])
 {
 	int i;
 	if(args_len(cmd_args) == 0)
@@ -103,4 +103,5 @@ void export_bi(char **cmd_args)
 		i++;
 		}
 	}
+	convert_list_to_fd_fds(fd);
 }
