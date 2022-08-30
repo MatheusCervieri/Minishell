@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 11:10:27 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:25:12 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_cmd_table
 	int		append;		
 	int		status;
 	int		last_status;
+	int		here_doc_loop;
+	int		here_doc_file; 
 	t_list	*envp;
 }				t_cmd_table;
 
@@ -106,6 +108,7 @@ void	exit_bi(void);
 char	**convert_list_to_char(void);
 void	signals_parent(void);
 void	signals_child(void);
+void	signals_here_doc(void);
 char	*get_cmd(char **paths, char *cmd);
 void	handle_dup(t_pipex *data);
 void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
