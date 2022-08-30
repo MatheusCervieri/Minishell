@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 11:12:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:07:50 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	init_data_executor(t_pipex *data, char *envp[])
 	init_pipes(data);
 }
 
-void wait_pids(t_pipex *data)
+void	wait_pids(t_pipex *data)
 {
-	int i;
-	int *status;
+	int	i;
+	int	*status;
 
 	status = malloc(sizeof(int) * data->cmd_nmbs);
 	i = 0;
@@ -87,13 +87,35 @@ void wait_pids(t_pipex *data)
 	free(status);
 }
 
-int is_directory(char *cmd)
+int	is_directory(char *cmd)
 {
 	if (cmd[0] == '/')
 		return (1);
-	return(0);
+	return (0);
 }
 
+void executor_loop(t_pipex *data, char **envp)
+{
+	while (data->idx < data->cmd_nmbs)
+	{
+	signals_child();
+	data->cmd_args = ft_split(g_cmd_table->table[data->idx],
+			' ');
+	if (is_directory(data->cmd_args[0]) == 0)
+		data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0]);
+	else
+		data->cmd = data->cmd_args[0];
+	if (is_builtin(data->cmd) == 1)
+		execute_builtin(data, data->cmd, data->cmd_args, envp);
+	else
+	{
+		data->pids[data->idx] = fork();
+		if (data->pids[data->idx] == 0)
+				child(data, envp);
+	}
+	data->idx++;
+	}
+}
 
 void	executor_handler(void)
 {
@@ -110,25 +132,7 @@ void	executor_handler(void)
 	put_outfile_fd(&data, g_cmd_table->outfile);
 	init_data_executor(&data, envp);
 	data.pids = malloc(sizeof(int) * data.cmd_nmbs);
-	while (data.idx < data.cmd_nmbs)
-	{
-		signals_child();
-		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
-				' ');
-		if(is_directory(data.cmd_args[0]) == 0)
-			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
-		else
-			data.cmd = data.cmd_args[0];
-		if (is_builtin(data.cmd) == 1)
-			execute_builtin(&data, data.cmd, data.cmd_args, envp);
-		else
-		{
-			data.pids[data.idx] = fork();
-			if(data.pids[data.idx] == 0)
-				child(data, envp);
-		}
-		data.idx++;
-	}
+	executor_loop(&data, envp);
 	close_pipes(&data);
 	wait_pids(&data);
 	free(data.pids);

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 10:30:52 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:58:31 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	msg_error(char *error, int exit_code)
 {
 	write(2, error, ft_strlen(error));
-	//exit(exit_code);
 	g_cmd_table->status = exit_code;
 }
 

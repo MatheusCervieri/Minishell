@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 11:12:43 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:06:14 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,17 @@ void	handle_dup(t_pipex *data)
 					data->pipe[(2 * data->idx) + 1]);
 }
 
-
-void	child(t_pipex data, char **envp)
+void	child(t_pipex *data, char **envp)
 {
-		
-		if (data.cmd_nmbs != 1)
-			handle_dup(&data);
-		else
-		{
-			dup2(data.infile, STDIN_FILENO);
-			dup2(data.outfile, STDOUT_FILENO);
-		}
-		close_pipes(&data);
-		if(execve(data.cmd, data.cmd_args, envp) < 0)
-			perror(data.cmd);
-		exit(0);
+	if (data->cmd_nmbs != 1)
+		handle_dup(data);
+	else
+	{
+		dup2(data->infile, STDIN_FILENO);
+		dup2(data->outfile, STDOUT_FILENO);
+	}
+	close_pipes(data);
+	if (execve(data->cmd, data->cmd_args, envp) < 0)
+		perror(data->cmd);
+	exit(0);
 }

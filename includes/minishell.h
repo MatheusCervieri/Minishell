@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 12:25:12 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:06:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	free_cmd(t_pipex *data);
 void	init_data(t_pipex *data, int argc, char *envp[]);
 
 //child.c
-void	child(t_pipex data, char **envp);
+void	child(t_pipex *data, char **envp);
 void	close_pipes(t_pipex *data);
 
 //Pipex 2.0 
