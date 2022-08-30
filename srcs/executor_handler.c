@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 21:01:17 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:22:55 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,8 @@ void wait_pids(t_pipex *data)
 }
 void convert_fd_to_list(t_pipex data)
 {
-	/*
-	char *node_content;
-	t_list *lst;
-	node_content = get_next_line(data.fd_bi[0]);
-	lst = ft_lstnew(node_content);
-	printf("%s\n", (char *)lst->content);
-	while (node_content)
-	{
-		node_content = get_next_line(data.fd_bi[0]);
-		ft_lstadd_back(&lst, ft_lstnew(node_content));
-		ft_putstr_fd("WTF \n", 2);
-	}
-	ft_putstr_fd(":(\n", 2);
-	while(lst)
-	{
-		printf("%s", (char *) lst->content);
-		lst = lst->next;
-	}
-	*/
 	char *buf = malloc(sizeof(char) * 100);
+	char **envp;
 	char *final_string;
 	final_string = ft_strdup("");
 	int read_rn;
@@ -118,8 +100,8 @@ void convert_fd_to_list(t_pipex data)
 		if(buf != NULL)
 			final_string = ft_strjoin(final_string, buf);	
 	}
-	printf("\n\n%s\n\n", final_string);
-	ft_putstr_fd("\n", 1);
+	envp = ft_split(final_string, '\n');
+	g_cmd_table->envp = make_list(envp);
 }
 
 void	executor_handler(void)
