@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 13:17:11 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:20:02 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,14 @@ int	already_var(t_list *envp, char *arg)
 {
 	while (envp)
 	{
-		if (ft_strncmp((char*)envp->content,
+		if (ft_strncmp((char *)envp->content,
 				arg, find_equal_position(arg)) == 0)
 		{
 			return (1);
 		}
-		envp = envp->next;	
+		envp = envp->next;
 	}
 	return (0);
-}
-
-int	lst_find_var_p(t_list *head, char *var_name)
-{
-	int p;
-
-	p = 0;
-	while (head)
-	{
-		if (ft_strncmp((char *)head->content, var_name,
-				find_equal_position(var_name) + 1) == 0)
-			return (p);
-		p++;
-		head = head->next;
-	}
-	return (-1);
 }
 
 void	change_or_create(char *arg)
@@ -89,10 +73,13 @@ void	change_or_create(char *arg)
 
 void	export_bi(char **cmd_args)
 {
-	int	i;
-	if (args_len(cmd_args) == 0)
+	int		i;
+	char	**envp;
+
+	if (args_len(cmd_args) == 1)
 	{
-		printf("export declare");
+		envp = convert_list_to_char();
+		print_export_no_parameters(envp);
 	}
 	else
 	{

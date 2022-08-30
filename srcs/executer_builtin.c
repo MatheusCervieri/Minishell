@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 12:55:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:16:19 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**convert_list_to_char(void)
 void	choose_bultin(char **cmd_args, char *cmd, char **envp)
 {
 	if (ft_strncmp(cmd, "env", 4) == 0)
-		env_bi(cmd_args, envp);
+		env_bi(cmd_args);
 	else if (ft_strncmp(cmd, "cd", 3) == 0)
 		cd_bi(cmd_args, envp);
 	else if (ft_strncmp(cmd, "echo", 5) == 0)

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 13:11:32 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:16:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	here_doc(char *argv, t_pipex *pipex);
 void	executor_handler(void);
 
 //Built ins 
-void	env_bi(char **cmd_args, char **envp);
+void	env_bi(char **cmd_args);
 void	pwd_bi(void);
 int		args_len(char **cmd_args);
 void	cd_bi(char **cmd_args, char **envp);
@@ -114,7 +114,8 @@ void	handle_dup(t_pipex *data);
 void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
 void	put_infile_fd(t_pipex *data, char *infile_path);
 void	put_outfile_fd(t_pipex *data, char *outfile_path);
-
+void	print_envp(char **envp);
+void	print_export_no_parameters(char **envp);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);

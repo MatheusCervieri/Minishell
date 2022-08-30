@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 13:10:58 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:10:30 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	executor_loop(t_pipex *data, char **envp)
 {
 	while (data->idx < data->cmd_nmbs)
 	{
-		signals_child();
 		data->cmd_args = ft_split(g_cmd_table->table[data->idx],
 				' ');
 		if (is_directory(data->cmd_args[0]) == 0)
@@ -67,7 +66,10 @@ void	executor_loop(t_pipex *data, char **envp)
 		{
 			data->pids[data->idx] = fork();
 			if (data->pids[data->idx] == 0)
+			{
+				signals_child();
 				child(data, envp);
+			}
 		}
 	data->idx++;
 	}
