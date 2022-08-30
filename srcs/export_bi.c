@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/25 21:47:35 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:17:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	already_var(t_list *envp, char *arg)
 {
 	while (envp)
 	{
-		if (ft_strncmp( (char*) envp->content, arg,
-				find_equal_position(arg)) == 0)
+		if (ft_strncmp((char*)envp->content,
+				arg, find_equal_position(arg)) == 0)
 		{
 			return (1);
 		}
@@ -66,7 +66,8 @@ int	lst_find_var_p(t_list *head, char *var_name)
 	p = 0;
 	while (head)
 	{
-		if (ft_strncmp((char *)head->content, var_name, find_equal_position(var_name) + 1) == 0)
+		if (ft_strncmp((char *)head->content, var_name,
+				find_equal_position(var_name) + 1) == 0)
 			return (p);
 		p++;
 		head = head->next;
@@ -74,23 +75,22 @@ int	lst_find_var_p(t_list *head, char *var_name)
 	return (-1);
 }
 
-void change_or_create(char *arg)
+void	change_or_create(char *arg)
 {
 	if (find_equal_position(arg) > 0)
 	{
-	if (lst_find_var_p(g_cmd_table->envp, arg) >= 0)
-	{
-		change_node(&(g_cmd_table->envp), lst_find_var_p(g_cmd_table->envp, arg), arg);
-	}
-	else 
-		ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)arg));
+		if (lst_find_var_p(g_cmd_table->envp, arg) >= 0)
+			change_node(&(g_cmd_table->envp),
+				lst_find_var_p(g_cmd_table->envp, arg), arg);
+		else
+			ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)arg));
 	}
 }
 
-void export_bi(char **cmd_args)
+void	export_bi(char **cmd_args)
 {
-	int i;
-	if(args_len(cmd_args) == 0)
+	int	i;
+	if (args_len(cmd_args) == 0)
 	{
 		printf("export declare");
 	}
@@ -99,8 +99,8 @@ void export_bi(char **cmd_args)
 		i = 0;
 		while (i < args_len(cmd_args))
 		{
-		change_or_create(cmd_args[i]);
-		i++;
+			change_or_create(cmd_args[i]);
+			i++;
 		}
 	}
 }

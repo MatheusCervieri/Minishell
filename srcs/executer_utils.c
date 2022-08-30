@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 23:09:12 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:10:50 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,48 @@ void	close_pipes(t_pipex *data)
 		i++;
 	}
 	data->success = 1;
+}
+
+void	put_infile_fd(t_pipex *data, char *infile_path)
+{
+	if (ft_strncmp(infile_path, "STDIN_FILENO", 13) == 0)
+		data->infile_exists = 0;
+	else
+		data->infile_exists = 1;
+	if (data->infile_exists != 0 && data->here_doc == 0)
+	{
+		data->infile = open(infile_path, O_RDONLY);
+		if (data->infile < 0)
+			msg_error("Invalid infile\n", 7);
+	}
+	else if (data->here_doc == 1)
+	{
+		here_doc(data->limiter, data);
+	}
+	else
+		data->infile = 0;
+}
+
+void	put_outfile_fd(t_pipex *data, char *outfile_path)
+{
+	if (!(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0))
+	{
+		if (data->append == 1)
+			data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_APPEND,
+					0000644);
+		else
+		{
+		data->outfile = open(outfile_path, O_WRONLY | O_CREAT | O_TRUNC,
+					0000644);
+		}
+		if (data->outfile < 0)
+		{
+			close(data->infile);
+			msg_error("Bad Permission Outfile\n", 8);
+		}
+	}
+	else
+	{
+		data->outfile = 1;
+	}
 }

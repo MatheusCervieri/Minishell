@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:01:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 09:55:02 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:13:33 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	exit_bi(void)
 {
-		write(1, "exit\n", 6);
-		free_global();
-		clear_memory();
-		exit(0);
+	write(1, "exit\n", 6);
+	free_global();
+	clear_memory();
+	exit(0);
 }

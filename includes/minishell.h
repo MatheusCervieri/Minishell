@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 13:06:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:11:32 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ void	signals_here_doc(void);
 char	*get_cmd(char **paths, char *cmd);
 void	handle_dup(t_pipex *data);
 void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
+void	put_infile_fd(t_pipex *data, char *infile_path);
+void	put_outfile_fd(t_pipex *data, char *outfile_path);
+
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);
