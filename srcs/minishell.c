@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 20:49:03 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:25:53 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	minishell(char *envp[])
 	rtn = 0;
 	while (rtn != 1 && rtn != 3)
 	{
+		signals();
 		if (reset_global(&rtn))
 			break ;
 		rtn = prompt(&line);

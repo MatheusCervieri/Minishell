@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 21:43:17 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 09:55:26 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,27 @@ char	**convert_list_to_char(void)
 	return (envp);
 }
 
-void	execute_builtin(char *cmd, char **cmd_args, char **envp, int pid, int fd[2])
+void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp)
 {
+	if (data->cmd_nmbs != 1)
+		handle_dup(data);
+	else
+	{
+		dup2(data->infile, STDIN_FILENO);
+		dup2(data->outfile, STDOUT_FILENO);
+	}
 	if (ft_strncmp(cmd, "env", 4) == 0)
-		env_bi(cmd_args, envp, fd);
+		env_bi(cmd_args, envp);
 	else if (ft_strncmp(cmd, "cd", 3) == 0)
-		cd_bi(cmd_args, envp, fd);
+		cd_bi(cmd_args, envp);
 	else if (ft_strncmp(cmd, "echo", 5) == 0)
-		echo_bi(cmd_args, fd);
+		echo_bi(cmd_args);
 	else if (ft_strncmp(cmd, "pwd", 4) == 0)
-		pwd_bi(fd);
+		pwd_bi();
 	else if (ft_strncmp(cmd, "exit", 5) == 0)
-		exit_bi(pid);
+		exit_bi();
 	else if (ft_strncmp(cmd, "export", 7) == 0)
-		export_bi(cmd_args, fd);
+		export_bi(cmd_args);
 	else if (ft_strncmp(cmd, "unset", 5) == 0)
-		unset_bi(cmd_args, fd);
+		unset_bi(cmd_args);
 }

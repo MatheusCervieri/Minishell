@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/29 22:05:05 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 09:59:17 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,27 +86,14 @@ void wait_pids(t_pipex *data)
 	}
 	free(status);
 }
-void convert_fd_to_list(t_pipex data)
+
+int is_directory(char *cmd)
 {
-	char *buf;
-	buf = ft_calloc(sizeof(char), 100);
-	char **envp;
-	char *final_string;
-	final_string = ft_strdup("");
-	int read_rn;
-	read_rn = 99;
-	while (read_rn >= 99)
-	{
-		read_rn = read(data.fd_bi[0], buf, 99);
-		if(buf != NULL)
-			final_string = ft_strjoin(final_string, buf);
-		buf = ft_calloc(sizeof(char), 100);
-	
-	}
-	
-	envp = ft_split(final_string, '\n');
-	g_cmd_table->envp = make_list(envp);
+	if (cmd[0] == '/')
+		return (1);
+	return(0);
 }
+
 
 void	executor_handler(void)
 {
@@ -114,7 +101,6 @@ void	executor_handler(void)
 	int		pipe_stdin;
 	char	**envp;
 
-	pipe(data.fd_bi);
 	pipe_stdin = dup(STDIN_FILENO);
 	envp = convert_list_to_char();
 	data.here_doc = g_cmd_table->here_doc;
@@ -126,19 +112,27 @@ void	executor_handler(void)
 	data.pids = malloc(sizeof(int) * data.cmd_nmbs);
 	while (data.idx < data.cmd_nmbs)
 	{
-		data.pids[data.idx] = fork();
-		if(data.pids[data.idx] == 0)
-			child(data, envp);
+		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
+				' ');
+		if(is_directory(data.cmd_args[0]) == 0)
+			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
+		else
+			data.cmd = data.cmd_args[0];
+		if (!data.cmd)
+			free_cmd(&data);
+		if (is_builtin(data.cmd) == 1)
+			execute_builtin(&data, data.cmd, data.cmd_args, envp);
+		else
+		{
+			data.pids[data.idx] = fork();
+			if(data.pids[data.idx] == 0)
+				child(data, envp);
+		}
 		data.idx++;
 	}
 	close_pipes(&data);
 	wait_pids(&data);
-	convert_fd_to_list(data);
-	close(data.fd_bi[0]);
-	close(data.fd_bi[1]);
 	free(data.pids);
 	dup2(pipe_stdin, STDIN_FILENO);
 	parent_close(&data, "success", 0);
-	if (g_cmd_table->status == 42)
-		exit_bi(1);
 }
