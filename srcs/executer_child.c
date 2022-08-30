@@ -6,13 +6,13 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/29 21:42:24 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/29 22:32:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static char	*get_cmd(char **paths, char *cmd)
+static char	*get_cmd(char **paths, char *cmd, t_pipex data)
 {
 	char	*tmp;
 	char	*command;
@@ -29,6 +29,7 @@ static char	*get_cmd(char **paths, char *cmd)
 		free(command);
 		paths++;
 	}
+	convert_list_to_fd(data);
 	return (NULL);
 }
 
@@ -93,6 +94,7 @@ void convert_list_to_fd_fds(int fd[2])
 
 void	child(t_pipex data, char **envp)
 {
+		
 		if (data.cmd_nmbs != 1)
 			handle_dup(&data);
 		else
@@ -104,7 +106,7 @@ void	child(t_pipex data, char **envp)
 		data.cmd_args = ft_split(g_cmd_table->table[data.idx],
 				' ');
 		if(is_directory(data.cmd_args[0]) == 0)
-			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
+			data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0], data);
 		else
 			data.cmd = data.cmd_args[0];
 		if (!data.cmd)
