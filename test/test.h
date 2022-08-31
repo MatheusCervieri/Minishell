@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 01:31:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/23 22:48:09 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:30:17 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	handle_special(char *line, t_list **lst);
 int check_quotes(const char *line);
 char	*expand(char *line, int i);
 void	expand_line(int i);
+int	init_global(char *envp[]);
 int	reset_global(int *rtn);
 
 #endif

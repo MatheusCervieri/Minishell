@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/31 12:38:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:19:52 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	reset_global(int *rtn)
 	g_cmd_table->n_of_cmds = 0;
 	g_cmd_table->n_of_pipes = 0;
 	g_cmd_table->append = 0;
-	g_cmd_table->status = 0;
 	g_cmd_table->last_status = g_cmd_table->status;
+	g_cmd_table->status = 0;
 	*rtn = 0;
 	return (*rtn);
 }
