@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 13:06:14 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:23:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	handle_dup(t_pipex *data)
 
 void	child(t_pipex *data, char **envp)
 {
+	signal(SIGINT, ctrlc_child_handler);
 	if (data->cmd_nmbs != 1)
 		handle_dup(data);
 	else

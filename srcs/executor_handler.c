@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 21:35:36 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:18:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	executor_loop(t_pipex *data, char **envp)
 			data->pids[data->idx] = fork();
 			if (data->pids[data->idx] == 0)
 			{
-				signal(SIGINT, ctrlc_child_handler);
 				child(data, envp);
 			}
 		}
