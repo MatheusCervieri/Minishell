@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 17:54:16 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:34:09 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,9 @@ void	put_infile_fd(t_pipex *data, char *infile_path);
 void	put_outfile_fd(t_pipex *data, char *outfile_path);
 void	print_envp(char **envp);
 void	print_export_no_parameters(char **envp);
+void	ctrlc_handler(int sing);
+void	ctrlc_child_handler(int sing);
+void	ctrlc_here_doc_handler(int sing);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);

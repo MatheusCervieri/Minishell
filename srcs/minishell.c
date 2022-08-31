@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 18:17:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:34:25 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	minishell(char *envp[])
 	rtn = 0;
 	while (rtn != 1 && rtn != 3)
 	{
+		signal(SIGINT, ctrlc_handler);
+		signal(SIGQUIT, SIG_IGN);
 		if (g_cmd_table->signal == 1)
 			break ;
 		if (reset_global(&rtn))
@@ -107,7 +109,6 @@ void	minishell(char *envp[])
 		free(line);
 		executor_handler();
 		free_global();
-		signals_parent();
 	}
 	clear_memory();
 }
