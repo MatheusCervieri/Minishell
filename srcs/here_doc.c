@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 16:20:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:56:36 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	here_doc(char *argv, t_pipex *pipex)
 {
-	//signals_here_doc();
+	signal(SIGINT, ctrlc_here_doc_handler);
 	int		file;
 	char	*buf;
 	int		loop;

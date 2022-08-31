@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/31 12:18:00 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:34:24 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	print_export_no_parameters(char **envp);
 void	ctrlc_handler(int sing);
 void	ctrlc_child_handler(int sing);
 void	ctrlc_here_doc_handler(int sing);
+void	signals_child(void);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);

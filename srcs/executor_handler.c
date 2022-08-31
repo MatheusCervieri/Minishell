@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/31 12:18:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:40:15 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	executor_loop(t_pipex *data, char **envp)
 			execute_builtin(data, data->cmd, data->cmd_args, envp);
 		else
 		{
+			signal(SIGINT, ctrlc_child_handler);
 			data->pids[data->idx] = fork();
 			if (data->pids[data->idx] == 0)
 			{
@@ -77,7 +78,6 @@ void	executor_loop(t_pipex *data, char **envp)
 void	executor_handler(void)
 {
 	t_pipex	data;
-	int		pipe_stdin;
 	char	**envp;
 
 	envp = convert_list_to_char();
