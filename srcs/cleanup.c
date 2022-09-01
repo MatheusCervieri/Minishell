@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 13:53:07 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 20:10:34 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:04:58 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	clear_memory(void)
 	ft_lstclear(&g_cmd_table->envp, free);
 	free(g_cmd_table);
 }
-
 
 void	free_global(void)
 {

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:25:16 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 11:07:08 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:05:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ctrlc_handler(int sing)
 {
 	g_cmd_table->status = 130;
-	if(g_cmd_table->here_doc == 1)
+	if (g_cmd_table->here_doc == 1)
 		g_cmd_table->here_doc_execute = 0;
 	else
 	{
