@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 12:47:30 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:47:35 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ void	executor_loop(t_pipex *data, char **envp)
 	}
 }
 
+
 void	executor_handler(void)
 {
 	t_pipex	data;
 	char	**envp;
+	int		i;
 
 	envp = convert_list_to_char();
 	g_cmd_table->here_doc_execute = 1;
@@ -94,7 +96,17 @@ void	executor_handler(void)
 		executor_loop(&data, envp);
 		close_pipes(&data);
 		wait_pids(&data);
+		i = 0;
+		while (envp[i])
+		{
+			free(envp[i]);
+			i++;
+		}
+		free(envp);
 		free(data.pids);
+		free(data.pipe);
+		data.pipe = NULL;
+		free(data.cmd_args);
 		parent_close(&data, "success", 0);
 	}
 }
