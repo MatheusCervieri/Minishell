@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/31 12:40:15 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:58:00 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,14 @@ void	executor_handler(void)
 	char	**envp;
 
 	envp = convert_list_to_char();
+	g_cmd_table->here_doc_execute = 1;
 	data.here_doc = g_cmd_table->here_doc;
 	data.append = g_cmd_table->append;
 	data.limiter = g_cmd_table->limiter;
 	put_infile_fd(&data, g_cmd_table->infile);
 	put_outfile_fd(&data, g_cmd_table->outfile);
+	if(g_cmd_table->here_doc_execute == 1)
+	{
 	init_data_executor(&data, envp);
 	data.pids = malloc(sizeof(int) * data.cmd_nmbs);
 	executor_loop(&data, envp);
@@ -93,4 +96,5 @@ void	executor_handler(void)
 	wait_pids(&data);
 	free(data.pids);
 	parent_close(&data, "success", 0);
+	}
 }

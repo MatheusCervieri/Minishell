@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/31 12:56:36 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:41:13 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	here_doc(char *argv, t_pipex *pipex)
 {
-	signal(SIGINT, ctrlc_here_doc_handler);
 	int		file;
 	char	*buf;
 	int		loop;
 	char	break_line;
 
+	signal(SIGINT, ctrlc_here_doc_handler);
 	g_cmd_table->here_doc_loop = 1;
 	break_line = '\n';
 	file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
@@ -43,8 +43,5 @@ void	here_doc(char *argv, t_pipex *pipex)
 		}
 	}
 	close(file);
-	pipex->infile = file;
-	pipex->infile = open(".heredoc_tmp", O_RDONLY);
-	if (pipex->infile < 0)
-		msg_error("Invalid infile\n", 7);
+	exit(0);
 }

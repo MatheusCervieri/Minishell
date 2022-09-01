@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/31 12:34:24 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:54:28 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s_cmd_table
 	int		status;
 	int		last_status;
 	int		here_doc_loop;
-	int		here_doc_file; 
+	int		here_doc_file;
+	int		here_doc_execute;
 	int		signal; 
 	t_list	*envp;
 }				t_cmd_table;

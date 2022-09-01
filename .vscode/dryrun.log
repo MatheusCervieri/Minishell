@@ -1,5 +1,54 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/GabrielHenaut/Projects/42/Minishell'
-make: Nothing to be done for 'all'.
+cd ./Libft/ && make --no-print-directory
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/main.c -o objs/main.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/minishell.c -o objs/minishell.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/parser.c -o objs/parser.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/parser_utils.c -o objs/parser_utils.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/expander.c -o objs/expander.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/cleanup.c -o objs/cleanup.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/lexer.c -o objs/lexer.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/env.c -o objs/env.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/executer_child.c -o objs/executer_child.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/executer_error.c -o objs/executer_error.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/executer_utils.c -o objs/executer_utils.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/executor_handler.c -o objs/executor_handler.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/here_doc.c -o objs/here_doc.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/env_bi.c -o objs/env_bi.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/pwd.c -o objs/pwd.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/cd.c -o objs/cd.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/echo.c -o objs/echo.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/executer_builtin.c -o objs/executer_builtin.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/export_bi.c -o objs/export_bi.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/unset_bi.c -o objs/unset_bi.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/exit_bi.c -o objs/exit_bi.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/utils.c -o objs/utils.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/signals.c -o objs/signals.o
+mkdir -p ./objs/
+cc -g -g3 -I ./includes/  -c srcs/export_bi_utils.c -o objs/export_bi_utils.o
+cc -o minishell ./objs/main.o ./objs/minishell.o ./objs/parser.o ./objs/parser_utils.o ./objs/expander.o ./objs/cleanup.o ./objs/lexer.o ./objs/env.o ./objs/executer_child.o ./objs/executer_error.o ./objs/executer_utils.o ./objs/executor_handler.o ./objs/here_doc.o ./objs/env_bi.o ./objs/pwd.o ./objs/cd.o ./objs/echo.o ./objs/executer_builtin.o ./objs/export_bi.o ./objs/unset_bi.o ./objs/exit_bi.o ./objs/utils.o ./objs/signals.o ./objs/export_bi_utils.o ./Libft/libft.a  -lreadline
 make: Leaving directory '/home/GabrielHenaut/Projects/42/Minishell'
  

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/30 13:10:50 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:42:10 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,15 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 	}
 	else if (data->here_doc == 1)
 	{
-		here_doc(data->limiter, data);
+		int pid = fork();
+		if (pid == 0)
+		{
+			here_doc(data->limiter, data);
+		}
+		waitpid(pid, NULL, 0);
+		data->infile = open(".heredoc_tmp", O_RDONLY);
+		if (data->infile < 0)
+			msg_error("Can`t open here_doc file\n", 7);
 	}
 	else
 		data->infile = 0;
