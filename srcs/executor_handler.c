@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 11:58:42 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:47:30 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ void	executor_handler(void)
 	data.limiter = g_cmd_table->limiter;
 	put_infile_fd(&data, g_cmd_table->infile);
 	put_outfile_fd(&data, g_cmd_table->outfile);
-	if(g_cmd_table->here_doc_execute == 1)
+	if (g_cmd_table->here_doc_execute == 1)
 	{
-	init_data_executor(&data, envp);
-	data.pids = malloc(sizeof(int) * data.cmd_nmbs);
-	executor_loop(&data, envp);
-	close_pipes(&data);
-	wait_pids(&data);
-	free(data.pids);
-	parent_close(&data, "success", 0);
+		init_data_executor(&data, envp);
+		data.pids = malloc(sizeof(int) * data.cmd_nmbs);
+		executor_loop(&data, envp);
+		close_pipes(&data);
+		wait_pids(&data);
+		free(data.pids);
+		parent_close(&data, "success", 0);
 	}
 }

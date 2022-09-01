@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 10:41:13 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:47:48 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	here_doc(char *argv, t_pipex *pipex)
 		msg_error("Error to create here_doc_tmp\n", 9);
 	while (g_cmd_table->here_doc_loop)
 	{
-		if(g_cmd_table->here_doc_loop != 0)
+		if (g_cmd_table->here_doc_loop != 0)
 			buf = readline(">");
 		if (!ft_strncmp(argv, buf, ft_strlen(argv)))
 		{
