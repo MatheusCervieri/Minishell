@@ -6,9 +6,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 31 15:25:13 2022
+# Make data base, printed on Thu Sep  1 20:22:16 2022
 
 # Variables
+ 
 
 # environment
 LC_ALL = C
@@ -165,7 +166,7 @@ XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # makefile (from 'Makefile', line 19)
 CFLAGS = -g -g3 -I $(HEADERS_PATH) 
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-12d88364-c219-474b-bf33-f815ec828ec4.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-1c30d2a6-6701-40d1-adb8-a674c8365a0f.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -201,12 +202,12 @@ DOTNET_ROOT = /usr/share/dotnet
 
 # Directories
 
-# ./test (device 2112, inode 85272): 6 files, no impossibilities.
-# . (device 2112, inode 101485): 30 files, no impossibilities.
-# test (device 2112, inode 85272): 6 files, no impossibilities.
+# ./test (device 2112, inode 85272): 5 files, no impossibilities.
+# . (device 2112, inode 101485): 39 files, no impossibilities.
+# test (device 2112, inode 85272): 5 files, no impossibilities.
 # srcs (device 2112, inode 155242): No files, no impossibilities so far.
 
-# 42 files, no impossibilities in 4 directories.
+# 49 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -277,7 +278,6 @@ bonus: all
 
 # Not a target:
 objs/executor_handler.o:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -290,6 +290,7 @@ clean:
 #  recipe to execute (from 'Makefile', line 84):
 	@$(RM) objs test/bin
 	@$(MAKE_NOPRINT) clean -C $(LIBS_PATH)
+ 
 
 # Not a target:
 objs/expander.o:
@@ -388,7 +389,7 @@ objs/executer_child.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-test: minishell test/bin test/bin/test test/bin/test_regua test/bin/test_verify
+test: minishell test/bin test/bin/test_regua
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -397,12 +398,6 @@ test: minishell test/bin test/bin/test test/bin/test_regua test/bin/test_verify
 
 # Not a target:
 objs/echo.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-test/bin/test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -484,12 +479,6 @@ objs/signals.o:
 #  File has not been updated.
 
 # Not a target:
-test/bin/test_verify:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
 objs/env_bi.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -508,19 +497,19 @@ test/bin/test_regua:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=41/1024=4%, Rehash=0, Collisions=0/94=0%
+# Load=39/1024=4%, Rehash=0, Collisions=0/90=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 80 / storage = 945 B / avg = 11 B
-# current buf: size = 8162 B / used = 945 B / count = 80 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 86 / storage = 941 B / avg = 10 B
+# current buf: size = 8162 B / used = 941 B / count = 86 / avg = 10 B
 
-# strcache performance: lookups = 113 / hit rate = 29%
+# strcache performance: lookups = 119 / hit rate = 27%
 # hash-table stats:
-# Load=80/8192=1%, Rehash=0, Collisions=0/113=0%
-# Finished Make data base on Wed Aug 31 15:25:13 2022
+# Load=86/8192=1%, Rehash=0, Collisions=0/119=0%
+# Finished Make data base on Thu Sep  1 20:22:16 2022
 
  

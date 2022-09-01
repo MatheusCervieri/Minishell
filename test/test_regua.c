@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:07:50 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/31 19:20:45 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/01 20:22:42 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,28 @@ Test(last_exit_code, code_2)
 	clear_memory();
 	close(fd);
 }
+
+// Test(last_exit_code, code_sum)
+// {
+// 	char line[] = "ls -la dasdasd > /dev/null";
+// 	init_global(envp);
+// 	int garbage = 0;
+// 	reset_global(&garbage);
+// 	cr_expect(garbage == 0, "no malloc error");
+// 	parse_line(line);
+// 	executor_handler();
+// 	free_global();
+// 	char line2[] = "expr $? + $? > out9";
+// 	reset_global(&garbage);
+// 	cr_expect(garbage == 0, "no malloc error");
+// 	parse_line(line2);
+// 	cr_log_info("%s\n", g_cmd_table->table[0]);
+// 	// executor_handler();
+// 	// int fd = open("out9", O_RDWR);
+// 	// char* rtn = get_next_line(fd);
+// 	// cr_expect(strncmp(rtn, "4\n", 2) == 0, "$? return %s, should be 4", rtn);
+// 	// free_global();
+// 	// clear_memory();
+// 	// close(fd);
+// }
 
