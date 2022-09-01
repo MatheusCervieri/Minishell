@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 10:58:00 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:58:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	executor_loop(t_pipex *data, char **envp)
 			data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0]);
 		else
 			data->cmd = data->cmd_args[0];
-		if (is_builtin(data->cmd) == 1)
+		if (is_builtin(data->cmd) == 1 && data->cmd_nmbs == 1)
 			execute_builtin(data, data->cmd, data->cmd_args, envp);
 		else
 		{
@@ -68,7 +68,7 @@ void	executor_loop(t_pipex *data, char **envp)
 			data->pids[data->idx] = fork();
 			if (data->pids[data->idx] == 0)
 			{
-				child(data, envp);
+				child_pipes(data, envp);
 			}
 		}
 	data->idx++;
