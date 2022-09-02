@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 00:11:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/22 20:19:12 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:37:53 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_list	*add_cmd(t_list *tct, int i)
 
 	size = cmd_size(tct);
 	g_cmd_table->table[i] = ft_strdup((char *)tct->content);
+	printf("%s | %i \n", g_cmd_table->table[i], size);
 	if (tct->next)
 		tct = tct->next;
 	while (size > 1)

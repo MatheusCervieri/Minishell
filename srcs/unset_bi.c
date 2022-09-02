@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:03 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 17:05:11 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:26:14 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	remove_node_loop(t_list	**aux_aux, t_list **prev_node_aux,
 		if (i == position)
 		{
 			prev_node->next = next_node;
+			free(aux->content);
 			free(aux);
 			break ;
 		}

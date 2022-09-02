@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 09:58:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 11:59:29 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:27:51 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	cd_bi(char **cmd_args, char **envp)
 	{
 		home_path = find_home_env(envp);
 		enter_dir(home_path);
+		free(home_path);
 	}
 	if (args_len(cmd_args) == 2)
 		enter_dir(cmd_args[1]);

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 16:20:02 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:21:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	change_or_create(char *arg)
 			change_node(&(g_cmd_table->envp),
 				lst_find_var_p(g_cmd_table->envp, arg), arg);
 		else
-			ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew((char *)arg));
+			ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew(ft_strdup((char *)arg)));
 	}
 }
 
@@ -80,6 +80,10 @@ void	export_bi(char **cmd_args)
 	{
 		envp = convert_list_to_char();
 		print_export_no_parameters(envp);
+		i = -1;
+		while (envp[++i])
+			free(envp[i]);
+		free(envp);
 	}
 	else
 	{
