@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 21:41:47 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:31:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ int	executor_loop(t_pipex *data, char **envp)
 	rtn = 0; 
 	while (data->idx < data->cmd_nmbs)
 	{
+		if (data->idx != 0)
+		{
+			int	i;
+
+			i = 0;
+			while (data->cmd_args[i])
+			{
+				free(data->cmd_args[i]);
+				i++;
+			}
+			free(data->cmd_args);
+			free(data->cmd);
+		}
 		data->cmd_args = ft_split(g_cmd_table->table[data->idx],
 				' ');
 		if (is_directory(data->cmd_args[0]) == 0)

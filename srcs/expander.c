@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/08/21 22:41:41 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:43:40 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*join_with_space(char *str1, char *str2)
 	tmp = ft_strjoin(str1, " ");
 	free(str1);
 	str1 = ft_strjoin(tmp, str2);
+	free(tmp);
 	return (str1);
 }
 

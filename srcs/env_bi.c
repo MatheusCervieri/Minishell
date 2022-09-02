@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 08:59:18 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/30 16:16:02 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:17:27 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	args_len(char **cmd_args)
 void	env_bi(char **cmd_args)
 {
 	char	**envp;
+	int		i;
 
 	envp = convert_list_to_char();
 	if (args_len(cmd_args) > 1)
@@ -52,4 +53,11 @@ void	env_bi(char **cmd_args)
 	}
 	else
 		print_envp(envp);
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		i++;
+	}	
+	free(envp);
 }
