@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 16:47:35 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:33:18 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ int	is_directory(char *cmd)
 	return (0);
 }
 
-void	executor_loop(t_pipex *data, char **envp)
+int	executor_loop(t_pipex *data, char **envp)
 {
+	int	rtn;
+
+	rtn = 0; 
 	while (data->idx < data->cmd_nmbs)
 	{
 		data->cmd_args = ft_split(g_cmd_table->table[data->idx],
@@ -59,9 +62,9 @@ void	executor_loop(t_pipex *data, char **envp)
 		if (is_directory(data->cmd_args[0]) == 0)
 			data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0]);
 		else
-			data->cmd = data->cmd_args[0];
+			data->cmd = ft_strdup(data->cmd_args[0]);
 		if (is_builtin(data->cmd) == 1 && data->cmd_nmbs == 1)
-			execute_builtin(data, data->cmd, data->cmd_args, envp);
+			rtn = execute_builtin(data, data->cmd, data->cmd_args, envp);
 		else
 		{
 			signal(SIGINT, ctrlc_child_handler);
@@ -73,6 +76,31 @@ void	executor_loop(t_pipex *data, char **envp)
 		}
 	data->idx++;
 	}
+	return (rtn);
+}
+
+void	delete_data(t_pipex *data, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		i++;
+	}
+	parent_close(data, "success", 0);
+	free(envp);
+	free(data->pids);
+	i = 0;
+	while (data->cmd_args[i])
+	{
+		free(data->cmd_args[i]);
+		i++;
+	}
+	
+	free(data->cmd);
+	free(data->cmd_args);
 }
 
 
@@ -81,6 +109,7 @@ void	executor_handler(void)
 	t_pipex	data;
 	char	**envp;
 	int		i;
+	int		rtn;
 
 	envp = convert_list_to_char();
 	g_cmd_table->here_doc_execute = 1;
@@ -93,20 +122,15 @@ void	executor_handler(void)
 	{
 		init_data_executor(&data, envp);
 		data.pids = malloc(sizeof(int) * data.cmd_nmbs);
-		executor_loop(&data, envp);
+		rtn = executor_loop(&data, envp);
 		close_pipes(&data);
 		wait_pids(&data);
-		i = 0;
-		while (envp[i])
+		delete_data(&data, envp);
+		if (rtn == 42)
 		{
-			free(envp[i]);
-			i++;
-		}
-		free(envp);
-		free(data.pids);
-		free(data.pipe);
-		data.pipe = NULL;
-		free(data.cmd_args);
-		parent_close(&data, "success", 0);
+			free_global();
+			clear_memory();
+			exit(0);
+		}		
 	}
 }

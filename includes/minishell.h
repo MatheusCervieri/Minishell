@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 11:54:13 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 20:59:45 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int		is_builtin(char *cmd);
 void	export_bi(char **cmd_args);
 void	remove_node(t_list **head, int position);
 int		lst_find_var_p(t_list *head, char *var_name);
-int	find_equal_position(char *arg);
+int		find_equal_position(char *arg);
 void	change_node(t_list **head, int position, char *arg);
 void	unset_bi(char **cmd_args);
 void	exit_bi(void);
@@ -113,7 +113,7 @@ void	signals_child(void);
 void	signals_here_doc(void);
 char	*get_cmd(char **paths, char *cmd);
 void	handle_dup(t_pipex *data);
-void	execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
+int		execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
 void	put_infile_fd(t_pipex *data, char *infile_path);
 void	put_outfile_fd(t_pipex *data, char *outfile_path);
 void	print_envp(char **envp);

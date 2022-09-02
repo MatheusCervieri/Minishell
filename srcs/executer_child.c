@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 16:49:56 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:33:00 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_cmd(char **paths, char *cmd)
 	char	*command;
 
 	if (is_builtin(cmd) == 1)
-		return (cmd);
+		return (ft_strdup(cmd));
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
@@ -29,7 +29,7 @@ char	*get_cmd(char **paths, char *cmd)
 		free(command);
 		paths++;
 	}
-	return (cmd);
+	return (ft_strdup(cmd));
 }
 
 static void	sub_dup2(int read_fd, int write_fd)

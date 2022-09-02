@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 16:10:39 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:06:29 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	close_io_exit(t_pipex *data, char *error, int exit_code)
 void	pipe_free(t_pipex *data, char *error, int exit_code)
 {
 	free(data->pipe);
-	
 	close_io_exit(data, error, exit_code);
 }
 
