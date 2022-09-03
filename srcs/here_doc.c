@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 13:02:23 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/02 21:14:21 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	here_doc_loop(char *limiter)
 	{
 		if (g_cmd_table->here_doc_loop != 0)
 			buf = readline(">");
+		if (buf == NULL)
+		{
+			printf("bash: warning: here-document delimited by end-of-file (wanted `%s')", limiter);
+			break ;
+		}
 		if (!ft_strncmp(limiter, buf, ft_strlen(limiter)))
 		{
 			g_cmd_table->here_doc_loop = 0;
@@ -34,17 +39,24 @@ void	here_doc_loop(char *limiter)
 	}
 }
 
-void	here_doc(char *limiter, t_pipex *pipex)
+void	here_doc(char *limiter, t_pipex *pipex, char **envp)
 {
 	char	*buf;
 	int		loop;
 	char	break_line;
+	int		i;
 
+	i = -1;
+	while (envp[++i])
+		free(envp[i]);
+	free(envp);
 	signal(SIGINT, ctrlc_here_doc_handler);
 	g_cmd_table->here_doc_loop = 1;
 	g_cmd_table->here_doc_file = open(".heredoc_tmp",
 			O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	here_doc_loop(limiter);
 	close(g_cmd_table->here_doc_file);
+	free_global();
+	clear_memory();
 	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_builtin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 20:58:53 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:45:40 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	choose_bultin(char **cmd_args, char *cmd, char **envp)
 		pwd_bi();
 	else if (ft_strncmp(cmd, "exit", 5) == 0)
 	{
-		exit_bi();
+		exit_bi(1);
 		rtn = 42;
 	}
 	else if (ft_strncmp(cmd, "export", 7) == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 21:09:27 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:21:09 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	prompt(char **line)
 
 	buf = readline("minishell> ");
 	if (buf == NULL)
-		exit_bi();
+		exit_bi(2);
 	if (*buf == '\0')
 		return (2);
 	trimmed = ft_strtrim(buf, " ");

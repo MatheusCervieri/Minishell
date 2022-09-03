@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 23:00:18 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:58:48 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	close_pipes(t_pipex *data);
 //Pipex 2.0 
 void	init_pipes(t_pipex *data);
 char	*find_path(char **envp);
-void	here_doc(char *argv, t_pipex *pipex);
+void	here_doc(char *argv, t_pipex *pipex, char **envp);
 
 
 void	executor_handler(void);
@@ -106,7 +106,7 @@ int		lst_find_var_p(t_list *head, char *var_name);
 int		find_equal_position(char *arg);
 void	change_node(t_list **head, int position, char *arg);
 void	unset_bi(char **cmd_args);
-void	exit_bi(void);
+void	exit_bi(int code);
 char	**convert_list_to_char(void);
 void	signals_parent(void);
 void	signals_child(void);
@@ -114,7 +114,7 @@ void	signals_here_doc(void);
 char	*get_cmd(char **paths, char *cmd);
 void	handle_dup(t_pipex *data);
 int		execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
-void	put_infile_fd(t_pipex *data, char *infile_path);
+void	put_infile_fd(t_pipex *data, char *infile_path, char **envp);
 void	put_outfile_fd(t_pipex *data, char *outfile_path);
 void	print_envp(char **envp);
 void	print_export_no_parameters(char **envp);

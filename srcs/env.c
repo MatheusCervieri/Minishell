@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:09:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 00:43:40 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/02 21:44:58 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,19 @@ char	*expand(char *line, int i)
 	token = ft_strchr(line, '$');
 	token = sanitize_token(token);
 	if (token[1] == '?' && token[2] == '\0')
+	{
+		free(token);
 		return (ft_itoa(g_cmd_table->last_status));
+	}
 	rtn = my_getenv(&token[1]);
 	free(token);
 	if (rtn)
-		return (ft_strdup(rtn));
-	else if (len == 1)
+	{
+		token = ft_strdup(rtn);
+		free(rtn);
+		return (token);
+	}
+	if (len == 1)
 		return (g_cmd_table->table[i]);
 	else
 		return (ft_strdup(""));
@@ -99,10 +106,22 @@ void	expand_line(int i)
 void	expand_env(void)
 {
 	int		i;
+	int		j;
+	char *tmp;
 
 	i = -1;
 	while (g_cmd_table->table[++i])
-		if (ft_strchr(g_cmd_table->table[i], '$')
+	{
+		j = -1;
+		tmp = ft_strdup(g_cmd_table->table[i]);
+		while (tmp[j] && tmp[j] != ' ')
+			j++;
+		j++;
+		if (tmp[j] == '\'')
+			continue;
+		while (ft_strchr(g_cmd_table->table[i], '$')
 			&& g_cmd_table->table[i][0] != '\'')
 			expand_line(i);
+		free(tmp);
+	}
 }

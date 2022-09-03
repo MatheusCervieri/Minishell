@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 00:11:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 23:37:53 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:41:04 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	handle_special(char *line, t_list **lst)
 	else if (ft_strncmp(line, ">>", 2) == 0)
 	{
 		g_cmd_table->append = 1;
+		free(g_cmd_table->outfile);
 		g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);
 	}
 	else if (ft_strncmp(line, "<", 1) == 0)
@@ -62,7 +63,6 @@ t_list	*add_cmd(t_list *tct, int i)
 
 	size = cmd_size(tct);
 	g_cmd_table->table[i] = ft_strdup((char *)tct->content);
-	printf("%s | %i \n", g_cmd_table->table[i], size);
 	if (tct->next)
 		tct = tct->next;
 	while (size > 1)
@@ -92,7 +92,8 @@ int	get_cmds(t_list *tct)
 			tct = add_cmd(tct, i);
 			i++;
 		}
-		tct = tct->next;
+		if (!(*((char *)tct->content) == '>'))
+			tct = tct->next;
 	}
 	g_cmd_table->table[g_cmd_table->n_of_cmds] = NULL;
 	return (0);

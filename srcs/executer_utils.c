@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 12:55:15 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:55:58 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	close_pipes(t_pipex *data)
 	data->success = 1;
 }
 
-void	put_infile_fd(t_pipex *data, char *infile_path)
+void	put_infile_fd(t_pipex *data, char *infile_path, char **envp)
 {
 	int	pid;
 
@@ -67,7 +67,7 @@ void	put_infile_fd(t_pipex *data, char *infile_path)
 	{
 		pid = fork();
 		if (pid == 0)
-			here_doc(data->limiter, data);
+			here_doc(data->limiter, data, envp);
 		waitpid(pid, NULL, 0);
 		data->infile = open(".heredoc_tmp", O_RDONLY);
 		if (data->infile < 0)
