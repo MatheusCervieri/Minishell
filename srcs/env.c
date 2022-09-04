@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:09:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:44:58 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:45:48 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	expand_line(int i)
 	char	*rtn;
 
 	j = -1;
-	expanded_line = (char *)ft_calloc(1024, sizeof(char));
+	expanded_line = (char *)ft_calloc(10240, sizeof(char));
 	while (g_cmd_table->table[i][++j] != '$')
 		expanded_line[j] = g_cmd_table->table[i][j];
 	rtn = expand(&(g_cmd_table->table[i][j]), i);
@@ -112,16 +112,16 @@ void	expand_env(void)
 	i = -1;
 	while (g_cmd_table->table[++i])
 	{
-		j = -1;
-		tmp = ft_strdup(g_cmd_table->table[i]);
-		while (tmp[j] && tmp[j] != ' ')
-			j++;
-		j++;
-		if (tmp[j] == '\'')
-			continue;
+		j = 0;
+		tmp = g_cmd_table->table[i];
+		if (ft_strchr(tmp, '\''))
+		{
+			tmp = ft_strchr(tmp, '\'');
+			if (tmp[-1] == ' ')
+				continue;
+		}
 		while (ft_strchr(g_cmd_table->table[i], '$')
 			&& g_cmd_table->table[i][0] != '\'')
 			expand_line(i);
-		free(tmp);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/02 20:56:48 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:14:36 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_data_executor(t_pipex *data, char *envp[])
 		close_io_exit(data, "Failed to malloc\n", 2);
 	data->cmd_paths = ft_split(find_path(envp), ':');
 	if (!data->cmd_paths)
-		pipe_free(data, "failed to malloc\n", 3);
+		pipe_free(data, "Failed to malloc\n", 3);
 	init_pipes(data);
 }
 
@@ -53,14 +53,13 @@ int	is_directory(char *cmd)
 int	executor_loop(t_pipex *data, char **envp)
 {
 	int	rtn;
+	int	i;
 
 	rtn = 0; 
 	while (data->idx < data->cmd_nmbs)
 	{
 		if (data->idx != 0)
 		{
-			int	i;
-
 			i = 0;
 			while (data->cmd_args[i])
 			{

@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/02 20:55:58 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:03:45 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 char	*find_path(char **envp)
 {
-	while (ft_strncmp("PATH", *envp, 4))
+	int i;
+
+	i = 0;
+	while (ft_strncmp("PATH", envp[i], 4))
 	{
-		envp++;
-		if (!envp)
-			break ;
+		i++;
+		if (!envp[i])
+			return (NULL);
 	}
-	return (*envp + 5);
+	return (envp[i] + 5);
 }
 
 void	init_pipes(t_pipex *data)
