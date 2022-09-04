@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:14:57 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 21:06:29 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:42:00 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	parent_close(t_pipex *data, char *error, int exit_code)
 {
 	int	i;
 
-	i = 0;
-	while (data->cmd_paths[i])
+	i = -1;
+	if (data->path)
 	{
-		free(data->cmd_paths[i]);
-		i++;
+		while (data->cmd_paths[++i])
+			free(data->cmd_paths[i]);
+		free(data->cmd_paths);
 	}
-	free(data->cmd_paths);
 	pipe_free(data, error, exit_code);
 }
 

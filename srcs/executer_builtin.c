@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_builtin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/02 19:45:40 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:57:31 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_builtin(char *cmd)
 {
+	if (!cmd)
+		return (0);
 	if (ft_strncmp(cmd, "env", 4) == 0)
 		return (1);
 	if (ft_strncmp(cmd, "cd", 3) == 0)

@@ -3,31 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   executer_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/01 23:31:14 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:58:24 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*get_cmd(char **paths, char *cmd)
+char	*get_cmd(char **paths, char *cmd, t_pipex *data)
 {
 	char	*tmp;
 	char	*command;
 
 	if (is_builtin(cmd) == 1)
 		return (ft_strdup(cmd));
-	while (*paths)
+	if (data->path)
 	{
-		tmp = ft_strjoin(*paths, "/");
-		command = ft_strjoin(tmp, cmd);
-		free(tmp);
-		if (access(command, 0) == 0)
-			return (command);
-		free(command);
-		paths++;
+		while (*paths)
+		{
+			tmp = ft_strjoin(*paths, "/");
+			command = ft_strjoin(tmp, cmd);
+			free(tmp);
+			if (access(command, 0) == 0)
+				return (command);
+			free(command);
+			paths++;
+		}
+	}
+	else
+	{
+		printf("PATH not found\n");
+		return (NULL);
 	}
 	return (ft_strdup(cmd));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/02 20:58:48 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:53:02 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_pipex
 	int		idx;
 	int		success;
 	int		*pids;
+	int		path;
 }				t_pipex;
 
 extern t_cmd_table *g_cmd_table;
@@ -111,7 +112,7 @@ char	**convert_list_to_char(void);
 void	signals_parent(void);
 void	signals_child(void);
 void	signals_here_doc(void);
-char	*get_cmd(char **paths, char *cmd);
+char	*get_cmd(char **paths, char *cmd, t_pipex *data);
 void	handle_dup(t_pipex *data);
 int		execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
 void	put_infile_fd(t_pipex *data, char *infile_path, char **envp);

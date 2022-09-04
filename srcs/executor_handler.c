@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/03 22:14:36 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:52:29 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,30 @@
 
 void	init_data_executor(t_pipex *data, char *envp[])
 {
+	char	*tmp;
+
 	data->cmd_nmbs = g_cmd_table->n_of_cmds;
 	data->pipe_nmbs = 2 * (data->cmd_nmbs - 1);
 	data->idx = 0;
 	data->success = 0;
+	data->path = 1;
+	data->here_doc = g_cmd_table->here_doc;
+	data->append = g_cmd_table->append;
+	data->limiter = g_cmd_table->limiter;
+	put_infile_fd(data, g_cmd_table->infile, envp);
+	put_outfile_fd(data, g_cmd_table->outfile);
 	data->pipe = (int *)malloc(sizeof(int) * data->pipe_nmbs);
 	if (!data->pipe)
 		close_io_exit(data, "Failed to malloc\n", 2);
-	data->cmd_paths = ft_split(find_path(envp), ':');
-	if (!data->cmd_paths)
-		pipe_free(data, "Failed to malloc\n", 3);
+	tmp = find_path(envp);
+	if (!tmp)
+		data->path = 0;
+	else
+	{	
+		data->cmd_paths = ft_split(tmp, ':');
+		if (!data->cmd_paths)
+			pipe_free(data, "Failed to malloc\n", 3);
+	}
 	init_pipes(data);
 }
 
@@ -72,12 +86,12 @@ int	executor_loop(t_pipex *data, char **envp)
 		data->cmd_args = ft_split(g_cmd_table->table[data->idx],
 				' ');
 		if (is_directory(data->cmd_args[0]) == 0)
-			data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0]);
+			data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0], data);
 		else
 			data->cmd = ft_strdup(data->cmd_args[0]);
 		if (is_builtin(data->cmd) == 1 && data->cmd_nmbs == 1)
 			rtn = execute_builtin(data, data->cmd, data->cmd_args, envp);
-		else
+		else if (data->path)
 		{
 			signal(SIGINT, ctrlc_child_handler);
 			data->pids[data->idx] = fork();
@@ -86,7 +100,7 @@ int	executor_loop(t_pipex *data, char **envp)
 				child_pipes(data, envp);
 			}
 		}
-	data->idx++;
+		data->idx++;
 	}
 	return (rtn);
 }
@@ -124,11 +138,6 @@ void	executor_handler(void)
 
 	envp = convert_list_to_char();
 	g_cmd_table->here_doc_execute = 1;
-	data.here_doc = g_cmd_table->here_doc;
-	data.append = g_cmd_table->append;
-	data.limiter = g_cmd_table->limiter;
-	put_infile_fd(&data, g_cmd_table->infile, envp);
-	put_outfile_fd(&data, g_cmd_table->outfile);
 	if (g_cmd_table->here_doc_execute == 1)
 	{
 		init_data_executor(&data, envp);
