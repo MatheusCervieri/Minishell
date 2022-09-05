@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void	init_data_executor(t_pipex *data, char *envp[])
+int	init_data_executor(t_pipex *data, char *envp[])
 {
 	char	*tmp;
 
@@ -25,7 +25,8 @@ void	init_data_executor(t_pipex *data, char *envp[])
 	data->append = g_cmd_table->append;
 	data->limiter = g_cmd_table->limiter;
 	put_infile_fd(data, g_cmd_table->infile, envp);
-	put_outfile_fd(data, g_cmd_table->outfile);
+	if(put_outfile_fd(data, g_cmd_table->outfile) > 0)
+		return (1);
 	data->pipe = (int *)malloc(sizeof(int) * data->pipe_nmbs);
 	if (!data->pipe)
 		close_io_exit(data, "Failed to malloc\n", 2);
@@ -39,6 +40,7 @@ void	init_data_executor(t_pipex *data, char *envp[])
 			pipe_free(data, "Failed to malloc\n", 3);
 	}
 	init_pipes(data);
+	return (0);
 }
 
 void	wait_pids(t_pipex *data)
@@ -111,7 +113,11 @@ void	executor_handler(void)
 	g_cmd_table->here_doc_execute = 1;
 	if (g_cmd_table->here_doc_execute == 1)
 	{
-		init_data_executor(&data, envp);
+		if (init_data_executor(&data, envp))
+		{
+			free_split_line(envp);
+			return ;
+		}
 		data.pids = malloc(sizeof(int) * data.cmd_nmbs);
 		rtn = executor_loop(&data, envp);
 		close_pipes(&data);

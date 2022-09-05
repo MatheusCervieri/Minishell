@@ -116,7 +116,7 @@ char	*get_cmd(char **paths, char *cmd, t_pipex *data);
 void	handle_dup(t_pipex *data);
 int		execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
 void	put_infile_fd(t_pipex *data, char *infile_path, char **envp);
-void	put_outfile_fd(t_pipex *data, char *outfile_path);
+int		put_outfile_fd(t_pipex *data, char *outfile_path);
 void	print_envp(char **envp);
 void	print_export_no_parameters(char **envp);
 void	ctrlc_handler(int sing);

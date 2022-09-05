@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 01:34:01 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:06:43 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	put_infile_fd(t_pipex *data, char *infile_path, char **envp)
 	{
 		data->infile = open(infile_path, O_RDONLY);
 		if (data->infile < 0)
-			msg_error("Invalid infile\n", 7);
+			perror(infile_path);
+			
 	}
 	else if (data->here_doc == 1)
 	{
@@ -80,7 +81,7 @@ void	put_infile_fd(t_pipex *data, char *infile_path, char **envp)
 		data->infile = 0;
 }
 
-void	put_outfile_fd(t_pipex *data, char *outfile_path)
+int	put_outfile_fd(t_pipex *data, char *outfile_path)
 {
 	if (!(ft_strncmp(outfile_path, "STDOUT_FILENO", 14) == 0))
 	{
@@ -95,11 +96,13 @@ void	put_outfile_fd(t_pipex *data, char *outfile_path)
 		if (data->outfile < 0)
 		{
 			close(data->infile);
-			msg_error("Bad Permission Outfile\n", 8);
+			perror(outfile_path);
+			return (1);
 		}
 	}
 	else
 	{
 		data->outfile = 1;
 	}
+	return (0);
 }

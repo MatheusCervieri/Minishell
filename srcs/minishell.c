@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/04 22:05:07 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/09/05 21:51:57 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ int	prompt(char **line)
 	if (!trimmed)
 		return (1);
 	if (*trimmed == '\0')
+	{
+		free(trimmed);
 		return (2);
+	}
 	*line = ft_strdup(trimmed);
 	free(trimmed);
 	if (*line == NULL)
