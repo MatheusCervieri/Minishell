@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 01:53:26 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:30:55 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	wait_pids(t_pipex *data)
 	while (i < data->cmd_nmbs)
 	{
 		waitpid(data->pids[i], &status[i], 0);
-		g_cmd_table->status = WEXITSTATUS(status[i]);
+		if (g_cmd_table->status != 130)
+			g_cmd_table->status = WEXITSTATUS(status[i]);
 		i++;
 	}
 	free(status);
