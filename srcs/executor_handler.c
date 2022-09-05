@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 13:30:55 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:32:23 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	execute(t_pipex *data, char **envp)
 	rtn = 0;
 	if (is_builtin(data->cmd) == 1 && data->cmd_nmbs == 1)
 		rtn = execute_builtin(data, data->cmd, data->cmd_args, envp);
-	else if (data->path)
+	else
 	{
 		signal(SIGINT, ctrlc_child_handler);
 		data->pids[data->idx] = fork();

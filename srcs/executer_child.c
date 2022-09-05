@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/04 19:58:24 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/09/05 15:33:18 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ char	*get_cmd(char **paths, char *cmd, t_pipex *data)
 			free(command);
 			paths++;
 		}
-	}
-	else
-	{
-		printf("PATH not found\n");
-		return (NULL);
 	}
 	return (ft_strdup(cmd));
 }
