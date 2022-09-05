@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 15:32:23 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:17:49 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	init_data_executor(t_pipex *data, char *envp[])
 	data->here_doc = g_cmd_table->here_doc;
 	data->append = g_cmd_table->append;
 	data->limiter = g_cmd_table->limiter;
-	put_infile_fd(data, g_cmd_table->infile, envp);
+	if (put_infile_fd(data, g_cmd_table->infile, envp) > 0)
+		return (1);
 	if(put_outfile_fd(data, g_cmd_table->outfile) > 0)
 		return (1);
 	data->pipe = (int *)malloc(sizeof(int) * data->pipe_nmbs);

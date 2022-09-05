@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 01:51:44 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:15:33 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	signals_here_doc(void);
 char	*get_cmd(char **paths, char *cmd, t_pipex *data);
 void	handle_dup(t_pipex *data);
 int		execute_builtin(t_pipex *data, char *cmd, char **cmd_args, char **envp);
-void	put_infile_fd(t_pipex *data, char *infile_path, char **envp);
+int		put_infile_fd(t_pipex *data, char *infile_path, char **envp);
 int		put_outfile_fd(t_pipex *data, char *outfile_path);
 void	print_envp(char **envp);
 void	print_export_no_parameters(char **envp);
