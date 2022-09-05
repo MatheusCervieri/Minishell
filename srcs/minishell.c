@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/02 20:21:09 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:57:55 by ghosthologr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,12 @@ int	reset_global(int *rtn)
 	*rtn = 0;
 	return (*rtn);
 }
-
 int	prompt(char **line)
 {
 	char	*buf;
 	char	*trimmed;
 
-	buf = readline("minishell> ");
+	buf = readline("\033[01;34mminishell\033[32m ❯\033[00m ");
 	if (buf == NULL)
 		exit_bi(2);
 	if (*buf == '\0')
