@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:59:30 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:21:23 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	put_infile_fd(t_pipex *data, char *infile_path, char **envp)
 		handle_heredoc(data, envp);
 	else
 		data->infile = 0;
+	return (0);
 }
 
 int	put_outfile_fd(t_pipex *data, char *outfile_path)

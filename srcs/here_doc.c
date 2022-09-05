@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:59:47 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:23:38 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ void	here_doc_loop(char *limiter)
 	}
 }
 
-void	here_doc(char *limiter, t_pipex *pipex, char **envp)
+void	here_doc(char *limiter, char **envp)
 {
-	char	*buf;
-	int		loop;
-	char	break_line;
 	int		i;
 
 	i = -1;
@@ -67,7 +64,7 @@ void	handle_heredoc(t_pipex *data, char **envp)
 
 	pid = fork();
 	if (pid == 0)
-		here_doc(data->limiter, data, envp);
+		here_doc(data->limiter, envp);
 	waitpid(pid, NULL, 0);
 	data->infile = open(".heredoc_tmp", O_RDONLY);
 	if (data->infile < 0)

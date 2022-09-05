@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:59:53 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:23:58 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	close_pipes(t_pipex *data);
 //Pipex 2.0 
 void	init_pipes(t_pipex *data);
 char	*find_path(char **envp);
-void	here_doc(char *argv, t_pipex *pipex, char **envp);
+void	here_doc(char *argv, char **envp);
 void	executor_handler(void);
 
 //Built ins 

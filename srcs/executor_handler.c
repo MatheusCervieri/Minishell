@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 19:05:42 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:22:34 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	executor_handler(void)
 {
 	t_pipex	data;
 	char	**envp;
-	int		i;
 	int		rtn;
 
 	envp = convert_list_to_char();
