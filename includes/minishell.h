@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/04 19:53:02 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/09/05 01:51:44 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/wait.h>
 # include <string.h>
 
+# define HD_ERROR "bash: warning: here-document delimited by end-of-file"
+
 typedef struct s_cmd_table
 {
 	char	**table;	
@@ -40,7 +42,7 @@ typedef struct s_cmd_table
 	int		here_doc_loop;
 	int		here_doc_file;
 	int		here_doc_execute;
-	int		signal; 
+	int		signal;
 	t_list	*envp;
 }				t_cmd_table;
 
@@ -48,14 +50,14 @@ typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
-    int     infile_exists;
-    int     outfile_exists;
+	int		infile_exists;
+	int		outfile_exists;
 	char	**cmd_paths;
 	char	*cmd;
 	char	**cmd_args;
 	int		here_doc;
 	char	*limiter;
-	int		append; 
+	int		append;
 	pid_t	pid;
 	int		cmd_nmbs;
 	int		pipe_nmbs;
@@ -66,7 +68,7 @@ typedef struct s_pipex
 	int		path;
 }				t_pipex;
 
-extern t_cmd_table *g_cmd_table;
+extern t_cmd_table	*g_cmd_table;
 
 //hadle_file.c
 void	get_outfile(char *argv, t_pipex *data);
@@ -90,8 +92,6 @@ void	close_pipes(t_pipex *data);
 void	init_pipes(t_pipex *data);
 char	*find_path(char **envp);
 void	here_doc(char *argv, t_pipex *pipex, char **envp);
-
-
 void	executor_handler(void);
 
 //Built ins 
@@ -138,6 +138,7 @@ char	**expander(char *line);
 int		print_and_return(const char *msg, int err_code);
 void	expand_env(void);
 t_list	*make_list(char **envp);
+void	delete_data(t_pipex *data, char **envp);
 void	clear_memory(void);
 void	free_global(void);
 

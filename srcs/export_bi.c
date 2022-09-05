@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/01 23:21:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 01:34:55 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	change_or_create(char *arg)
 			change_node(&(g_cmd_table->envp),
 				lst_find_var_p(g_cmd_table->envp, arg), arg);
 		else
-			ft_lstadd_back(&(g_cmd_table->envp), ft_lstnew(ft_strdup((char *)arg)));
+			ft_lstadd_back(&(g_cmd_table->envp),
+				ft_lstnew(ft_strdup((char *)arg)));
 	}
 }
 

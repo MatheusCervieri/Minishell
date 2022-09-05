@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 13:53:07 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:13:14 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 01:36:00 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,27 @@ void	free_global(void)
 		free(g_cmd_table->limiter);
 	free(g_cmd_table->infile);
 	free(g_cmd_table->outfile);
+}
+
+void	delete_data(t_pipex *data, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		i++;
+	}
+	free(envp);
+	parent_close(data, "success", 0);
+	free(data->pids);
+	i = 0;
+	while (data->cmd_args[i])
+	{
+		free(data->cmd_args[i]);
+		i++;
+	}
+	free(data->cmd);
+	free(data->cmd_args);
 }

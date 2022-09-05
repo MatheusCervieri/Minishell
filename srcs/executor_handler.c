@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/04 19:52:29 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/09/05 01:53:26 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,77 +57,47 @@ void	wait_pids(t_pipex *data)
 	free(status);
 }
 
-int	is_directory(char *cmd)
+int	execute(t_pipex *data, char **envp)
 {
-	if (cmd[0] == '/')
-		return (1);
-	return (0);
+	int	rtn;
+
+	rtn = 0;
+	if (is_builtin(data->cmd) == 1 && data->cmd_nmbs == 1)
+		rtn = execute_builtin(data, data->cmd, data->cmd_args, envp);
+	else if (data->path)
+	{
+		signal(SIGINT, ctrlc_child_handler);
+		data->pids[data->idx] = fork();
+		if (data->pids[data->idx] == 0)
+		{
+			child_pipes(data, envp);
+		}
+	}
+	return (rtn);
 }
 
 int	executor_loop(t_pipex *data, char **envp)
 {
 	int	rtn;
-	int	i;
 
-	rtn = 0; 
 	while (data->idx < data->cmd_nmbs)
 	{
 		if (data->idx != 0)
 		{
-			i = 0;
-			while (data->cmd_args[i])
-			{
-				free(data->cmd_args[i]);
-				i++;
-			}
-			free(data->cmd_args);
+			free_split_line(data->cmd_args);
 			free(data->cmd);
 		}
 		data->cmd_args = ft_split(g_cmd_table->table[data->idx],
 				' ');
-		if (is_directory(data->cmd_args[0]) == 0)
+		if (data->cmd_args[0][0] != '/')
 			data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0], data);
 		else
 			data->cmd = ft_strdup(data->cmd_args[0]);
-		if (is_builtin(data->cmd) == 1 && data->cmd_nmbs == 1)
-			rtn = execute_builtin(data, data->cmd, data->cmd_args, envp);
-		else if (data->path)
-		{
-			signal(SIGINT, ctrlc_child_handler);
-			data->pids[data->idx] = fork();
-			if (data->pids[data->idx] == 0)
-			{
-				child_pipes(data, envp);
-			}
-		}
+		rtn = execute(data, envp);
 		data->idx++;
 	}
 	return (rtn);
 }
-
-void	delete_data(t_pipex *data, char **envp)
-{
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		free(envp[i]);
-		i++;
-	}
-	free(envp);
-	parent_close(data, "success", 0);
-	free(data->pids);
-	i = 0;
-	while (data->cmd_args[i])
-	{
-		free(data->cmd_args[i]);
-		i++;
-	}
-	free(data->cmd);
-	free(data->cmd_args);
-}
-
 
 void	executor_handler(void)
 {

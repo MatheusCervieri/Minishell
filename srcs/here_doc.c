@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:14:21 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 01:45:48 by Ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	here_doc_loop(char *limiter)
 			buf = readline(">");
 		if (buf == NULL)
 		{
-			printf("bash: warning: here-document delimited by end-of-file (wanted `%s')", limiter);
+			printf("%s (wanted `%s')", HD_ERROR, limiter);
 			break ;
 		}
 		if (!ft_strncmp(limiter, buf, ft_strlen(limiter)))
