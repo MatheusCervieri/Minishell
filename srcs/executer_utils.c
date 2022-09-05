@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 22:06:43 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:48:43 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,13 @@ int	put_outfile_fd(t_pipex *data, char *outfile_path)
 		}
 		if (data->outfile < 0)
 		{
-			close(data->infile);
+			if (data->infile > 0)
+				close(data->infile);
 			perror(outfile_path);
 			return (1);
 		}
 	}
 	else
-	{
 		data->outfile = 1;
-	}
 	return (0);
 }
