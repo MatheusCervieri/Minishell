@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/08/31 12:40:41 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/09/05 18:52:58 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_FILES = main.c \
 			executer_child.c \
 			executer_error.c \
 			executer_utils.c \
+			executer_utils2.c \
 			executor_handler.c \
 			here_doc.c \
 			env_bi.c \

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:15:33 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:52:23 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	ctrlc_here_doc_handler(int sing);
 void	signals_child(void);
 void	child_pipes(t_pipex *data, char **envp);
 void	delete_data(t_pipex *data, char **envp);
+void	init_data_utils(t_pipex *data);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);

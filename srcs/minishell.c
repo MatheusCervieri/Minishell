@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 21:51:57 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:49:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	reset_global(int *rtn)
 	*rtn = 0;
 	return (*rtn);
 }
+
 int	prompt(char **line)
 {
 	char	*buf;
