@@ -1,9 +1,0 @@
-Libft
-Makefile
-includes
-infile
-srcs
-test
-test1original.txt
-tests
-tests.sh
