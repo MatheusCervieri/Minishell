@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/09/05 18:52:58 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/09/05 19:09:22 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ HEADERS_PATH = ./includes/
 SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
-TEST_PATH = ./test
 CC = cc
 CFLAGS = -g -g3 -I $(HEADERS_PATH) #-Wall -Wextra -Werror 
 RM = rm -rf
@@ -45,16 +44,12 @@ SRC_FILES = main.c \
 			exit_bi.c \
 			utils.c \
 			signals.c \
-			export_bi_utils.c
-
-TESTS=$(wildcard $(TEST_PATH)/*.c)
-TESTBINS = $(patsubst $(TEST_PATH)/%.c, $(TEST_PATH)/bin/%, $(TESTS))
+			export_bi_utils.c \
 
 LIBFT_A = $(LIBS_PATH)libft.a 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 OBJECTS = $(addprefix $(OBJS_PATH), $(OBJ_FILES))
-OBJECTS_TEST = $(filter-out ./objs/main.o, $(OBJECTS))
 
 
 all: $(NAME)
@@ -69,15 +64,6 @@ $(NAME): $(LIBFT_A) $(OBJECTS)
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(MKDIR) $(OBJS_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(TEST_PATH)/bin/%: $(TEST_PATH)/%.c
-	@$(CC) $(CFLAGS) $< $(OBJECTS_TEST) $(LIBFT_A) -o $@  -lcriterion -lreadline
-	
-$(TEST_PATH)/bin:
-	@$(MKDIR) $@
-
-test: $(NAME) $(TEST_PATH)/bin $(TESTBINS)
-	@for test in $(TESTBINS) ; do ./$$test --verbose ; done
 
 bonus: all
 

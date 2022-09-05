@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:01:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/02 20:19:49 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:02:27 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	exit_bi(int code)
 	{
 		free(g_cmd_table->infile);
 		free(g_cmd_table->outfile);
+		clear_memory();
+		exit(0);
+	}
+	if (code == 3)
+	{
+		free_global();
 		clear_memory();
 		exit(0);
 	}

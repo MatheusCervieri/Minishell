@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:16:15 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:59:30 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	close_pipes(t_pipex *data)
 
 int	put_infile_fd(t_pipex *data, char *infile_path, char **envp)
 {
-	int	pid;
-
 	if (ft_strncmp(infile_path, "STDIN_FILENO", 13) == 0)
 		data->infile_exists = 0;
 	else
@@ -70,15 +68,7 @@ int	put_infile_fd(t_pipex *data, char *infile_path, char **envp)
 		}
 	}
 	else if (data->here_doc == 1)
-	{
-		pid = fork();
-		if (pid == 0)
-			here_doc(data->limiter, data, envp);
-		waitpid(pid, NULL, 0);
-		data->infile = open(".heredoc_tmp", O_RDONLY);
-		if (data->infile < 0)
-			msg_error("Can`t open here_doc file\n", 7);
-	}
+		handle_heredoc(data, envp);
 	else
 		data->infile = 0;
 }

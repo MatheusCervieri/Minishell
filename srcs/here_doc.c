@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:17:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 01:45:48 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:59:47 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ void	here_doc(char *limiter, t_pipex *pipex, char **envp)
 	free_global();
 	clear_memory();
 	exit(0);
+}
+
+void	handle_heredoc(t_pipex *data, char **envp)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == 0)
+		here_doc(data->limiter, data, envp);
+	waitpid(pid, NULL, 0);
+	data->infile = open(".heredoc_tmp", O_RDONLY);
+	if (data->infile < 0)
+		msg_error("Can`t open here_doc file\n", 7);
 }

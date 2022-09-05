@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:52:39 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:05:42 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,6 @@ void	executor_handler(void)
 			wait_pids(&data);
 		delete_data(&data, envp);
 		if (rtn == 42)
-		{
-			free_global();
-			clear_memory();
-			exit(0);
-		}		
+			exit_bi(3);
 	}
 }
