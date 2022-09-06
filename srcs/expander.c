@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/09/01 22:43:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:25:05 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,33 @@ int	has_quote(char *split_line)
 	return (0);
 }
 
-char	*token_with_quotes(char **split_line, int *i)
+char	*token_with_quotes(char **split_line, int *i, char *line)
 {
-	char	*rtn;
-
-	rtn = ft_strdup(split_line[*i]);
-	if (has_quote(&split_line[*i][1]))
-		return (rtn);
-	*i += 1;
-	while (split_line[*i])
-	{
-		rtn = join_with_space(rtn, split_line[*i]);
-		if (has_quote(split_line[*i]))
-			return (rtn);
-		*i += 1;
-	}
+	char		*rtn;
+	char		*tmp;
+	char		quote_type;
+	int			size;
+	
+	quote_type = *split_line[*i];
+	size = -1;
+	rtn = 0;
+	tmp = line;
+	g_cmd_table->n_of_quotes += 2;
+	while (++size < g_cmd_table->n_of_quotes - 1)
+		tmp = ft_strchr(++tmp, quote_type);
+	size = 3;
+	while (*(++tmp) != quote_type)
+		size++;
+	rtn = (char *)malloc(sizeof(char) * size--);
+	rtn[size--] = '\0';
+	rtn[size--] = quote_type;
+	while (*(--tmp) != quote_type)
+		rtn[size--] = *tmp;
+	rtn[size] = *tmp;
 	return (rtn);
 }
 
-char	**tokenize(char **split_line, int size)
+char	**tokenize(char **split_line, int size, char *line)
 {
 	char	**tokens;
 	int		i;
@@ -69,7 +77,12 @@ char	**tokenize(char **split_line, int size)
 	while (split_line[++i])
 	{
 		if (*split_line[i] == '"' || *split_line[i] == '\'')
-			tokens[j] = token_with_quotes(split_line, &i);
+		{
+			tokens[j] = token_with_quotes(split_line, &i, line);
+			if (split_line[i][ft_strlen(split_line[i]) - 1] != tokens[j][0] && i++)
+				while (!ft_strchr(split_line[i], tokens[j][0]))
+					i++;
+		}
 		else
 			tokens[j] = ft_strdup(split_line[i]);
 		j++;
@@ -93,6 +106,7 @@ char	**expander(char *line)
 	size = 0;
 	while (split_line[size])
 		size++;
-	split_line = tokenize(split_line, size);
+	g_cmd_table->n_of_tokens = size;
+	split_line = tokenize(split_line, size, line);
 	return (split_line);
 }

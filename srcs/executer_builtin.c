@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_builtin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghosthologram <ghosthologram@student.42    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:16:38 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/04 19:57:31 by ghosthologr      ###   ########.fr       */
+/*   Updated: 2022/09/06 19:46:11 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

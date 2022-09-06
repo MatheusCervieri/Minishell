@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 18:49:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:45:26 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	reset_global(int *rtn)
 	g_cmd_table->here_doc = 0;
 	g_cmd_table->n_of_cmds = 0;
 	g_cmd_table->n_of_pipes = 0;
+	g_cmd_table->n_of_quotes = 0;
+	g_cmd_table->n_of_tokens = 0;
 	g_cmd_table->append = 0;
 	g_cmd_table->last_status = g_cmd_table->status;
 	g_cmd_table->status = 0;
@@ -109,9 +111,10 @@ void	minishell(char *envp[])
 		if (rtn == 2)
 			continue ;
 		if (parse_line(line))
-			continue ;
+			rtn = 4;
 		free(line);
-		executor_handler();
+		if (rtn != 4)
+			executor_handler();
 		free_global();
 	}
 	clear_memory();

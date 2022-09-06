@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 13:53:07 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 01:36:00 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:50:32 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	free_global(void)
 	i = -1;
 	while (++i < g_cmd_table->n_of_cmds)
 		free(g_cmd_table->table[i]);
-	free(g_cmd_table->table);
+	if (g_cmd_table->n_of_cmds)
+		free(g_cmd_table->table);
 	if (g_cmd_table->here_doc)
 		free(g_cmd_table->limiter);
 	free(g_cmd_table->infile);

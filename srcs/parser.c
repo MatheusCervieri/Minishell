@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/08/25 00:42:51 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:37:32 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ int	check_quotes(const char *line)
 int	check_prohibited(const char *line)
 {
 	int	i;
+	int	found_quote;
 
 	i = -1;
+	found_quote = 0;
 	while (line[++i])
 	{
-		if (line[i] == ';' || line[i] == '\\' || line[i] == '&')
+		if ((line[i] == '"' || line[i] == '\'') && !found_quote)
+			found_quote = 1;
+		else if ((line[i] == '"' || line[i] == '\'') && found_quote)
+			found_quote = 0;
+		if ((line[i] == ';' || line[i] == '\\' || line[i] == '&') && !found_quote)
 			return (1);
 	}
 	return (0);
@@ -93,6 +99,14 @@ int	parse_line(char *line)
 	split_line = expander(line);
 	if (g_cmd_table->status == -1)
 		return (print_and_return("malloc error", 1));
+	if (g_cmd_table->n_of_tokens < 2 && is_special(split_line[0]))
+	{
+		ft_putstr_fd("syntax error near unexpected token '", 2);
+		ft_putstr_fd(split_line[0], 2);
+		ft_putstr_fd("'\n", 2);
+		free_split_line(split_line);
+		return (1);
+	}
 	tmp_cmd_table = lexer(split_line);
 	free_split_line(split_line);
 	parser(tmp_cmd_table);
