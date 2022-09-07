@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 00:11:04 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/06 19:29:24 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:45:13 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	handle_special(char *line, t_list **lst)
 		g_cmd_table->here_doc = 1;
 		g_cmd_table->limiter = ft_strdup(((char *)lst[0]->next->content));
 	}
-	else if (ft_strncmp(line, ">>", 2) == 0)
+	else if (ft_strncmp(line, ">>", 2) == 0 && lst[0]->next)
 	{
 		g_cmd_table->append = 1;
 		free(g_cmd_table->outfile);
@@ -37,7 +37,7 @@ void	handle_special(char *line, t_list **lst)
 		free(g_cmd_table->infile);
 		g_cmd_table->infile = ft_strdup((char *)lst[0]->next->content);
 	}
-	else if (ft_strncmp(line, ">", 1) == 0)
+	else if (ft_strncmp(line, ">", 1) == 0 && lst[0]->next)
 	{
 		free(g_cmd_table->outfile);
 		g_cmd_table->outfile = ft_strdup((char *)lst[0]->next->content);

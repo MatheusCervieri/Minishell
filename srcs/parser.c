@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 15:22:11 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:07:26 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,8 @@ int	parse_line(char *line)
 	split_line = expander(line);
 	if (g_cmd_table->status == -1)
 		return (print_and_return("malloc error", 1));
-	if (g_cmd_table->n_of_tokens < 2 && is_special(split_line[0]))
+	if (check_tokens(split_line))
 	{
-		ft_putstr_fd("syntax error near unexpected token '", 2);
-		ft_putstr_fd(split_line[0], 2);
-		ft_putstr_fd("'\n", 2);
 		free_split_line(split_line);
 		return (1);
 	}

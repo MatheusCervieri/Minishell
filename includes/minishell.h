@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/07 10:39:45 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:08:28 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,31 +72,20 @@ typedef struct s_pipex
 
 extern t_cmd_table	*g_cmd_table;
 
-//hadle_file.c
 void	get_outfile(char *argv, t_pipex *data);
 void	get_infile(char **argv, t_pipex *data);
-
-//error.c
 void	msg_error(char *error, int exit_code);
 void	parent_close(t_pipex *data, char *error, int exit_code);
 void	pipe_free(t_pipex *data, char *error, int exit_code);
 void	close_io_exit(t_pipex *data, char *error, int exit_code);
 void	free_cmd(t_pipex *data);
-
-//init_data.c
 void	init_data(t_pipex *data, int argc, char *envp[]);
-
-//child.c
 void	child(t_pipex *data, char **envp);
 void	close_pipes(t_pipex *data);
-
-//Pipex 2.0 
 void	init_pipes(t_pipex *data);
 char	*find_path(char **envp);
 void	here_doc(char *argv, char **envp);
 void	executor_handler(void);
-
-//Built ins 
 void	env_bi(char **cmd_args);
 void	pwd_bi(void);
 int		args_len(char **cmd_args);
@@ -132,7 +121,6 @@ void	handle_heredoc(t_pipex *data, char **envp);
 char	**get_parameters(char *parameter);
 void	remove_single_quotes(char ***tokens);
 int		is_there_quotes(char *parameter);
-
 t_list	*lexer(char **line);
 void	minishell(char **envp);
 int		parse_line(char *line);
@@ -148,5 +136,6 @@ t_list	*make_list(char **envp);
 void	delete_data(t_pipex *data, char **envp);
 void	clear_memory(void);
 void	free_global(void);
+int	check_tokens(char **split_line);
 
 #endif

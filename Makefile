@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 15:29:08 by mvieira-          #+#    #+#              #
-#    Updated: 2022/09/07 10:28:57 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/09/07 16:08:45 by ghenaut-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_FILES = main.c \
 			minishell.c \
 			parser.c \
 			parser_utils.c \
+			parser_utils2.c \
 			expander.c \
 			cleanup.c \
 			lexer.c \
