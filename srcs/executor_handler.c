@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/06 20:55:05 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 10:40:17 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,10 @@ int	executor_loop(t_pipex *data, char **envp)
 			free_split_line(data->cmd_args);
 			free(data->cmd);
 		}
-		data->cmd_args = ft_split(g_cmd_table->table[data->idx],
-				' ');
+		if (is_there_quotes(g_cmd_table->table[data->idx]) == 1)
+			data->cmd_args = get_parameters(g_cmd_table->table[data->idx]);
+		else
+			data->cmd_args = ft_split(g_cmd_table->table[data->idx], ' ');
 		if (data->cmd_args[0][0] != '/')
 			data->cmd = get_cmd(data->cmd_paths, data->cmd_args[0], data);
 		else

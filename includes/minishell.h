@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/06 19:25:21 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 10:39:45 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,9 @@ void	child_pipes(t_pipex *data, char **envp);
 void	delete_data(t_pipex *data, char **envp);
 void	init_data_utils(t_pipex *data);
 void	handle_heredoc(t_pipex *data, char **envp);
+char	**get_parameters(char *parameter);
+void	remove_single_quotes(char ***tokens);
+int		is_there_quotes(char *parameter);
 
 t_list	*lexer(char **line);
 void	minishell(char **envp);
