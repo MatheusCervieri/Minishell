@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:11:27 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/05 01:34:55 by Ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:41:28 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,14 @@ int	already_var(t_list *envp, char *arg)
 
 void	change_or_create(char *arg)
 {
-	if (find_equal_position(arg) > 0)
+	if (ft_strncmp(arg, "=", 1) == 0)
+	{
+		ft_putstr_fd("bash: export: `", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd("': not a valid identifier \n", 2);
+		g_cmd_table->status = 1;
+	}
+	else if (find_equal_position(arg) > 0)
 	{
 		if (lst_find_var_p(g_cmd_table->envp, arg) >= 0)
 			change_node(&(g_cmd_table->envp),
