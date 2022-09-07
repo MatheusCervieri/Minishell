@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/06 19:37:32 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:22:11 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	check_prohibited(const char *line)
 			found_quote = 1;
 		else if ((line[i] == '"' || line[i] == '\'') && found_quote)
 			found_quote = 0;
-		if ((line[i] == ';' || line[i] == '\\' || line[i] == '&') && !found_quote)
+		if ((line[i] == ';' || line[i] == '\\' || line[i] == '&')
+			&& !found_quote)
 			return (1);
 	}
 	return (0);
