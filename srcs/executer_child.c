@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 16:33:16 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:26:09 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_cmd(char **paths, char *cmd, t_pipex *data)
 	char	*tmp;
 	char	*command;
 
+	if (*cmd == '\0')
+		return (ft_strdup(cmd));
 	if (is_builtin(cmd) == 1)
 		return (ft_strdup(cmd));
 	if (data->path)
