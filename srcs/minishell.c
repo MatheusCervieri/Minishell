@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:00:58 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:44:42 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_cmd_table	*g_cmd_table;
 
-int	init_global(char *envp[])
+int	init_global(char *envp[], int *rtn)
 {
 	g_cmd_table = (t_cmd_table *)malloc(sizeof(t_cmd_table));
 	if (!g_cmd_table)
@@ -32,6 +32,7 @@ int	init_global(char *envp[])
 	g_cmd_table->status = 0;
 	g_cmd_table->last_status = g_cmd_table->status;
 	g_cmd_table->signal = 0;
+	*rtn = 0;
 	return (0);
 }
 
@@ -97,7 +98,7 @@ void	minishell(char *envp[])
 	char	*line;
 	int		rtn;
 
-	init_global(envp);
+	init_global(envp, &rtn);
 	while (rtn != 1 && rtn != 3)
 	{
 		rtn = 0;

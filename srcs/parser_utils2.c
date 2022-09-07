@@ -6,26 +6,41 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:31:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:02:52 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:52:53 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	print_error(char *error)
+void	print_token_error(char *error)
 {
 	ft_putstr_fd("syntax error near unexpected token '", 2);
 	ft_putstr_fd(error, 2);
 	ft_putstr_fd("'\n", 2);
 }
 
-int	check_tokens(char **split_line)
+int	is_valid_special(char *str)
+{
+	if (ft_strncmp(str, "> ", 2) == 0)
+		return (1);
+	if (ft_strncmp(str, ">> ", 3) == 0)
+		return (1);
+	if (ft_strncmp(str, "<< ", 3) == 0)
+		return (1);
+	if (ft_strncmp(str, "< ", 2) == 0)
+		return (1);
+	return (0);
+}
+
+char	*check_tokens(char **split_line)
 {
 	int		i;
 	char	*error;
 
 	error = NULL;
-	if (is_special(*split_line) && split_line[1] == NULL)
+	if (is_special(*split_line) && !is_valid_special(*split_line))
+		error = ft_strdup(*split_line);
+	else if (is_special(*split_line) && split_line[1] == NULL)
 		error = ft_strdup(*split_line);
 	else if (is_special(*split_line) && is_special(split_line[1]))
 		error = ft_strdup(*split_line);
@@ -38,13 +53,7 @@ int	check_tokens(char **split_line)
 			if (split_line[i][0] == '>' && split_line[++i] == NULL)
 				error = ft_strdup(split_line[i - 1]);
 	}
-	if (error)
-	{
-		print_error(error);
-		free(error);
-		return (1);
-	}
-	return (0);
+	return (error);
 }
 
 char	*get_position(char quote_type, char *line)

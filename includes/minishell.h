@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:03:00 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:51:15 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	delete_data(t_pipex *data, char **envp);
 void	clear_memory(void);
 void	free_global(void);
 char	*get_position(char quote_type, char *line);
-int		check_tokens(char **split_line);
+char	*check_tokens(char **split_line);
+void	print_token_error(char *error);
 
 #endif
