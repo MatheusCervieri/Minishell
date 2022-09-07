@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:50:34 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 12:34:47 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:33:16 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ void	handle_dup(t_pipex *data)
 					data->pipe[(2 * data->idx) + 1]);
 }
 
+static void	print_errors(char *cmd)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": command not found\n", 2);
+}
+
 void	child_pipes(t_pipex *data, char **envp)
 {
 	int	rtn;
@@ -77,8 +83,7 @@ void	child_pipes(t_pipex *data, char **envp)
 	{
 		if (execve(data->cmd, data->cmd_args, envp) < 0)
 		{
-			ft_putstr_fd(data->cmd, 2);
-			ft_putstr_fd(": command not found\n", 2);
+			print_errors(data->cmd);
 			rtn = 127;
 		}
 	}
