@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/07 16:19:14 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:59:28 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_cmd_table
 	int		n_of_pipes;
 	int		n_of_cmds;	
 	int		n_of_quotes;	
+	int		n_of_d_quotes;	
 	int		n_of_tokens;	
 	int		here_doc;	
 	char	*limiter;	

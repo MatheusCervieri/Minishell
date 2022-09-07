@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/06 19:45:26 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:00:58 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ int	reset_global(int *rtn)
 	g_cmd_table->n_of_cmds = 0;
 	g_cmd_table->n_of_pipes = 0;
 	g_cmd_table->n_of_quotes = 0;
+	g_cmd_table->n_of_d_quotes = 0;
 	g_cmd_table->n_of_tokens = 0;
 	g_cmd_table->append = 0;
 	g_cmd_table->last_status = g_cmd_table->status;
 	g_cmd_table->status = 0;
-	*rtn = 0;
 	return (*rtn);
 }
 
@@ -98,9 +98,9 @@ void	minishell(char *envp[])
 	int		rtn;
 
 	init_global(envp);
-	rtn = 0;
 	while (rtn != 1 && rtn != 3)
 	{
+		rtn = 0;
 		signal(SIGINT, ctrlc_handler);
 		signal(SIGQUIT, SIG_IGN);
 		if (g_cmd_table->signal == 1)

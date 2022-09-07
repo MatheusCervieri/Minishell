@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/09/07 15:21:41 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:58:59 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,28 @@ int	has_quote(char *split_line)
 	return (0);
 }
 
+char	*get_position(char quote_type, char *line)
+{
+	int		i;
+	char	*rtn;
+
+	i = -1;
+	rtn = line;
+	if (quote_type == '\'')
+	{
+		g_cmd_table->n_of_quotes += 2;
+		while (++i < g_cmd_table->n_of_quotes - 1)
+			rtn = ft_strchr(++rtn, quote_type);
+	}
+	else
+	{
+		g_cmd_table->n_of_d_quotes += 2;
+		while (++i < g_cmd_table->n_of_d_quotes - 1)
+			rtn = ft_strchr(++rtn, quote_type);
+	}
+	return (rtn);
+}
+
 char	*token_with_quotes(char **split_line, int *i, char *line)
 {
 	char		*rtn;
@@ -47,12 +69,8 @@ char	*token_with_quotes(char **split_line, int *i, char *line)
 	char		quote_type;
 
 	quote_type = *split_line[*i];
-	size = -1;
 	rtn = 0;
-	tmp = line;
-	g_cmd_table->n_of_quotes += 2;
-	while (++size < g_cmd_table->n_of_quotes - 1)
-		tmp = ft_strchr(++tmp, quote_type);
+	tmp = get_position(quote_type, line);
 	size = 3;
 	while (*(++tmp) != quote_type)
 		size++;
