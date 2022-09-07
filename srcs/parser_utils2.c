@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:31:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:52:53 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:55:40 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	print_token_error(char *error)
 
 int	is_valid_special(char *str)
 {
-	if (ft_strncmp(str, "> ", 2) == 0)
+	if (ft_strncmp(str, ">\0", 2) == 0)
 		return (1);
-	if (ft_strncmp(str, ">> ", 3) == 0)
+	if (ft_strncmp(str, ">>\0", 3) == 0)
 		return (1);
-	if (ft_strncmp(str, "<< ", 3) == 0)
+	if (ft_strncmp(str, "<<\0", 3) == 0)
 		return (1);
-	if (ft_strncmp(str, "< ", 2) == 0)
+	if (ft_strncmp(str, "<\0", 2) == 0)
 		return (1);
 	return (0);
 }
