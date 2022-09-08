@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/09/08 15:44:20 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:10:23 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ char	*token_with_quotes(char **split_line, int *i, char *line)
 	quote_type = *split_line[*i];
 	rtn = 0;
 	tmp = get_position(quote_type, line);
-	size = 3;
-	while (*(++tmp) != quote_type)
+	size = 0;
+	while (tmp[size])
 		size++;
-	rtn = (char *)malloc(sizeof(char) * size--);
-	rtn[size--] = '\0';
-	rtn[size--] = quote_type;
-	while (*(--tmp) != quote_type)
-		rtn[size--] = *tmp;
-	rtn[size] = *tmp;
+	rtn = (char *)malloc(sizeof(char) * size + 1);
+	rtn[size] = '\0';
+	while (size--)
+	{
+		rtn[size] = tmp[size];
+	}
 	return (rtn);
 }
 
@@ -75,10 +75,9 @@ char	**tokenize(char **split_line, int size, char *line)
 		if (*split_line[i] == '"' || *split_line[i] == '\'')
 		{
 			tokens[j] = token_with_quotes(split_line, &i, line);
-			if (!(split_line[i][ft_strlen(split_line[i]) - 1]
-				== tokens[j][0] && ft_strlen(split_line[i]) > 1))
-				while (++i && split_line[i][ft_strlen(split_line[i]) - 1]
-					!= tokens[j][0])
+			if (ft_strncmp(tokens[j], split_line[i], ft_strlen(tokens[j])) != 0)
+				while (++i && ft_strnstr(tokens[j], split_line[i],
+						ft_strlen(split_line[i])))
 					continue ;
 		}
 		else
