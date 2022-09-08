@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:01:42 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/07 20:20:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:54:01 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	get_exit_code(void)
 	char	**tmp;
 	int		exit_code;
 
+	exit_code = 0;
 	tmp = ft_split(g_cmd_table->table[0], ' ');
 	if (tmp[1] != NULL)
 	{

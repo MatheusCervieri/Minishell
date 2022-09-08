@@ -4,4 +4,13 @@ includes
 infile
 minishell
 objs
+out
+readline.supp
 srcs
+test1original
+test2original
+test3original
+test4originaclearl
+test4originaclearlclear
+test4original
+text1.txt
