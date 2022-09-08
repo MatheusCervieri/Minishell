@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 22:07:41 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:51:01 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:17:04 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ int	check_line(char *line)
 
 int	parser(t_list *tmp_cmd_table)
 {
+	t_list	*rtn;
 	t_list	*ptr;
 
-	ptr = tmp_cmd_table;
+	rtn = ft_lstmap(tmp_cmd_table, expand_env, free);
+	ptr = rtn;
 	while (ptr)
 	{
 		if (is_special((char *)ptr->content))
@@ -82,8 +84,8 @@ int	parser(t_list *tmp_cmd_table)
 		}
 		ptr = ptr->next;
 	}
-	get_cmds(tmp_cmd_table);
-	expand_env();
+	get_cmds(rtn);
+	ft_lstclear(&rtn, free);
 	return (0);
 }
 

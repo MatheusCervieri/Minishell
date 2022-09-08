@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/07 17:51:15 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 09:42:33 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int		is_special(char *arg);
 void	handle_special(char *line, t_list **lst);
 char	**expander(char *line);
 int		print_and_return(const char *msg, int err_code);
-void	expand_env(void);
+void	*expand_env(void *content);
 t_list	*make_list(char **envp);
 void	delete_data(t_pipex *data, char **envp);
 void	clear_memory(void);

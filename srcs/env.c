@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:09:52 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/05 19:22:17 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:20:20 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*sanitize_token(const char *token)
 	return (rtn);
 }
 
-char	*expand(char *line, int i)
+char	*expand(char *line)
 {
 	int		len;
 	char	*token;
@@ -69,12 +69,12 @@ char	*expand(char *line, int i)
 		return (token);
 	}
 	if (len == 1)
-		return (g_cmd_table->table[i]);
+		return (ft_strdup(line));
 	else
 		return (ft_strdup(""));
 }
 
-void	expand_line(int i)
+void	expand_line(char **line)
 {
 	int		j;
 	int		k;
@@ -83,43 +83,35 @@ void	expand_line(int i)
 
 	j = -1;
 	expanded_line = (char *)ft_calloc(10240, sizeof(char));
-	while (g_cmd_table->table[i][++j] != '$')
-		expanded_line[j] = g_cmd_table->table[i][j];
-	rtn = expand(&(g_cmd_table->table[i][j]), i);
+	while (line[0][++j] != '$')
+		expanded_line[j] = line[0][j];
+	rtn = expand(&(line[0][j]));
 	k = -1;
 	while (rtn[++k])
 		expanded_line[j + k] = rtn[k];
 	k = j + k;
-	while (g_cmd_table->table[i][j] != ' ' && g_cmd_table->table[i][j] != '\"'
-		&& g_cmd_table->table[i][j] != '\0' && g_cmd_table->table[i][j] != '\'')
+	while (line[0][j] != ' ' && line[0][j] != '\"'
+		&& line[0][j] != '\0' && line[0][j] != '\'')
 		j++;
-	if (g_cmd_table->table[i][j])
-		while (g_cmd_table->table[i][j])
-			expanded_line[k++] = g_cmd_table->table[i][j++];
+	if (line[0][j])
+		while (line[0][j])
+			expanded_line[k++] = line[0][j++];
 	expanded_line[k] = '\0';
 	free(rtn);
-	free(g_cmd_table->table[i]);
-	g_cmd_table->table[i] = ft_strdup(expanded_line);
+	free(*line);
+	*line = ft_strdup(expanded_line);
 	free(expanded_line);
 }
 
-void	expand_env(void)
+void	*expand_env(void *content)
 {
-	int		i;
 	char	*tmp;
 
-	i = -1;
-	while (g_cmd_table->table[++i])
-	{
-		tmp = g_cmd_table->table[i];
-		if (ft_strchr(tmp, '\''))
-		{
-			tmp = ft_strchr(tmp, '\'');
-			if (tmp[-1] == ' ')
-				continue ;
-		}
-		while (ft_strchr(g_cmd_table->table[i], '$')
-			&& g_cmd_table->table[i][0] != '\'')
-			expand_line(i);
-	}
+	tmp = ft_strdup((char *)content);
+	if (tmp[0] == '\'')
+		return (tmp);
+	else
+		while (ft_strchr(tmp, '$'))
+			expand_line(&tmp);
+	return (tmp);
 }
