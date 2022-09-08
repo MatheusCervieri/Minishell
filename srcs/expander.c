@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/09/08 16:10:23 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:24:09 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ char	*token_with_quotes(char **split_line, int *i, char *line)
 	rtn = (char *)malloc(sizeof(char) * size + 1);
 	rtn[size] = '\0';
 	while (size--)
-	{
 		rtn[size] = tmp[size];
-	}
 	return (rtn);
 }
 
