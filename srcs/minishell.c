@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 21:11:31 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/08 21:56:13 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:26:38 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	minishell(char *envp[])
 			continue ;
 		if (parse_line(line))
 			rtn = 4;
-		printf("%s\n", g_cmd_table->table[0]);
 		free(line);
 		if (rtn != 4)
 			executor_handler();
