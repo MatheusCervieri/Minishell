@@ -6,11 +6,27 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:30:08 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/08 21:39:51 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:55:01 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	is_there_quotes(char *parameter)
+{
+	int	i;
+
+	i = 0;
+	while (parameter[i])
+	{
+		if (parameter[i] == 39)
+			return (1);
+		if (parameter[i] == 34)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	remove_single_quotes(char ***tokens)
 {

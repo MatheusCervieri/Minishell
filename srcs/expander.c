@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:18:23 by ghosthologr       #+#    #+#             */
-/*   Updated: 2022/09/08 16:24:09 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:22:32 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,85 +23,51 @@ char	*join_with_space(char *str1, char *str2)
 	return (str1);
 }
 
-int	has_quote(char *split_line)
+static void	change_spaces_quote(char **parameter)
 {
-	char	*word;
-
-	word = split_line;
-	while ((*word != '"' && ft_strncmp(word, "'", 1)) && *word)
-	{
-		word++;
-	}
-	if (*word == '"' || !ft_strncmp(word, "'", 1))
-	{
-		return (1);
-	}
-	return (0);
-}
-
-char	*token_with_quotes(char **split_line, int *i, char *line)
-{
-	char		*rtn;
-	char		*tmp;
-	int			size;
-	char		quote_type;
-
-	quote_type = *split_line[*i];
-	rtn = 0;
-	tmp = get_position(quote_type, line);
-	size = 0;
-	while (tmp[size])
-		size++;
-	rtn = (char *)malloc(sizeof(char) * size + 1);
-	rtn[size] = '\0';
-	while (size--)
-		rtn[size] = tmp[size];
-	return (rtn);
-}
-
-char	**tokenize(char **split_line, int size, char *line)
-{
-	char	**tokens;
 	int		i;
-	int		j;
+	char	q_type;
 
-	tokens = (char **)malloc(sizeof(char *) * (size + 1));
 	i = -1;
-	j = 0;
-	while (split_line[++i])
+	while (parameter[0][++i] != '\0')
 	{
-		if (*split_line[i] == '"' || *split_line[i] == '\'')
-		{
-			tokens[j] = token_with_quotes(split_line, &i, line);
-			if (ft_strncmp(tokens[j], split_line[i], ft_strlen(tokens[j])) != 0)
-				while (++i && ft_strnstr(tokens[j], split_line[i],
-						ft_strlen(split_line[i])))
-					continue ;
-		}
-		else
-			tokens[j] = ft_strdup(split_line[i]);
-		j++;
+		while (parameter[0][i] && (parameter[0][i] != '"'
+				&& parameter[0][i] != '\''))
+			i++;
+		if (!parameter[0][i])
+			return ;
+		q_type = parameter[0][i];
+		while (parameter[0][++i] != q_type)
+			if (parameter[0][i] == ' ')
+				parameter[0][i] = 1;
 	}
-	tokens[j] = NULL;
-	free_split_line(split_line);
-	return (tokens);
+}
+
+static void	revert_spaces(char ***tokens)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while ((*tokens)[i] != NULL)
+	{
+		j = 0;
+		while ((*tokens)[i][j])
+		{
+			if ((*tokens)[i][j] == 1)
+				(*tokens)[i][j] = ' ';
+			j++;
+		}
+		i++;
+	}
 }
 
 char	**expander(char *line)
 {
-	int		size;
-	char	**split_line;
+	char	**tokens;
 
-	split_line = ft_split(line, ' ');
-	if (!split_line)
-	{
-		g_cmd_table->status = -1;
-		return (NULL);
-	}
-	size = 0;
-	while (split_line[size])
-		size++;
-	g_cmd_table->n_of_tokens = size;
-	split_line = tokenize(split_line, size, line);
-	return (split_line);
+	change_spaces_quote(&line);
+	tokens = ft_split(line, ' ');
+	revert_spaces(&tokens);
+	return (tokens);
 }
