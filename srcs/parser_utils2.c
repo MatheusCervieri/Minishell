@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:31:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/08 21:06:24 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:49:55 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	count_quotes(const char *line, int *d_quotes, int *quotes)
 	int	in_quotes;
 
 	in_quotes = 0;
-	while (*(line++))
+	while (*line)
 	{
 		if (*line == '"' && (!in_quotes || *line == quote_type))
 		{
@@ -100,5 +100,6 @@ void	count_quotes(const char *line, int *d_quotes, int *quotes)
 		}
 		if (!in_quotes)
 			quote_type = '\0';
+		line++;
 	}
 }
