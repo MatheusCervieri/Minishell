@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:24:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/08 09:42:33 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:06:28 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ void	delete_data(t_pipex *data, char **envp);
 void	clear_memory(void);
 void	free_global(void);
 char	*get_position(char quote_type, char *line);
+void	count_quotes(const char *line, int *d_quotes, int *quotes);
+char	*clean_quotes(char *parameter);
 char	*check_tokens(char **split_line);
 void	print_token_error(char *error);
 

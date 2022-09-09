@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 10:26:30 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/09/07 10:27:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:41:48 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,48 +33,20 @@ void	remove_double_quotes(char ***tokens)
 	}
 }
 
-void	change_spaces_double_quote(char **parameter)
+void	change_spaces_quote(char **parameter)
 {
-	char	*position;
+	int		i;
+	char	q_type;
 
-	position = *parameter;
-	while (*(*parameter) != '\0')
-	{
-		if (*(*parameter) == 34)
-		{
-			*parameter = *parameter + 1;
-			while (*(*parameter) != 34 && *(*parameter) != '\0')
-			{
-				if (*(*parameter) == ' ')
-					*(*parameter) = 1;
-				*parameter = *parameter + 1;
-			}
-		}
-		*parameter = *parameter + 1;
-	}
-	*parameter = position;
-}
-
-void	change_spaces_single_quote(char **parameter)
-{
-	char	*position;
-
-	position = *parameter;
-	while (*(*parameter) != '\0')
-	{
-		if (*(*parameter) == 39)
-		{
-			*parameter = *parameter + 1;
-			while (*(*parameter) != 39 && *(*parameter) != '\0')
-			{
-				if (*(*parameter) == ' ')
-					*(*parameter) = 1;
-				*parameter = *parameter + 1;
-			}
-		}
-		*parameter = *parameter + 1;
-	}
-	*parameter = position;
+	i = -1;
+	while (parameter[0][++i] && (parameter[0][i] != '"' && parameter[0][i] != '\''))
+		continue;
+	if (!parameter[0][i])
+		return ;
+	q_type = parameter[0][i];
+	while (parameter[0][++i] != q_type)
+		if (parameter[0][i] == ' ')
+			parameter[0][i] = 1;
 }
 
 void	revert_spaces(char ***tokens)
@@ -99,12 +71,12 @@ void	revert_spaces(char ***tokens)
 char	**get_parameters(char *parameter)
 {
 	char	**tokens;
+	char	*new_str;
 
-	change_spaces_double_quote(&parameter);
-	change_spaces_single_quote(&parameter);
-	tokens = ft_split(parameter, ' ');
+	change_spaces_quote(&parameter);
+	new_str = clean_quotes(parameter);
+	tokens = ft_split(new_str, ' ');
+	free(new_str);
 	revert_spaces(&tokens);
-	remove_double_quotes(&tokens);
-	remove_single_quotes(&tokens);
 	return (tokens);
 }

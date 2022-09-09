@@ -6,7 +6,7 @@
 /*   By: ghenaut- <ghenaut-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:31:17 by ghenaut-          #+#    #+#             */
-/*   Updated: 2022/09/07 19:55:40 by ghenaut-         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:06:24 by ghenaut-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,29 @@ char	*get_position(char quote_type, char *line)
 			rtn = ft_strchr(++rtn, quote_type);
 	}
 	return (rtn);
+}
+
+void	count_quotes(const char *line, int *d_quotes, int *quotes)
+{
+	int	quote_type;
+	int	in_quotes;
+
+	in_quotes = 0;
+	while (*(line++))
+	{
+		if (*line == '"' && (!in_quotes || *line == quote_type))
+		{
+			quote_type = '"';
+			(*d_quotes)++;
+			in_quotes = (*d_quotes % 2);
+		}
+		else if (*line == '\'' && (!in_quotes || *line == quote_type))
+		{
+			quote_type = '\'';
+			(*quotes)++;
+			in_quotes = (*quotes % 2);
+		}
+		if (!in_quotes)
+			quote_type = '\0';
+	}
 }
